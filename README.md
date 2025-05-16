@@ -564,7 +564,7 @@ In order to completely animate phonemes and emotion, please use a Geppetto Playe
 
 It should be called in ypur Blueprint *BeginPlay* event. Pass in the `Audio Component`.
 
-| Paramètre       | Description                                                                                       |
+| Parameter       | Description                                                                                       |
 |-----------------|---------------------------------------------------------------------------------------------------|
 | Audio Component | The audio component that will be used by the SoundWave player to play the audio file.            |
 
@@ -575,7 +575,7 @@ It should be called in ypur Blueprint *BeginPlay* event. Pass in the `Audio Comp
 
 Call this function to perform the lip sync coming from a [Geppetto Data Asset](#4101-geppetto-data-asset). The Data Asset can be be selected directly from within the node or through a variable:
 
-| Paramètre   | Description                                                                    |
+| Parameter   | Description                                                                    |
 |-------------|--------------------------------------------------------------------------------|
 | Data Asset  | The Geppetto Data Asset that will be played by the SoundWave Player.          |
 
@@ -587,7 +587,7 @@ For example, this node can be useful if you want to edit the phonemes /emotions 
 
 ![](./docs/images/Play_image_1.png)
 
-| Paramètre | Description                                                              |
+| Parameter | Description                                                              |
 |-----------|--------------------------------------------------------------------------|
 | Audio     | The SoundWave file that will be played by the component.                 |
 | Phonemes  | The phonemes list that will be processed by the component. Can be empty. |
@@ -595,7 +595,7 @@ For example, this node can be useful if you want to edit the phonemes /emotions 
 
 ### 4.2.4 Variables
 
-| Paramètre                    | Description                                                                                                           |
+| Parameter                    | Description                                                                                                           |
 |-----------------------------|-----------------------------------------------------------------------------------------------------------------------|
 | Audio Component             | The audio component reference passed to the SoundWave Player when initializing. Internal use only.                   |
 | Current Data                | The DataAsset reference passed to the SoundWave Player when playing lip sync. Internal use only.                     |
@@ -649,7 +649,7 @@ This node is used to initialize the component and should be called in your Bluep
 
 #### Parameters
 
-| Paramètre                    | Description |
+| Parameter                    | Description |
 |-----------------------------|-------------|
 | **Geppetto SoundWave / URL Player** | The Geppetto Player used to synchronize animations with the audio. This can either be a `GeppettoSoundWavePlayer`, a `GeppettoURLPlayer`, or any subclass of `GeppettoBaseComponent`. |
 | **Mesh** | The `Skeletal Mesh Asset` that the component will use to change morph target values and perform phonemes, emotions, and micro expressions animations. |
@@ -673,7 +673,7 @@ Use this node to change the Skeletal Mesh used by the Geppetto Player Component 
 ![](./docs/images/Geppetto_Player_Component_image_5.png)
 
 
-| Paramètre       | Description |
+| Parameter       | Description |
 |-----------------|-------------|
 | **Mesh**        | The Skeletal Mesh Asset that the component will use to change morph target values and perform lip sync, emotions, and micro expressions animations. |
 | **Return value**| Returns `true` if the mesh was successfully updated, `false` otherwise. |
@@ -687,7 +687,7 @@ Use this node to change the Geppetto Player used by the component after initiali
 
 ![](./docs/images/Geppetto_Player_Component_image_6.png)
 
-| Paramètre                         | Description                                  |
+| Parameter                         | Description                                  |
 |----------------------------------|----------------------------------------------|
 | Geppetto SoundWave/URL Player    | The Geppetto Player attached to the component. |
 
@@ -700,7 +700,7 @@ Use this node to change the Geppetto Phoneme Data Table used by the Geppetto Pla
 
 ![](./docs/images/Geppetto_Player_Component_image_7.png)
 
-| Paramètre       | Description                                               |
+| Parameter       | Description                                               |
 |-----------------|-----------------------------------------------------------|
 | **Phoneme Table**| The Geppetto Phoneme Table used by the component.         |
 | **Return value** | Returns `true` if the table has been updated, `false` otherwise. |
@@ -714,7 +714,7 @@ Use this node to change the Geppetto Emotion Data Table used by the Geppetto Pla
 
 ![](./docs/images/Geppetto_Player_Component_image_8.png)
 
-| Paramètre       | Description                                               |
+| Parameter       | Description                                               |
 |-----------------|-----------------------------------------------------------|
 | **Emotion Table**| The Geppetto Emotion Table used by the component.         |
 | **Return value** | Returns `true` if the table has been updated, `false` otherwise. |
@@ -728,7 +728,7 @@ Use this node to change the Geppetto Micro Expressions Data Table used by the Ge
 
 ![](./docs/images/Geppetto_Player_Component_image_9.png)
 
-| Paramètre                | Description                                               |
+| Parameter                | Description                                               |
 |--------------------------|-----------------------------------------------------------|
 | **Micro Expressions Table** | The Geppetto Micro Expressions Table used by the component. |
 | **Return value**          | Returns `true` if the table has been updated, `false` otherwise. |
@@ -742,7 +742,7 @@ Use this node to set the custom emotion transition function behavior when used b
 
 ![](./docs/images/Geppetto_Player_Component_image_10.png)
 
-| Paramètre  | Description                                                                       |
+| Parameter  | Description                                                                       |
 |------------|-----------------------------------------------------------------------------------|
 | **Function** | The function name to set the behavior.                                           |
 | **Curve**    | The function evaluation curve. Must be in the range 0–1 for both time and value (X and Y axis). |
@@ -757,7 +757,7 @@ Use this node to change the current emotion pose dynamically. For more details, 
 
 ![](./docs/images/Geppetto_Player_Component_image_11.png)
 
-| Paramètre | Description                     |
+| Parameter | Description                     |
 |-----------|---------------------------------|
 | **Emotion** | Use the `GeppettoEmotion` structure. |
 
@@ -770,7 +770,7 @@ Use this node to play a micro expression one time. For more info, see section [3
 
 ![](./docs/images/Geppetto_Player_Component_image_12.png)
 
-| Paramètre  | Description                                                        |
+| Parameter  | Description                                                        |
 |------------|--------------------------------------------------------------------|
 | **Name**     | The micro-expression name (must exist in the Micro Expressions Data Table). |
 | **Intensity**| Intensity value from 0 to 100.                                    |
@@ -785,7 +785,7 @@ Use this node to play a micro expression repeatedly.
 
 ![](./docs/images/Geppetto_Player_Component_image_13.png)
 
-| Paramètre       | Description                                                                                     |
+| Parameter       | Description                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------|
 | **Name**        | The micro-expression name.                                                                      |
 | **Time range**  | The time range between the execution of two micro-expressions. After each play, a random time between min and max is selected. |
@@ -802,7 +802,7 @@ Use this node to stop looping a micro expression.
 ![](./docs/images/Geppetto_Player_Component_image_14.png)
 
 
-| Paramètre | Description                     |
+| Parameter | Description                     |
 |-----------|---------------------------------|
 | **Name**  | The micro-expression name.      |
 
@@ -815,7 +815,7 @@ This node is used by the Geppetto Player Component to change Skeletal Mesh Morph
 
 ![](./docs/images/Geppetto_Player_Component_image_15.png)
 
-| Paramètre           | Description                                                                                 |
+| Parameter           | Description                                                                                 |
 |---------------------|---------------------------------------------------------------------------------------------|
 | **Morph Target Name** | The morph target to modify.                                                                 |
 | **Value**           | The new morph target value (including values from animation if Override Animation was unchecked). |
@@ -829,7 +829,7 @@ This node checks if a morph target exists on the Skeletal Mesh. If the mesh does
 
 ![](./docs/images/Geppetto_Player_Component_image_16.png)
 
-| Paramètre             | Description                                                     |
+| Parameter             | Description                                                     |
 |-----------------------|-----------------------------------------------------------------|
 | **Morph Target Name**  | The morph target to check.                                      |
 | **Return Node - Exist**| Return `true` if the morph target exists and can be updated, else `false`. |
@@ -862,7 +862,7 @@ This node is used to initialize the component and should be called in your Bluep
 
 ![](./docs/images/Initialize_image_1.png)
 
-| Paramètre             | Description                                                    |
+| Parameter             | Description                                                    |
 |-----------------------|----------------------------------------------------------------|
 | SkeletalMeshComponent | The component that contains the SkeletalMesh of your character. |
 
@@ -874,7 +874,7 @@ This node is used to play a Geppetto Sequence. Precisely, it creates a new Level
 ![](./docs/images/Sequencer_Play_image_1.png)
 
 
-| Paramètre                    | Description                                                                                         |
+| Parameter                    | Description                                                                                         |
 |-----------------------------|-----------------------------------------------------------------------------------------------------|
 | **GeppettoSequence**           | The GeppettoSequence to play. It should contain several timelines, one for each MorphTarget and one for the audio file to play. |
 | **Reset Facial Expression at End** | Should the component reset any facial expression that is still active on the character (eg. a smile) ? |
@@ -884,7 +884,7 @@ This node is used to play a Geppetto Sequence. Precisely, it creates a new Level
 
 ## 4.5.3 Variables
 
-| Paramètre | Description |
+| Parameter | Description |
 |-----------|-------------|
 | **Alpha**     | Alpha of the reset curve. Used to create an interpolation between character’s facial animation at the end of the Geppetto Sequence, and the default face. |
 
@@ -960,50 +960,112 @@ Right-click the Data Table asset and choose **Export as JSON** or **Export as CS
 
 ## 4.6 Geppetto Emotion Data Table
 
-Contains info related to emotion animations. Each emotion associates with Morph Targets and their values.
+The Geppetto Emotion Data Table contains all information related to the emotions animation. The Data Table associates each emotion with a list of Morph Targets and their values. The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Emotion Data Table can be created directly within the inspector or imported from a JSON file.
 
-### Create from scratch
+*Morph Target (or Blendshapes or Shapekeys) can be added on any 3D models software that you want. You can use an add-on on Blender or Maya for exemple. Or you can use Iclone 8 to add the Arkit Shapekeys standard to your 3D model.*
+
+
+### 4.6.1 Create from scratch
 
 1. In Content Drawer, create new Data Table selecting `GeppettoEmotionTableRow`.
 
-2. Name rows with emotion names like "Happy".
+![](./docs/images/Geppetto_Phonemes_DataTable_image_1.png)
+![](./docs/images/Geppetto_Emotions_DataTable_image_1.png)
 
-3. Set Morph Target values for the emotion at intensity 100.
 
-4. Optional:  
-   - Lip Sync Morph Targets Override (to reduce smile during speech)  
-   - Lip Sync Morph Targets Override Transition Time Range
+2. Each row on the Data Table defines an emotion. The row name is used to identify the emotion name, like “Happy” (double-click on the “Row Name” field or press F2 to rename it) : 
 
-### Add/Edit from existing
+![](./docs/images/Geppetto_Phonemes_DataTable_image_4.png)
+
+3. Use the Row Editor to set the Morph Targets values :
+
+![](./docs/images/Geppetto_Emotions_DataTable_image_5.png)
+
+| Parameter                                           | Description |
+|-----------------------------------------------------|-------------|
+| **Morph Targets**                                   | The Morph Targets values that make the Skeletal mesh take on the emotion pose. The pose must be defined as if the emotion intensity were at its highest (100). |
+| **Lip Sync Morph Targets Override**                 | *Optional.* The emotion Morph Targets values that will be overridden during lip sync animation. For example, if the emotion defined makes the character smile, use this to reduce the smile during speech to avoid an uncanny effect. |
+| **Lip Sync Morph Targets Override Transition Time Range** | *Optional.* Transition time range between the standard emotion pose and the lip sync override pose. Randomly selected between "First" (min) and "Second" (max). Set both fields equal to fix the transition time. |
+
+
+### 4.6.2 Add/Edit from existing
 
 Pre-made tables under:  
 `All > (Engine) > Plugins > Geppetto Content > Emotions`
 
-### Import/Export JSON same as phonemes.
+Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
+
+![](./docs/images/Geppetto_Emotions_DataTable_image_6.png)
+
+> *If the **Plugins** or the **Engine** folder is not showing, click on Settings at the top right of the window and ensure that “Show Plugin Content” and “Show Engine Content” is checked.*
+
+![](./docs/images/How_to_open_the_demo_level_image_1.png)
+
+### 4.6.3 Import/Export JSON same as phonemes.
+
+Like Phoneme Data Table, Emotion Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. The import and export steps are the same as Phoneme Data Table.   
+Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
 
 ---
 
 ## 4.7 Geppetto Micro Expressions Data Table
 
-Contains info related to micro expressions animation. Each row defines a micro expression with Morph Targets and values.
+The Geppetto Micro Expressions Data Table contains all information related to the micro expressions animation. The Data Table associates each micro expression with a list of Morph Targets and their values.    
+The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Micro Expressions Data Table can be created directly within the inspector or imported from a JSON file :
 
-### Create from scratch
+*Morph Target (or Blendshapes or Shapekeys) can be added on any 3D models software that you want. You can use an add-on on Blender or Maya for exemple. Or you can use Iclone 8 to add the Arkit Shapekeys standard to your 3D model.*
 
-1. Create new Data Table selecting `GeppettoMicroExpressionTableRow`.
+### 4.7.1 Create from scratch
 
-2. Add rows named like "Blink".
+1. On the Content Drawer (Ctrl+Space), right click at the desired location and create new Data Table (under *Miscellaneous > Data Table*).
+On the Pick Row Structure window, select `GeppettoMicroExpressionTableRow` :
 
-3. Set Morph Target values for fixed and/or dynamic Morph Targets.
+![](./docs/images/Geppetto_Phonemes_DataTable_image_1.png)
+![](./docs/images/Geppetto_MicroExpressions_DataTable_image_1.png)
 
-- Fixed Morph Targets: static values at intensity 100.  
-- Dynamic Morph Targets: min and max ranges for random values each play.
+2. Each row on the Data Table defines a micro expression. The row name is used to identify the micro expression name, like “Blink”  (double-click on the “Row Name” field or press F2 to rename it).
 
-### Add/Edit from existing
+![](./docs/images/Geppetto_Phonemes_DataTable_image_4.png)
+
+3. Use the Row Editor to set the Morph Targets values :
+
+![](./docs/images/Geppetto_MicroExpressions_DataTable_image_5.png)
+
+
+| Parameter                        | Description |
+|----------------------------------|-------------|
+| **Alpha Curve**                  | The curve used to determine the micro expression animation time and transition interpolation. Must be of type **Float**. Custom curves can be created for specific use cases. |
+| **Fixed Morph Targets**          | *Optional.* The Morph Target values that define the pose for the micro expression, as if the intensity were at its maximum (100). |
+| **Dynamic Morph Targets**        | *Optional.* Morph Targets configured with random value ranges. Useful for varying the expression each time it is triggered. |
+
+### Détails des Dynamic Morph Targets
+
+| Champ            | Description |
+|------------------|-------------|
+| **Morph Targets**| The Morph Target names that will share a common randomly selected value. Allows grouped randomization. |
+| **Value Range**  | The random range (min = "First", max = "Second") from which a new value will be chosen every time the micro expression is played. |
+
+> *Please note that the same micro expression can have fixed and dynamic Morph Targets values. If a Morph Target is defined in both lists, the value defined in Fixed Morph Targets will be ignored.    
+**We recommend to always plays dynamic micro expressions with the highest intensity (100), as the value is already chosen randomly between a min and a max.***
+
+### 4.7.2 Add/Edit from existing
 
 Pre-made tables under:  
 `All > (Engine) > Plugins > Geppetto Content > MicroExpressions`
 
-### Import/Export JSON like above.
+Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
+
+![](./docs/images/Geppetto_MicroExpressions_DataTable_image_6.png)
+
+> *If the **Plugins** or the **Engine** folder is not showing, click on Settings at the top right of the window and ensure that “Show Plugin Content” and “Show Engine Content” is checked.*
+
+![](./docs/images/How_to_open_the_demo_level_image_1.png)
+
+### 4.7.3 Import/Export JSON like above.
+
+Like Phoneme Data Table, Micro Expressions Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. 
+The import and export steps are the same as Phoneme Data Table.   
+Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
 
 ---
 
@@ -1016,27 +1078,23 @@ The following functions can only be used in Editor-only assets, such as Editor U
 ### 4.8.1. Generate phonemes (using SoundWave)
 
 Generate the phonemes for the given audio and sentence.  
-👉 THIS IS THE EDITOR-ONLY FUNCTION. FOR RUNTIME, SEE: `Generate phonemes (using SoundWave)` in section 4.9.
+👉 THIS IS THE EDITOR-ONLY FUNCTION. FOR RUNTIME, SEE: [Generate phonemes (using SoundWave) ](#481-generate-phonemes-using-soundwave) in section 4.9.
+
+![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_9.png)
 
 #### Parameters
 
-- **Audio**  
-  The audio SoundWave asset. See section 3.1.1 for more details.
+### Audio Input Configuration
 
-- **Sentence**  
-  The sentence spoken in the audio. Can include emotion tags (see section 3.3).
+| **Parameter**         | **Description** |
+|-----------------------|-----------------|
+| **Audio**             | The `SoundWave` asset used as input audio. See [section 3.1.1](#311-audio-import) for more details. |
+| **Sentence**          | The sentence spoken in the audio. You can include emotion tags (see [section 3.3](#33-emotion-tags)). |
+| **Format**            | Audio file format. Supported formats include `WAV`, `MP3`, etc. |
+| **Amplitude range**   | The minimum and maximum values used to determine the intensity of phoneme animations. |
+| **Silence threshold** | The minimum decibel (dB) level considered as silence. Helps in ignoring background noise or breathing sounds. |
+| **Emotion detection** | If enabled, a deep learning model will automatically analyze the audio and extract the emotion content. |
 
-- **Format**  
-  The file format: WAV, MP3, etc.
-
-- **Amplitude range**  
-  Min/Max values to define the intensity of phonemes animation.
-
-- **Silence threshold**  
-  The minimum dB value to consider sound as silence. Use to ignore background noise.
-
-- **Emotion detection**  
-  If enabled, the system will try to detect emotion automatically using a deep learning model.
 
 ---
 
@@ -1044,106 +1102,123 @@ Generate the phonemes for the given audio and sentence.
 
 Save the generated phonemes as a `Geppetto Data Asset` or as a Sequencer track.
 
+![](./docs/images/GeppettoBlueprintLibrary_image_1.png)
+
 #### Parameters
 
-- **Save file as**  
-  Choose between `DataAsset` or `Sequencer`.
+| **Parameter**     | **Description** |
+|-------------------|-----------------|
+| **Save file as**  | Choose the output format: `DataAsset` (for playback using the `SoundWavePlayer`) or `Sequencer` (for timeline-based facial animation using `GeppettoSequence`). |
+| **Save file at**  | The directory path where the generated `.uasset` will be saved in your project. |
 
-- **Save file at**  
-  Path where the `.uasset` file will be saved.
 
 ---
 
 ### 4.8.3. Show save file selection dialog
 
-Display the file dialog to choose a location for saving the phoneme asset.
+Show the operating system save file selection dialog for a Geppetto Data Asset.    
+**Please note that the whole engine is freezed while the OS file selection window is opened.**
 
----
+![](./docs/images/GeppettoBlueprintLibrary_image_2.png)
+
+
+| **Parameter**      | **Description** |
+|--------------------|-----------------|
+| **Selected Path**  | The file path selected by the user, relative to the project's `Content` folder. Returns `"INVALID PATH"` or an empty string if no path was selected or if the path is invalid. |
+
 
 ### 4.8.4. Get Documentation URL
 
 Open the plugin's documentation link in your web browser.
+
+![](./docs/images/GeppettoBlueprintLibrary_image_3.png)
 
 
 ## 4.9. Geppetto Blueprint Library
 
 The following functions can be used in both runtime and editor assets, such as Blueprint classes. Please note that the following functions are declared in C++.
 
----
-
 ### 4.9.1. Generate phonemes (using URL)
 
 Generate the phonemes for the given audio and sentence. The audio file is available through a publicly accessible URL. The audio must be in wav format (PCM16 recommended) :
 
-#### Parameters
+![](./docs/images/GeppettoBlueprintLibrary_image_4.png)
 
-- **URL**  
-  The audio URL. See section 3.2 for more details.
 
-- **Sentence**  
-  The sentence spoken in the audio. Can include emotions tags. Please see section 3.3 for more details.
+| **Parameter**         | **Description** |
+|------------------------|-----------------|
+| **URL**                | The audio URL. See section 3.2 for more details. |
+| **Sentence**           | The sentence spoken in the audio. Can include emotion tags. Please see section 3.3 for more details. |
+| **Format**             | The phoneme format returned by the API. Please read section 4.11.2 for more details. Default is `"Metahuman"`. |
+| **Min Ampl**           | The minimum amplitude value (range 0–100). Default is `30`. |
+| **Max Ampl**           | The maximum amplitude value (range 0–100). Must be greater than or equal to `Min Ampl`. Default is `60`. |
+| **Silence Threshold**  | The threshold used to identify audio silences. Default is `-50 dB`. |
+| **Silence Time**       | The minimum silence duration to be considered as a pause, in milliseconds. Default is `250 ms`. |
+| **Logs**               | Whether logs should be printed to the console. Default is `true`. |
+| **On Response**        | The delegate event called when a response is received from the API. |
 
-- **Format**  
-  The phoneme format returned by the API. Please read section 4.11.2 for more details. Default is “Metahuman”.
-
-- **Min Ampl**  
-  The minimum amplitude value (range 0 - 100). Default is 30.
-
-- **Max Ampl**  
-  The maximum amplitude value (range 0 - 100). Must be higher or equal to MinAmpl. Default is 60.
-
-- **Silence Threshold**  
-  The threshold used to identify audio silences. Default is -50dB.
-
-- **Silence Time**  
-  The minimum silence time duration to be considered as a pause, in milliseconds. Default is 250ms.
-
-- **Logs**  
-  Indicate if logs should be printed to the console. Default is true.
-
-- **On Response**  
-  The delegate event called when a response was received from the API.
-
----
 
 ### 4.9.2. Generate phonemes (using SoundWave)
 
 Generate the phonemes for the given SoundWave and sentence.
 
-#### Parameters
+![](./docs/images/GeppettoBlueprintLibrary_image_5.png)
 
-- **Audio**  
-  The SoundWave used for phoneme generation.
+**SoundWave detail Window** :
 
-- **Sentence**  
-  The sentence spoken in the audio.
+![](./docs/images/GeppettoBlueprintLibrary_image_6.png)
 
-- **Format**  
-  See section 4.11.2.
 
-- **Min Ampl**, **Max Ampl**  
-  Range of phoneme amplitude (0–100).
+| **Parameter**           | **Description** |
+|--------------------------|-----------------|
+| **Audio**                | The SoundWave used for phoneme generation. |
+| **Sentence**             | The sentence spoken in the audio. |
+| **Format**               | See section 4.11.2. |
+| **Min Ampl**, **Max Ampl** | Range of phoneme amplitude (0–100). |
+| **Silence Threshold**, **Silence Time** | Silence detection parameters. |
 
-- **Silence Threshold**, **Silence Time**  
-  Silence detection parameters.
-
----
 
 ### 4.9.3. Generate phonemes (using PCM bytes)
 
 Generate the phonemes using a PCM raw byte buffer and sentence.
 
----
+![](./docs/images/GeppettoBlueprintLibrary_image_6.png)
+
+| **Parameter**      | **Description** |
+|--------------------|-----------------|
+| **PCM Bytes**      | The PCM waves data bytes. |
+| **Sample Rate**    | The sample rate of the PCM waves (=frequency). Mostly 44100. |
+| **Bit Depth**      | The bit depth of the PCM waves (=sample data length). Mostly 16 or 24. |
+| **Num Channels**   | The amount of channels of the PCM waves (mono=1, stereo=2, etc.). |
+| **Other parameters** | See Generate phonemes (using SoundWave). |
+
 
 ### 4.9.4. Generate phonemes (using multipart/form-data)
 
 Same as the other phoneme generation nodes, but uses the `multipart/form-data` format required by some APIs.
 
----
+![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_10.png)
+
+| **Parameter**        | **Description** |
+|----------------------|-----------------|
+| **File Bytes**       | The file bytes. Can be all type of files. |
+| **Filename**         | The filename that will be sent and read by the API. No real impact. |
+| **File Content Type**| The HTTP MIME Content-Type of the file. Must match the file structure. |
+| **Other parameters** | See Generate phonemes (using SoundWave). |
+
 
 ### 4.9.5. Apply Delay (Phonemes)
 
 Applies a delay to the list of phonemes returned by the API.
+
+![](./docs/images/GeppettoBlueprintLibrary_image_8.png)
+
+| **Parameter**        | **Description** |
+|----------------------|-----------------|
+| **File Bytes**       | The file bytes. Can be all type of files. |
+| **Filename**         | The filename that will be sent and read by the API. No real impact. |
+| **File Content Type**| The HTTP MIME Content-Type of the file. Must match the file structure. |
+| **Other parameters** | See Generate phonemes (using SoundWave). |
 
 ---
 
@@ -1151,17 +1226,47 @@ Applies a delay to the list of phonemes returned by the API.
 
 Applies a delay to the list of emotions returned by the API.
 
+![](./docs/images/GeppettoBlueprintLibrary_image_9.png)
+
+| **Parameter**   | **Description**                                               |
+|-----------------|---------------------------------------------------------------|
+| **Delay**       | The delay that will be applied, in milliseconds. Can be positive or negative. |
+| **Emotions**    | The emotions list to apply the delay to.                      |
+| **Return Value**| The emotions list with the delay applied.                     |
+
+
 ---
 
 ### 4.9.7. Get Morph Targets for Phoneme
 
 Returns the Morph Targets and corresponding values for a phoneme name from a given Phoneme Table.
 
+![](./docs/images/GeppettoBlueprintLibrary_image_10.png)
+
+| **Parameter**     | **Description**                                              |
+|-------------------|--------------------------------------------------------------|
+| **Phoneme**       | The phoneme name.                                            |
+| **Phoneme Table** | The Phoneme Data Table used to retrieve Morph Targets values.|
+| **Return Value**  | The list of all Morph Targets used for the phoneme and their values. |
+
+
 ---
 
 ### 4.9.8. Safe Lerp
 
 Safe linear interpolation with clamping. Used internally to blend values without exceeding limits.
+
+![](./docs/images/GeppettoBlueprintLibrary_image_11.png)
+
+| **Parameter**   | **Description**                                                          |
+|-----------------|--------------------------------------------------------------------------|
+| **A**           | The minimum value, returned when Alpha <= 0.0                           |
+| **B**           | The maximum value, returned when Alpha >= 1.0                           |
+| **Alpha**       | The alpha value used to interpolate between A and B                     |
+| **Return Value**| The safe linear interpolation result (either A, B, or a standard interpolation) |
+
+
+---
 
 ## 4.10. Data Assets
 
@@ -1173,94 +1278,64 @@ A Data Asset is an Unreal Asset used to store Data. The Geppetto Plugin uses cus
 
 Geppetto Data Assets are used to store and save the generated phonemes and emotions generated from the API within the Editor in order to use them in the game later. You can use the Geppetto SoundWave Player node `Play Data Asset` to animate the data contained in the Data Asset. All fields are Blueprint Read-Only, but you can use the node `Save Geppetto Phonemes (as Asset)` to create a new Data Asset with Blueprint. Please note that the node is only available within the Editor.
 
-#### Fields
+![](./docs/images/Geppetto_DataAsset_image_1.png)
 
-- **Audio**  
-  The audio associated with the lip sync.
+| Audio               | The audio associated with the lip sync.                                  |
+|---------------------|-------------------------------------------------------------------------|
+| **Sentence**            | (Info only) The sentence used for generation.                           |
+| **Min Ampl**            | (Info only) The minimum amplitude value used for generation.            |
+| **Max Ampl**            | (Info only) The maximum amplitude value used for generation.            |
+| **Silence Threshold**   | (Info only) The silence threshold value (dB) used for generation.       |
+| **Silence Time**        | (Info only) The silence time (in milliseconds) used for generation.     |
+| **Delay**              | (Info only) The delay applied to phonemes and emotions after generation.|
+| **Phonemes**            | The phonemes list generated by the API, used to animate lip sync.       |
+| **Emotions**            | The emotions list generated by the API, used to animate emotions.       |
 
-- **Sentence**  
-  (Info only) The sentence used for generation.
-
-- **Min Ampl**  
-  (Info only) The minimum amplitude value used for generation.
-
-- **Max Ampl**  
-  (Info only) The maximum amplitude value used for generation.
-
-- **Silence Threshold**  
-  (Info only) The silence threshold value (dB) used for generation.
-
-- **Silence Time**  
-  (Info only) The silence time (in milliseconds) used for generation.
-
-- **Delay**  
-  (Info only) The delay applied to phonemes and emotions after generation.
-
-- **Phonemes**  
-  The phonemes list generated by the API, used to animate lip sync.
-
-- **Emotions**  
-  The emotions list generated by the API, used to animate emotions.
 
 ---
 
-### 4.10.2. Geppetto Sequence
+### 4.11 Geppetto Sequence
 
 A `GeppettoSequence` is a custom asset that contains all the assets and logic to play a lip-sync animation in one file. This asset contains a `LevelSequence` with a timeline for the audio file and a timeline for each `Morph Target` with their amplitude represented as a curve. That is the main element of this asset as it handles all the logic of the lip-sync animation to play on a character.
 
 The `GeppettoSequence` asset can also be edited inside a custom editor which allows you to see the render of the lip-sync animation in a preview scene with the selected mesh. Here is an overview:
 
-## 4.11. Enums
+![](./docs/images/Geppetto_Sequence_image_1.png)
+
+- The red box is the viewport. It gives you a preview of what the lip-sync animation will look like in-game.
+
+- The orange box is the sequencer editor. Here you can edit each Morph Target amplitude and the frame when the amplitude plays. You can also add or remove any timeline if you want.
+
+- The blue box is the Detail Panel, here you have a few settings :
+  - Preview Mesh : You can select the skeletal mesh to preview.
+  - Advanced Parameters :
+    - Face Animation : This is an optional parameter to use when your character does not contain Morph Targets but instead Controls (another kind of blendshapes used by some characters such as MetaHumans). 
+    You should select the AnimationBlueprint of your character in order to properly preview the lip-sync animation.
+
+
+## 4.12. Enums
 
 Here you can find the list and values of all enums defined by the Geppetto Plugin.
 
 ---
 
-### 4.11.1. Geppetto Emotion Transition
+### 4.12.1. Geppetto Emotion Transition
 
 This enum is used to choose the emotion transition each time the emotion pose changes. Users can use their own defined function behavior by using the Geppetto Player Component node `Set Emotion Custom Curve`.
 
-- **Linear**  
-  Use linear interpolation.
-
-- **Ease**  
-  Easing interpolation.
-
-- **Ease-In**  
-  Easing in only interpolation.
-
-- **Ease-Out**  
-  Easing out only interpolation.
-
-- **Ease-In-Out**  
-  Easing in and out interpolation. Similar to Ease.
-
-- **Cubic**  
-  Cubic interpolation. Similar to Ease-In-Out and Ease.
-
-- **CUSTOM 1-10**  
-  Custom interpolation. See `Set Emotion Custom Curve`.
+| Interpolation Type | Description                                  |
+|--------------------|----------------------------------------------|
+| **Linear**             | Use linear interpolation.                     |
+| **Ease**               | Easing interpolation.                         |
+| **Ease-In**            | Easing in only interpolation.                 |
+| **Ease-Out**           | Easing out only interpolation.                |
+| **Ease-In-Out**        | Easing in and out interpolation. Similar to Ease. |
+| **Cubic**              | Cubic interpolation. Similar to Ease-In-Out and Ease. |
+| **CUSTOM 1-10**        | Custom interpolation. See `Set Emotion Custom Curve`. |
 
 ---
 
-### 4.11.2. Geppetto Format
-
-The phoneme format used by the Geppetto Plugin. The format is passed as a string in the generation function. Here are the available formats:
-
-- **Metahuman**  
-  This is the default format. The Metahuman phoneme set is:  
-  `A, E, I, O, U, PP, FF, TH, DD, KK, CH, SS, NN, RR, HH`
-
-- **Papagayo**  
-  The Papagayo format is compatible with open-source 2D animation software (e.g. Blender's Papagayo add-on).
-
-- **English (Grapheme)**  
-  Uses grapheme-level units instead of phonemes. Still in testing.
-
-- **Custom**  
-  You can define your own set of phonemes. Please contact us to configure this.
-
-## 4.12. Structs
+## 4.13. Structs
 
 Here you can find the list and details of all structs defined by the Geppetto Plugin.
 
@@ -1270,14 +1345,14 @@ Here you can find the list and details of all structs defined by the Geppetto Pl
 
 A struct containing all parameters to play a Geppetto Phoneme. All variables are Blueprint read-write:
 
-- **Name**  
-  The phoneme name.
+![](./docs/images/Structs_image_1.png)
 
-- **Amplitude**  
-  The phoneme amplitude, range 0 - 100.
+| Name      | Description                                                      |
+|-----------|------------------------------------------------------------------|
+| **Name**      | The phoneme name.                                                |
+| **Amplitude** | The phoneme amplitude, range 0 - 100.                           |
+| **Time**      | The phoneme animation play time, matching the audio for synchronization. |
 
-- **Time**  
-  The phoneme animation play time, matching the audio for synchronization. 
 
 ---
 
@@ -1285,20 +1360,16 @@ A struct containing all parameters to play a Geppetto Phoneme. All variables are
 
 A struct containing all parameters to play a Geppetto Emotion. All variables are Blueprint read-write:
 
-- **Name**  
-  The emotion name.
+![](./docs/images/Structs_image_2.png)
 
-- **Intensity**  
-  The emotion intensity, range 0 - 100.
+| Name               | Description                                                    |
+|--------------------|----------------------------------------------------------------|
+| **Name**               | The emotion name.                                              |
+| **Intensity**          | The emotion intensity, range 0 - 100.                         |
+| **Transition time**    | The emotion transition time, in seconds.                      |
+| **Transition function**| See Geppetto Emotion Transition.                              |
+| **Time**               | The emotion animation play time, matching the sentence tag for sync. |
 
-- **Transition time**  
-  The emotion transition time, in seconds.
-
-- **Transition function**  
-  See Geppetto Emotion Transition.
-
-- **Time**  
-  The emotion animation play time, matching the sentence tag for sync.
 
 ---
 
@@ -1306,23 +1377,17 @@ A struct containing all parameters to play a Geppetto Emotion. All variables are
 
 A struct containing all parameters to play a Geppetto Micro Expression. All variables are Blueprint read-write:
 
-- **Curve**  
-  The curve used to determine the micro expression animation time as well as the animation transition interpolation evaluation. Please note that the curve must be of type “Float”.
+![](./docs/images/Structs_image_3.png)
 
-- **Transition Morph Targets**  
-  The micro expression Morph Targets and their values used to animate the micro expression.
+| Parameter              | Description                                                                                      |
+|-----------------------|--------------------------------------------------------------------------------------------------|
+| **Curve**                 | The curve used to determine the micro expression animation time and transition interpolation. Must be a “Float” type curve. |
+| **Transition Morph Targets** | The micro expression Morph Targets and their values used for animation.                          |
+| **Current Tick Morph Targets** | The current tick Morph Targets values used by the micro expression, managed by the Geppetto Player Component. |
+| **Speed**                 | The animation speed of the micro expression. Must be greater than 0.                             |
+| **Is Animating**          | Indicates whether the micro expression is currently animating (not started, finished). Managed by the Geppetto Player. |
+| **Time**                 | The micro expression animation play time. *(Currently unused)*                                   |
 
-- **Current Tick Morph Targets**  
-  The micro expression current tick Morph Targets values used. This is managed by the Geppetto Player Component.
-
-- **Speed**  
-  The micro expression animation speed. Must be greater than 0.
-
-- **Is Animating**  
-  Indicate if the micro expression is currently being animated or not (not started, finished). Managed by the Geppetto Player.
-
-- **Time**  
-  The micro expression animation play time. *(Unused for now)*
 
 ---
 
@@ -1330,11 +1395,13 @@ A struct containing all parameters to play a Geppetto Micro Expression. All vari
 
 A struct containing all values related to dynamic Micro Expression Morph Targets. Used in Micro Expression Data Table:
 
-- **Morph Targets**  
-  The dynamic Morph Targets names.
+![](./docs/images/Structs_image_4.png)
 
-- **Value Rang**  
-  The dynamic Morph Target min and max values.
+| Parameter     | Description                       |
+|---------------|---------------------------------|
+| **Morph Targets** | The dynamic Morph Targets names.|
+| **Value Range**   | The dynamic Morph Target min and max values. |
+
 
 ---
 
@@ -1342,11 +1409,13 @@ A struct containing all values related to dynamic Micro Expression Morph Targets
 
 Since Unreal `FTuple<float>` is not supported in Blueprint yet, this struct is used instead.
 
-- **First**  
-  The tuple first value, i.e: the min value or the begin time.
+![](./docs/images/Structs_image_5.png)
 
-- **Second**  
-  The tuple second value, i.e: the max value or the end time.
+| Parameter | Description                              |
+|-----------|------------------------------------------|
+| **First**     | The tuple first value, i.e. the min value or the begin time. |
+| **Second**    | The tuple second value, i.e. the max value or the end time.   |
+
 
 ## 5. Resources & General explanations
 
@@ -1358,11 +1427,15 @@ Since Unreal `FTuple<float>` is not supported in Blueprint yet, this struct is u
 
 #### Text Acquisition
 
+![](./docs/images/RessourcesGeneral_image_1.png)
+
 The text can either be provided directly or generated through Speech-to-Text, which also captures onomatopoeia. For the best results, it is recommended to provide a text that explicitly includes onomatopoeia. Emotion tags associated with the text are also extracted.
 
 ---
 
 #### Silence Detection
+
+![](./docs/images/RessourcesGeneral_image_2.png)
 
 Silences in the audio serve as markers to define the start and end of the text. The automatic detection of silence depends on the type of audio:
 
@@ -1378,13 +1451,15 @@ These parameters should be adjusted based on the characteristics of the audio re
 The text is converted into phonemes using a machine learning model. This model is language-sensitive, and currently, Geppetto supports English, French, German, Italian, and Spanish.  
 If additional language support is needed, please contact us.
 
+![](./docs/images/RessourcesGeneral_image_3.png)
+
 ---
 
 #### Alignment with Audio: Two Model Approaches
 
-There are two types of models available:
+![](./docs/images/RessourcesGeneral_image_4.png)
 
----
+There are two types of models available:
 
 ##### Model 0 (Fast)
 
@@ -1416,18 +1491,25 @@ For both models, each phoneme is assigned an amplitude derived from the audio si
 
 ## 5.1 Amplitude Calculation
 
+![](./docs/images/RessourcesGeneral_image_5.png)
+
 The minimum amplitude is set as the lower bound between 0 and 100, based on the detected phoneme amplitude. This ensures that the phoneme remains visible during execution, even when its natural amplitude is very low.
 
 Similarly, the maximum amplitude acts as an upper limit to prevent excessive deformation of blendshapes, maintaining more natural transitions.
 
 The amplitude sinus step defines the incremental step between two consecutive phonemes' amplitudes, preventing abrupt jumps. This value ranges between 0 and 1:
 
-- The closer it is to 1, the more significant the amplitude variations between phonemes can be.
-- Lower values ensure smoother transitions, reducing sudden amplitude shifts.
+1. The closer it is to 1, the more significant the amplitude variations between phonemes can be.
+
+2. Lower values ensure smoother transitions, reducing sudden amplitude shifts.
 
 ## 6. Adding Emotion Tags
 
+![](./docs/images/RessourcesGeneral_image_6.png)
+
 Emotion tags are integrated into the audio at the appropriate timestamps based on their placement within the sentence, ensuring that the speaker’s tone and emotional expression are accurately reflected.
+
+![](./docs/images/RessourcesGeneral_image_7.png)
 
 You can also enable the automatic emotion detection parameter. Using a deep learning model, it predicts the most appropriate emotion based on both the text and the audio.
 
