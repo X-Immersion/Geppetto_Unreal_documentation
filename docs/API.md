@@ -78,7 +78,7 @@ The Geppetto SoundWave Player is a child of the [Geppetto Base Component](#41-ge
 ![](./images/Geppetto_SoundWave_Player_image_2.png)
 
 **Please note that the Geppetto SoundWave Player does not animate the phonemes and emotions itself, it only does the synchronization between the phonemes and the audio.**    
-In order to completely animate phonemes and emotion, please use a Geppetto Player Component in addition. See section [3.1.2 - Play Animation with SoundWave](#312-play-a-geppetto-data-asset-with-soundwave) for more details.
+In order to completely animate phonemes and emotion, please use a Geppetto Player Component in addition. See section [3.1.2 - Play Animation with SoundWave](./Features.md#312-play-a-geppetto-data-asset-with-soundwave) for more details.
 
 
 ### 4.2.1 `Initialize`
@@ -274,7 +274,7 @@ Use this node to set the custom emotion transition function behavior when used b
 
 ## 4.3.9 Change Emotion
 
-Use this node to change the current emotion pose dynamically. For more details, see section [3.3 - Change Emotions](#33-change-emotions) :
+Use this node to change the current emotion pose dynamically. For more details, see section [3.3 - Change Emotions](./Features.md#33-change-emotions) :
 
 ![](./images/Geppetto_Player_Component_image_11.png)
 
@@ -287,7 +287,7 @@ Use this node to change the current emotion pose dynamically. For more details, 
 
 ## 4.3.10 Play Micro Expression
 
-Use this node to play a micro expression one time. For more info, see section [3.4 - Play or Loop Micro Expressions](#34-play-or-loop-micro-expressions).
+Use this node to play a micro expression one time. For more info, see section [3.4 - Play or Loop Micro Expressions](./Features.md#34-play-or-loop-micro-expressions).
 
 ![](./images/Geppetto_Player_Component_image_12.png)
 
@@ -609,8 +609,8 @@ Generate the phonemes for the given audio and sentence.
 
 | **Parameter**         | **Description** |
 |-----------------------|-----------------|
-| **Audio**             | The `SoundWave` asset used as input audio. See [section 3.1.1](#311-audio-import) for more details. |
-| **Sentence**          | The sentence spoken in the audio. You can include emotion tags (see [section 3.3](#33-emotion-tags)). |
+| **Audio**             | The `SoundWave` asset used as input audio. See [section 3.1.1](./Features.md#311-audio-import) for more details. |
+| **Sentence**          | The sentence spoken in the audio. You can include emotion tags (see [section 3.3](./Features.md#33-emotion-tags)). |
 | **Format**            | Audio file format. Supported formats include `WAV`, `MP3`, etc. |
 | **Amplitude range**   | The minimum and maximum values used to determine the intensity of phoneme animations. |
 | **Silence threshold** | The minimum decibel (dB) level considered as silence. Helps in ignoring background noise or breathing sounds. |
