@@ -491,7 +491,7 @@ The Geppetto Emotion Data Table contains all information related to the emotions
 1. In Content Drawer, create new Data Table selecting `GeppettoEmotionTableRow`.
 
 ![](./images/Geppetto_Phonemes_DataTable_image_1.png)
-![](./images/Geppetto_Emotions_DataTable_image_1.png)
+![](./images/Geppetto_Emotions_DataTable_image_2.png)
 
 
 2. Each row on the Data Table defines an emotion. The row name is used to identify the emotion name, like “Happy” (double-click on the “Row Name” field or press F2 to rename it) : 
@@ -542,7 +542,7 @@ The Geppetto plugin provides a way to create your own Data Tables in order to an
 On the Pick Row Structure window, select `GeppettoMicroExpressionTableRow` :
 
 ![](./images/Geppetto_Phonemes_DataTable_image_1.png)
-![](./images/Geppetto_MicroExpressions_DataTable_image_1.png)
+![](./images/Geppetto_MicroExpressions_DataTable_image_2.png)
 
 2. Each row on the Data Table defines a micro expression. The row name is used to identify the micro expression name, like “Blink”  (double-click on the “Row Name” field or press F2 to rename it).
 
