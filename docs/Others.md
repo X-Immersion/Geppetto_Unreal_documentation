@@ -28,7 +28,7 @@ This chapter documents all the components, nodes, structures, enums, and tools p
 
 #### Text Acquisition
 
-![](./docs/images/RessourcesGeneral_image_1.png)
+![](./images/RessourcesGeneral_image_1.png)
 
 The text can either be provided directly or generated through Speech-to-Text, which also captures onomatopoeia. For the best results, it is recommended to provide a text that explicitly includes onomatopoeia. Emotion tags associated with the text are also extracted.
 
@@ -36,7 +36,7 @@ The text can either be provided directly or generated through Speech-to-Text, wh
 
 #### Silence Detection
 
-![](./docs/images/RessourcesGeneral_image_2.png)
+![](./images/RessourcesGeneral_image_2.png)
 
 Silences in the audio serve as markers to define the start and end of the text. The automatic detection of silence depends on the type of audio:
 
@@ -52,13 +52,13 @@ These parameters should be adjusted based on the characteristics of the audio re
 The text is converted into phonemes using a machine learning model. This model is language-sensitive, and currently, Geppetto supports English, French, German, Italian, and Spanish.  
 If additional language support is needed, please contact us.
 
-![](./docs/images/RessourcesGeneral_image_3.png)
+![](./images/RessourcesGeneral_image_3.png)
 
 ---
 
 #### Alignment with Audio: Two Model Approaches
 
-![](./docs/images/RessourcesGeneral_image_4.png)
+![](./images/RessourcesGeneral_image_4.png)
 
 There are two types of models available:
 
@@ -92,7 +92,7 @@ For both models, each phoneme is assigned an amplitude derived from the audio si
 
 ## 5.2 Amplitude Calculation
 
-![](./docs/images/RessourcesGeneral_image_5.png)
+![](./images/RessourcesGeneral_image_5.png)
 
 The minimum amplitude is set as the lower bound between 0 and 100, based on the detected phoneme amplitude. This ensures that the phoneme remains visible during execution, even when its natural amplitude is very low.
 
@@ -106,11 +106,11 @@ The amplitude sinus step defines the incremental step between two consecutive ph
 
 ## 6. Adding Emotion Tags
 
-![](./docs/images/RessourcesGeneral_image_6.png)
+![](./images/RessourcesGeneral_image_6.png)
 
 Emotion tags are integrated into the audio at the appropriate timestamps based on their placement within the sentence, ensuring that the speaker’s tone and emotional expression are accurately reflected.
 
-![](./docs/images/RessourcesGeneral_image_7.png)
+![](./images/RessourcesGeneral_image_7.png)
 
 You can also enable the automatic emotion detection parameter. Using a deep learning model, it predicts the most appropriate emotion based on both the text and the audio.
 

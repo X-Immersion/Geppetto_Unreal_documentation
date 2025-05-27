@@ -23,14 +23,14 @@ This chapter provides a complete tour of the Geppetto plugin features available 
 If you want to pre-generate phonemes that will be saved as a [Geppetto Data Asset](#4101-geppetto-data-asset), you can use the Editor Utility Widget included in the plugin.     
 You can open the Window by clicking on the Geppetto icon button or in the menu **Help > Geppetto**:
 
-![](./docs/images/Pre_Generate_Phonemes_image_1.png)
-![](./docs/images/Pre_Generate_Phonemes_image_2.png)
+![](./images/Pre_Generate_Phonemes_image_1.png)
+![](./images/Pre_Generate_Phonemes_image_2.png)
 
 The interface will open. Please see the table on the next page to find more information about all fields.
 
-![](./docs/images/Pre_Generate_Phonemes_image_3.png)
+![](./images/Pre_Generate_Phonemes_image_3.png)
 
-| Icône | Élément                                   | Description                                                                 |
+| Icon | Element                                   | Description                                                                 |
 |-------|-------------------------------------------|-----------------------------------------------------------------------------|
 | 📘    | **Documentation button**                  | Opens this manual in your browser.                                          |
 | 🧠    | **Local model**                           | Define the phoneme generation model (local only).                           |
@@ -62,7 +62,7 @@ To play the generated lip-sync and sound :
 1. Create a Blueprint class. **If you use Metahuman, you
 can use the generated Blueprint class instead** (i.e: *BP_Ada* for the Metahuman named Ada).
 
-![](./docs/images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_1.png)
+![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_1.png)
 
 2. Add the following components :
    - Skeletal Mesh Component
@@ -73,14 +73,14 @@ can use the generated Blueprint class instead** (i.e: *BP_Ada* for the Metahuman
 *If your Skeleton doesn’t use the traditional node “Set Morph Target” to update Morph Target values, like Metahuman characters, you need to override some functions from the Geppetto Player Component, otherwise animation will not work.    
 Please read section [4.4.1 - Component Inheritance](#441-component-inheritance) for more information.*
 
-![](./docs/images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_2.png)
-![](./docs/images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3.png)
+![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_2.png)
+![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3.png)
 
 3. Use `BeginPlay` to initialize with:
    - `Geppetto SoundWave Player Initialize`
    - `Geppetto Player Component Initialize`
 
-   ![](./docs/images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_4.png)
+   ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_4.png)
 
 4. Use `Play Data Asset` to start playback.
 5. Use `Play` node (advanced) if you want to override audio or delay.
@@ -89,11 +89,11 @@ You can use the node *Play Data Asset* from the [Geppetto SoundWave Player](#42-
 In the example below, the lip sync starts when the user presses the ‘s’ key (do not forget to enable input on this actor if you plan to do the same). 
 *You must provide the Data Asset that you want to play*
 
-  ![](./docs/images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_5.png)
+  ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_5.png)
 
 If you want to [Apply Delay](#495-apply-delay-phonemes) to the phonemes or emotions before playing the animation, please use the Geppetto SoundWave Player Play node instead. This node can also be used to change the audio SoundWave played with the Geppetto animation (*not recommended*) :
 
-  ![](./docs/images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_6.png)
+  ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_6.png)
 
 ---
 
@@ -104,7 +104,7 @@ Same idea as before, but with the **[Geppetto Sequencer Component](#45-geppetto-
 1. Create a Blueprint class. **If you use Metahuman, you
 can use the generated Blueprint class instead** (i.e: *BP_Ada* for the Metahuman named Ada).
 
-![](./docs/images/Play_a_Geppetto_Sequence_image_1.png)
+![](./images/Play_a_Geppetto_Sequence_image_1.png)
 
 2. Add the following components :
    - Skeletal Mesh Component
@@ -113,16 +113,16 @@ can use the generated Blueprint class instead** (i.e: *BP_Ada* for the Metahuman
 *If your Skeleton doesn’t use the traditional node “Set Morph Target” to update Morph Target values, like Metahuman characters, you need to override some functions from the Geppetto Player Component, otherwise animation will not work.    
 Please read section [4.4.1 - Component Inheritance](#441-component-inheritance) for more information.*
 
-![](./docs/images/Play_a_Geppetto_Sequence_image_2.png)
-![](./docs/images/Play_a_Geppetto_Sequence_image_3.png)
+![](./images/Play_a_Geppetto_Sequence_image_2.png)
+![](./images/Play_a_Geppetto_Sequence_image_3.png)
 
 3. Use `BeginPlay` to initialize the [Geppetto Sequencer Component](#45-geppetto-sequencer-component) with `Initialize`.
 
-   ![](./docs/images/Play_a_Geppetto_Sequence_image_4.png)
+   ![](./images/Play_a_Geppetto_Sequence_image_4.png)
 
 5. Use `Play` node to start the lip-sync animation. **You must provide the [Geppetto Sequence](#4102-geppetto-sequence) that you want to play.**
 
-  ![](./docs/images/Play_a_Geppetto_Sequence_image_5.png)
+  ![](./images/Play_a_Geppetto_Sequence_image_5.png)
 
 ---
 
@@ -142,8 +142,8 @@ This setup is used for audio generated during gameplay, such as:
 
 If you want to have audio spatialization, check the “Allow Spatialization” box and set a sound attenuation in the Audio Component (you can create a new one if needed) :
 
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_4.png)
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_5.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_4.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_5.png)
 
 ### Initialization
 
@@ -151,7 +151,7 @@ Use `BeginPlay` to call:
 - `SoundWave Player Initialize`
 - `Geppetto Player Component Initialize`
 
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_6.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_6.png)
 
 ### Phoneme Generation
 
@@ -161,8 +161,8 @@ Trigger one of the following nodes during gameplay:
 - `Generate Phonemes (PCM bytes)`
 - `Generate Phonemes (multipart/form-data)`
 
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_9.png)
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_10.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_9.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_10.png)
 
 Please note that **it could take up to 15 seconds to generate the phonemes, depending on your audio size and length !**    
 For a small file and short sentence (10s or less, <100Kb), the generation should take less than a second.
@@ -174,7 +174,7 @@ Once the API returns phonemes and emotions:
 
 → If you use our Ariel plugin to generate the audio files at runtime, please see this example.
 
-| Champ                | Description                                                                                                                                                                                                                                  |
+| Field                | Description                                                                                                                                                                                                                                  |
 |----------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **URL**              | The audio URL of the speech, in wav format.                                                                                                                                                                                                 |
 | **Sound Wave**       | The audio SoundWave. It can be a SoundWave procedural. <br><br>⚠️ **WARNING**: If the SoundWave is an asset, double click on it from the Content Drawer to open it and set the Loading Behavior to **Force Inline** !!!                    |
@@ -191,11 +191,11 @@ Once the API returns phonemes and emotions:
 
 Drag the mouse from the “On Response” pin and drop it on your Event Graph. You can then select Add Custom Event or Create Event actions, and name the event as you want:
 
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_11.png)
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_13.png)
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_12.png)
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_14.png)
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_15.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_11.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_13.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_12.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_14.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_15.png)
 
 ---
 
@@ -208,13 +208,13 @@ Please read section [4.6 - Geppetto Emotion Data Table](#46-geppetto-emotion-dat
 Emotions can be changed when a sentence is pronounced by using tags. Please read section [3.5 - Emotion Tag System](#35-emotion-tag-system) for more information on how to use tags.    
 You can also use the Geppetto Player node `Change Emotion` to change your character emotion at any time you want.
 
-![](./docs/images/Change_Emotions_image_1.png)
-![](./docs/images/Change_Emotions_image_2.png)
-![](./docs/images/Change_Emotions_image_3.png)
+![](./images/Change_Emotions_image_1.png)
+![](./images/Change_Emotions_image_2.png)
+![](./images/Change_Emotions_image_3.png)
 
 
 
-| Champ               | Description                                                                                                                                                                                                                         |
+| Field               | Description                                                                                                                                                                                                                         |
 |---------------------|-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Emotion             | The emotion name. The emotion must be defined in the Emotion Data Table.                                                                                                                     |
 | Intensity           | The emotion intensity percentage, range 0 - 100.                                                                                                                                               |
@@ -236,14 +236,14 @@ Micro-Expressions can be played in two ways :
 
 For example, you can decide to play a unique blink animation or decide to play a blink animation loop. You can use the Geppetto Player nodes [Play Micro Expression](#4410-play-micro-expression) and [Start Micro Expression Loop](#4411-start-micro-expression-loop) to animate micro-expression on your character.
 
-![](./docs/images/_Play_or_Loop_Micro_Expressions_image_1.png)
+![](./images/_Play_or_Loop_Micro_Expressions_image_1.png)
 
 
 ### Nodes
 
 - `Play Micro Expression`
 
-| Champ    | Description                                                                                                                                                                                                                                                                                   |
+| Field    | Description                                                                                                                                                                                                                                                                                   |
 |----------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name     | The micro-expression name. The micro-expression must have been defined in the Micro Expressions Data Table.                                                                                                                                             |
 | Intensity| The micro-expression intensity. Range 0 - 100. For dynamic micro-expressions (i.e: EyeDart), we recommend always setting the intensity to 100.                                                                                                          |
@@ -252,7 +252,7 @@ For example, you can decide to play a unique blink animation or decide to play a
 
 - `Start Micro Expression Loop`
 
-| Champ            | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
+| Field            | Description                                                                                                                                                                                                                                                                                                                                                                                                     |
 |------------------|-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Name             | The micro-expression name. The micro-expression must have been defined in the Micro Expressions Data Table.                                                                                                                                                                                                                                                              |
 | Time range       | The waiting time ranges between the execution of two micro-expressions. The waiting time will be randomly selected after each time the micro-expression is played, between the specified min and max value (set the min and max fields to the same value in order to always have the exact same waiting time).                                                           |
@@ -262,7 +262,7 @@ For example, you can decide to play a unique blink animation or decide to play a
 
 - `Stop Micro Expression Loop`
 
-| Champ | Description                     |
+| Field | Description                     |
 |-------|---------------------------------|
 | Name  | The micro-expression name.      |
 
@@ -283,7 +283,7 @@ The emotion tag system allows you to change the character emotion at a specific 
 
 ### Parameters
 
-| Param         | Description                               | Default      |
+| Parameter         | Description                               | Default      |
 |---------------|-------------------------------------------|--------------|
 | emotion       | Name of the emotion                       | (required)   |
 | intensity     | Intensity (0-100)                         | 50           |
@@ -292,9 +292,9 @@ The emotion tag system allows you to change the character emotion at a specific 
 
 ### Example
 
-![](./docs/images/Emotion_Tag_System_image_1.png)
+![](./images/Emotion_Tag_System_image_1.png)
 
-![](./docs/images/Emotion_Tag_System_image_2.png)
+![](./images/Emotion_Tag_System_image_2.png)
 
 You can mix tags with runtime Blueprint emotion changes for full control.
 Please read section [3.3 - Change Emotions](#33-change-emotions) of the documentation for more details on how to change an emotion at Runtime using Blueprints.

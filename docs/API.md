@@ -40,9 +40,9 @@ Assign a new phonemes and emotions list to the component.
 Please note that both lists can be empty.    
 The current play time is reseted to 0.0 when the node is called. **The node should not be called by anything other than the child component subclasses.**
 
-![](./docs/images/Set_Remaining_image_1.png)
+![](./images/Set_Remaining_image_1.png)
 
-| Champ    | Description                                                                                                                                                         |
+| Field    | Description                                                                                                                                                         |
 |----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | Phonemes | The new phonemes list that will be processed by the component. If there were already phonemes remaining, the previous value will be overwritten.                   |
 | Emotions | The new emotions list that will be processed by the component. If there were already emotions remaining, the previous value will be overwritten.                   |
@@ -51,7 +51,7 @@ The current play time is reseted to 0.0 when the node is called. **The node shou
 ### Variables
 
 
-| Champ               | Description                                                                                                                                                                                                                           |
+| Field               | Description                                                                                                                                                                                                                           |
 |---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `Is Processing`       | Set this to true when the base component should start checking if a phoneme or emotion needs to be animated in tick. Will be automatically set to false (in C++) when there are no remaining phonemes and emotions.                |
 | `Is Initialized`      | Unused by the Geppetto Base component itself, but can be useful for inherited subclasses.                                                                                                                                            |
@@ -61,7 +61,7 @@ The current play time is reseted to 0.0 when the node is called. **The node shou
 
 ### Events
 
-| Événement                  | Description                                                                                                                                                                                                                                                                      |
+| Event                  | Description                                                                                                                                                                                                                                                                      |
 |---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `On Phoneme List Changed`   | This event is broadcasted each time the phoneme list has changed, meaning each time the node SetRemaining is called.                                                                                                                     |
 | `On Phoneme Changed`        | This event is broadcasted each time a new phoneme needs to be processed with the following phoneme information:<br>- The current Phoneme (with name and amplitude)<br>- The next Phoneme (with name and amplitude)<br>- The current Phoneme play time, in seconds             |
@@ -74,8 +74,8 @@ The current play time is reseted to 0.0 when the node is called. **The node shou
 
 The Geppetto SoundWave Player is a child of the [Geppetto Base Component](#41-geppetto-base-component) class. This component is used to synchronize phonemes/emotions animation from a [Geppetto Data Asset](#410-data-assets) with a SoundWave audio.
 
-![](./docs/images/Geppetto_SoundWave_Player_image_1.png)
-![](./docs/images/Geppetto_SoundWave_Player_image_2.png)
+![](./images/Geppetto_SoundWave_Player_image_1.png)
+![](./images/Geppetto_SoundWave_Player_image_2.png)
 
 **Please note that the Geppetto SoundWave Player does not animate the phonemes and emotions itself, it only does the synchronization between the phonemes and the audio.**    
 In order to completely animate phonemes and emotion, please use a Geppetto Player Component in addition. See section [3.1.2 - Play Animation with SoundWave](#312-play-a-geppetto-data-asset-with-soundwave) for more details.
@@ -90,7 +90,7 @@ It should be called in ypur Blueprint *BeginPlay* event. Pass in the `Audio Comp
 | Audio Component | The audio component that will be used by the SoundWave player to play the audio file.            |
 
 
-![](./docs/images/Geppetto_SoundWave_Player_image_3.png)
+![](./images/Geppetto_SoundWave_Player_image_3.png)
 
 ### 4.2.2 `Play Data Asset`
 
@@ -106,7 +106,7 @@ Call this function to perform the lip sync coming from a [Geppetto Data Asset](#
 You can use the `Play` node to pass all parameters one by one.    
 For example, this node can be useful if you want to edit the phonemes /emotions list (i.e.: Apply Delay) or if you want to use a different SoundWave than the one used (i.e.: add some audio effects) above:
 
-![](./docs/images/Play_image_1.png)
+![](./images/Play_image_1.png)
 
 | Parameter | Description                                                              |
 |-----------|--------------------------------------------------------------------------|
@@ -133,8 +133,8 @@ The Geppetto Player component uses [Geppetto Data Tables](#45-geppetto-phoneme-d
 
 If the Skeletal Mesh or the Skeletal Anim Instance does not use the usual node Set Morph Target to update the Morph Target values, like Metahuman, it is required to create a new component that inherit the Geppetto Player Component and override the nodes to get and set a Morph Target. Please read the section [4.3.1 - Component Inheritance](#431-component-inheritance) below for more details.
 
-![](./docs/images/Geppetto_Player_Component_image_1.png)
-![](./docs/images/Geppetto_Player_Component_image_2.png)
+![](./images/Geppetto_Player_Component_image_1.png)
+![](./images/Geppetto_Player_Component_image_2.png)
 
 ### 4.3.1 Component Inheritance
 
@@ -143,20 +143,20 @@ Follow these steps to create a new component :
 
 1. Create a new Blueprint Class that have `GeppettoPlayerComponent` as parent class
 
-![](./docs/images/Component_Inheritance_image_1.png)
-![](./docs/images/Component_Inheritance_image_2.png)
+![](./images/Component_Inheritance_image_1.png)
+![](./images/Component_Inheritance_image_2.png)
 
 2. Open the created Blueprint class and override the function named `Set Morph Target`
 
-![](./docs/images/Component_Inheritance_image_3.png)
+![](./images/Component_Inheritance_image_3.png)
 
 3. Put the nodes used to change the morph target values inside the function. You can delete the call to the parent node (`Parent: Set Morph Target`).
 
-![](./docs/images/Component_Inheritance_image_4.png)
+![](./images/Component_Inheritance_image_4.png)
 
 4. You can type `Get Skeletal Mesh` in the action selection to access the Skeletal Mesh Asset
 
-![](./docs/images/Component_Inheritance_image_5.png)
+![](./images/Component_Inheritance_image_5.png)
 
 
 > → *If required, you can also override the function `Morph Target Exist`.This function must return true when the input morph target name does exist, false otherwise.    
@@ -166,7 +166,7 @@ For Metahuman, it is not required to override it, unless for UE 5.4. Please watc
 
 This node is used to initialize the component and should be called in your Blueprint `BeginPlay` event. The following elements can be specified in the node parameters:
 
-![](./docs/images/Geppetto_Player_Component_image_3.png)
+![](./images/Geppetto_Player_Component_image_3.png)
 
 #### Parameters
 
@@ -180,7 +180,7 @@ This node is used to initialize the component and should be called in your Bluep
 | **Override Animation** | If **unchecked**, the Morph Target values used by the Geppetto plugin will be blended with those coming from animations. <br> ➤ For Metahuman, this option **must be checked**. |
 
 
-![](./docs/images/Geppetto_Player_Component_image_4.png)
+![](./images/Geppetto_Player_Component_image_4.png)
 
 > 💡 If you cannot see the included Geppetto Data Tables, click the settings icon (top-right in the Asset browser) and ensure that:
 > - “Show Plugin Content”
@@ -191,7 +191,7 @@ This node is used to initialize the component and should be called in your Bluep
 
 Use this node to change the Skeletal Mesh used by the Geppetto Player Component after initialization :
 
-![](./docs/images/Geppetto_Player_Component_image_5.png)
+![](./images/Geppetto_Player_Component_image_5.png)
 
 
 | Parameter       | Description |
@@ -206,7 +206,7 @@ Use this node to change the Skeletal Mesh used by the Geppetto Player Component 
 
 Use this node to change the Geppetto Player used by the component after initialization. It can be a `GeppettoSoundWavePlayer` or any subclass of `GeppettoBaseComponent`.
 
-![](./docs/images/Geppetto_Player_Component_image_6.png)
+![](./images/Geppetto_Player_Component_image_6.png)
 
 | Parameter                         | Description                                  |
 |----------------------------------|----------------------------------------------|
@@ -219,7 +219,7 @@ Use this node to change the Geppetto Player used by the component after initiali
 
 Use this node to change the Geppetto Phoneme Data Table used by the Geppetto Player Component after initialization :
 
-![](./docs/images/Geppetto_Player_Component_image_7.png)
+![](./images/Geppetto_Player_Component_image_7.png)
 
 | Parameter       | Description                                               |
 |-----------------|-----------------------------------------------------------|
@@ -233,7 +233,7 @@ Use this node to change the Geppetto Phoneme Data Table used by the Geppetto Pla
 
 Use this node to change the Geppetto Emotion Data Table used by the Geppetto Player Component after initialization :
 
-![](./docs/images/Geppetto_Player_Component_image_8.png)
+![](./images/Geppetto_Player_Component_image_8.png)
 
 | Parameter       | Description                                               |
 |-----------------|-----------------------------------------------------------|
@@ -247,7 +247,7 @@ Use this node to change the Geppetto Emotion Data Table used by the Geppetto Pla
 
 Use this node to change the Geppetto Micro Expressions Data Table used by the Geppetto Player Component after initialization :
 
-![](./docs/images/Geppetto_Player_Component_image_9.png)
+![](./images/Geppetto_Player_Component_image_9.png)
 
 | Parameter                | Description                                               |
 |--------------------------|-----------------------------------------------------------|
@@ -261,7 +261,7 @@ Use this node to change the Geppetto Micro Expressions Data Table used by the Ge
 
 Use this node to set the custom emotion transition function behavior when used by the Geppetto Player Component :
 
-![](./docs/images/Geppetto_Player_Component_image_10.png)
+![](./images/Geppetto_Player_Component_image_10.png)
 
 | Parameter  | Description                                                                       |
 |------------|-----------------------------------------------------------------------------------|
@@ -276,7 +276,7 @@ Use this node to set the custom emotion transition function behavior when used b
 
 Use this node to change the current emotion pose dynamically. For more details, see section [3.3 - Change Emotions](#33-change-emotions) :
 
-![](./docs/images/Geppetto_Player_Component_image_11.png)
+![](./images/Geppetto_Player_Component_image_11.png)
 
 | Parameter | Description                     |
 |-----------|---------------------------------|
@@ -289,7 +289,7 @@ Use this node to change the current emotion pose dynamically. For more details, 
 
 Use this node to play a micro expression one time. For more info, see section [3.4 - Play or Loop Micro Expressions](#34-play-or-loop-micro-expressions).
 
-![](./docs/images/Geppetto_Player_Component_image_12.png)
+![](./images/Geppetto_Player_Component_image_12.png)
 
 | Parameter  | Description                                                        |
 |------------|--------------------------------------------------------------------|
@@ -304,7 +304,7 @@ Use this node to play a micro expression one time. For more info, see section [3
 
 Use this node to play a micro expression repeatedly.
 
-![](./docs/images/Geppetto_Player_Component_image_13.png)
+![](./images/Geppetto_Player_Component_image_13.png)
 
 | Parameter       | Description                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------|
@@ -320,7 +320,7 @@ Use this node to play a micro expression repeatedly.
 
 Use this node to stop looping a micro expression.
 
-![](./docs/images/Geppetto_Player_Component_image_14.png)
+![](./images/Geppetto_Player_Component_image_14.png)
 
 
 | Parameter | Description                     |
@@ -334,7 +334,7 @@ Use this node to stop looping a micro expression.
 
 This node is used by the Geppetto Player Component to change Skeletal Mesh Morph Target values. If your mesh does not use the standard `Set Morph Target` node, override this node.
 
-![](./docs/images/Geppetto_Player_Component_image_15.png)
+![](./images/Geppetto_Player_Component_image_15.png)
 
 | Parameter           | Description                                                                                 |
 |---------------------|---------------------------------------------------------------------------------------------|
@@ -348,7 +348,7 @@ This node is used by the Geppetto Player Component to change Skeletal Mesh Morph
 
 This node checks if a morph target exists on the Skeletal Mesh. If the mesh does not use standard nodes for getting morph targets, override this node.
 
-![](./docs/images/Geppetto_Player_Component_image_16.png)
+![](./images/Geppetto_Player_Component_image_16.png)
 
 | Parameter             | Description                                                     |
 |-----------------------|-----------------------------------------------------------------|
@@ -381,7 +381,7 @@ Your Blueprint actor must include:
 
 This node is used to initialize the component and should be called in your Blueprint BeginPlay event.
 
-![](./docs/images/Initialize_image_1.png)
+![](./images/Initialize_image_1.png)
 
 | Parameter             | Description                                                    |
 |-----------------------|----------------------------------------------------------------|
@@ -392,7 +392,7 @@ This node is used to initialize the component and should be called in your Bluep
 
 This node is used to play a Geppetto Sequence. Precisely, it creates a new LevelSequencePlayer from the LevelSequence contained inside the GeppettoSequence. This LevelSequencePlayer is then stored in the component as long as the lip-sync is playing.
 
-![](./docs/images/Sequencer_Play_image_1.png)
+![](./images/Sequencer_Play_image_1.png)
 
 
 | Parameter                    | Description                                                                                         |
@@ -413,7 +413,7 @@ This node is used to play a Geppetto Sequence. Precisely, it creates a new Level
 
 ## 4.4.5 Events
 
-| Événement                 | Description |
+| Event                 | Description |
 |---------------------------|-------------|
 | **On Sequencer Start Playing** | This event is broadcasted each time a GeppettoSequence starts playing. |
 
@@ -427,26 +427,26 @@ The Geppetto Phoneme Data Table contains all information related to phoneme (lip
 
 1. In the Content Drawer (Ctrl+Space), right-click where you want to create the Data Table (under `Miscellaneous > Data Table`) :
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_1.png)
+![](./images/Geppetto_Phonemes_DataTable_image_1.png)
 
 2. On the Pick Row Structure window, select `GeppettoPhonemeTableRow` and click **OK**.
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_2.png)
+![](./images/Geppetto_Phonemes_DataTable_image_2.png)
 
 3. Name the Data Table and add a row for each phoneme. Rename each row name to match the phoneme name.  
    The default Metahuman phonemes are:  
    ***A, E, I, O, U, PP, FF, TH, DD, KK, CH, SS, NN, RR, HH*** (15 phonemes)
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_3.png)
-![](./docs/images/Geppetto_Phonemes_DataTable_image_4.png)
-![](./docs/images/Geppetto_Phonemes_DataTable_image_5.png)
-![](./docs/images/Geppetto_Phonemes_DataTable_image_6.png)
+![](./images/Geppetto_Phonemes_DataTable_image_3.png)
+![](./images/Geppetto_Phonemes_DataTable_image_4.png)
+![](./images/Geppetto_Phonemes_DataTable_image_5.png)
+![](./images/Geppetto_Phonemes_DataTable_image_6.png)
 
 > *See [section 4.11.2](#4112-geppetto-format) for more information about Geppetto phoneme formats.*
 
 4. For each phoneme, add Morph Target values representing the pose at amplitude 100.
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_7.png)
+![](./images/Geppetto_Phonemes_DataTable_image_7.png)
 
 > Note: You can only have a visual preview of Morph Targets in the Geppetto Sequencer editor currently. To create a Geppetto Sequencer, please read [this section.](#4102-geppetto-sequence) 
 
@@ -455,27 +455,27 @@ The Geppetto Phoneme Data Table contains all information related to phoneme (lip
 You can find pre-made Phoneme Data Tables for the Demo Scene and Metahuman characters under (`All > (Engine) > Plugins > Geppetto Content > Phonemes`).    
 Feel free to duplicate and/or edit the existing Data Table in order to change the phonemes pose ! 
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_8.png)
+![](./images/Geppetto_Phonemes_DataTable_image_8.png)
 
 > *If the **Plugins** or the **Engine** folder is not showing, click on Settings at the top right of the window and ensure that “Show Plugin Content” and “Show Engine Content” is checked.*
 
-![](./docs/images/How_to_open_the_demo_level_image_1.png)
+![](./images/How_to_open_the_demo_level_image_1.png)
 
 ### Import from JSON/CSV
 
 Unreal Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. Create a new JSON file with the following structure :
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_9.png)
+![](./images/Geppetto_Phonemes_DataTable_image_9.png)
 
 Create a new Geppetto Data Table or open an existing one from within the editor. On the Data Table Details tab, choose the JSON file created and click “Import/Reimport”. If the JSON format is valid, the JSON data will be imported to the Data Table.
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_10.png)
+![](./images/Geppetto_Phonemes_DataTable_image_10.png)
 
 ### Export as JSON/CSV
 
 Right-click the Data Table asset and choose **Export as JSON** or **Export as CSV**.
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_11.png)
+![](./images/Geppetto_Phonemes_DataTable_image_11.png)
 
 ---
 
@@ -490,17 +490,17 @@ The Geppetto Emotion Data Table contains all information related to the emotions
 
 1. In Content Drawer, create new Data Table selecting `GeppettoEmotionTableRow`.
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_1.png)
-![](./docs/images/Geppetto_Emotions_DataTable_image_1.png)
+![](./images/Geppetto_Phonemes_DataTable_image_1.png)
+![](./images/Geppetto_Emotions_DataTable_image_1.png)
 
 
 2. Each row on the Data Table defines an emotion. The row name is used to identify the emotion name, like “Happy” (double-click on the “Row Name” field or press F2 to rename it) : 
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_4.png)
+![](./images/Geppetto_Phonemes_DataTable_image_4.png)
 
 3. Use the Row Editor to set the Morph Targets values :
 
-![](./docs/images/Geppetto_Emotions_DataTable_image_5.png)
+![](./images/Geppetto_Emotions_DataTable_image_5.png)
 
 | Parameter                                           | Description |
 |-----------------------------------------------------|-------------|
@@ -516,11 +516,11 @@ Pre-made tables under:
 
 Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
 
-![](./docs/images/Geppetto_Emotions_DataTable_image_6.png)
+![](./images/Geppetto_Emotions_DataTable_image_6.png)
 
 > *If the **Plugins** or the **Engine** folder is not showing, click on Settings at the top right of the window and ensure that “Show Plugin Content” and “Show Engine Content” is checked.*
 
-![](./docs/images/How_to_open_the_demo_level_image_1.png)
+![](./images/How_to_open_the_demo_level_image_1.png)
 
 ### 4.6.3 Import/Export JSON same as phonemes.
 
@@ -541,16 +541,16 @@ The Geppetto plugin provides a way to create your own Data Tables in order to an
 1. On the Content Drawer (Ctrl+Space), right click at the desired location and create new Data Table (under *Miscellaneous > Data Table*).
 On the Pick Row Structure window, select `GeppettoMicroExpressionTableRow` :
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_1.png)
-![](./docs/images/Geppetto_MicroExpressions_DataTable_image_1.png)
+![](./images/Geppetto_Phonemes_DataTable_image_1.png)
+![](./images/Geppetto_MicroExpressions_DataTable_image_1.png)
 
 2. Each row on the Data Table defines a micro expression. The row name is used to identify the micro expression name, like “Blink”  (double-click on the “Row Name” field or press F2 to rename it).
 
-![](./docs/images/Geppetto_Phonemes_DataTable_image_4.png)
+![](./images/Geppetto_Phonemes_DataTable_image_4.png)
 
 3. Use the Row Editor to set the Morph Targets values :
 
-![](./docs/images/Geppetto_MicroExpressions_DataTable_image_5.png)
+![](./images/Geppetto_MicroExpressions_DataTable_image_5.png)
 
 
 | Parameter                        | Description |
@@ -561,7 +561,7 @@ On the Pick Row Structure window, select `GeppettoMicroExpressionTableRow` :
 
 ### Détails des Dynamic Morph Targets
 
-| Champ            | Description |
+| Field            | Description |
 |------------------|-------------|
 | **Morph Targets**| The Morph Target names that will share a common randomly selected value. Allows grouped randomization. |
 | **Value Range**  | The random range (min = "First", max = "Second") from which a new value will be chosen every time the micro expression is played. |
@@ -576,11 +576,11 @@ Pre-made tables under:
 
 Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
 
-![](./docs/images/Geppetto_MicroExpressions_DataTable_image_6.png)
+![](./images/Geppetto_MicroExpressions_DataTable_image_6.png)
 
 > *If the **Plugins** or the **Engine** folder is not showing, click on Settings at the top right of the window and ensure that “Show Plugin Content” and “Show Engine Content” is checked.*
 
-![](./docs/images/How_to_open_the_demo_level_image_1.png)
+![](./images/How_to_open_the_demo_level_image_1.png)
 
 ### 4.7.3 Import/Export JSON like above.
 
@@ -601,7 +601,7 @@ The following functions can only be used in Editor-only assets, such as Editor U
 Generate the phonemes for the given audio and sentence.  
 👉 THIS IS THE EDITOR-ONLY FUNCTION. FOR RUNTIME, SEE: [Generate phonemes (using SoundWave) ](#481-generate-phonemes-using-soundwave) in section 4.9.
 
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_9.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_9.png)
 
 #### Parameters
 
@@ -623,7 +623,7 @@ Generate the phonemes for the given audio and sentence.
 
 Save the generated phonemes as a `Geppetto Data Asset` or as a Sequencer track.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_1.png)
+![](./images/GeppettoBlueprintLibrary_image_1.png)
 
 #### Parameters
 
@@ -640,7 +640,7 @@ Save the generated phonemes as a `Geppetto Data Asset` or as a Sequencer track.
 Show the operating system save file selection dialog for a Geppetto Data Asset.    
 **Please note that the whole engine is freezed while the OS file selection window is opened.**
 
-![](./docs/images/GeppettoBlueprintLibrary_image_2.png)
+![](./images/GeppettoBlueprintLibrary_image_2.png)
 
 
 | **Parameter**      | **Description** |
@@ -652,7 +652,7 @@ Show the operating system save file selection dialog for a Geppetto Data Asset.
 
 Open the plugin's documentation link in your web browser.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_3.png)
+![](./images/GeppettoBlueprintLibrary_image_3.png)
 
 
 ## 4.9. Geppetto Blueprint Library
@@ -663,7 +663,7 @@ The following functions can be used in both runtime and editor assets, such as B
 
 Generate the phonemes for the given audio and sentence. The audio file is available through a publicly accessible URL. The audio must be in wav format (PCM16 recommended) :
 
-![](./docs/images/GeppettoBlueprintLibrary_image_4.png)
+![](./images/GeppettoBlueprintLibrary_image_4.png)
 
 
 | **Parameter**         | **Description** |
@@ -683,11 +683,11 @@ Generate the phonemes for the given audio and sentence. The audio file is availa
 
 Generate the phonemes for the given SoundWave and sentence.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_5.png)
+![](./images/GeppettoBlueprintLibrary_image_5.png)
 
 **SoundWave detail Window** :
 
-![](./docs/images/GeppettoBlueprintLibrary_image_6.png)
+![](./images/GeppettoBlueprintLibrary_image_6.png)
 
 
 | **Parameter**           | **Description** |
@@ -703,7 +703,7 @@ Generate the phonemes for the given SoundWave and sentence.
 
 Generate the phonemes using a PCM raw byte buffer and sentence.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_6.png)
+![](./images/GeppettoBlueprintLibrary_image_6.png)
 
 | **Parameter**      | **Description** |
 |--------------------|-----------------|
@@ -718,7 +718,7 @@ Generate the phonemes using a PCM raw byte buffer and sentence.
 
 Same as the other phoneme generation nodes, but uses the `multipart/form-data` format required by some APIs.
 
-![](./docs/images/Runtime_Phonemes_generation_and_animation__Blueprint__image_10.png)
+![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_10.png)
 
 | **Parameter**        | **Description** |
 |----------------------|-----------------|
@@ -732,7 +732,7 @@ Same as the other phoneme generation nodes, but uses the `multipart/form-data` f
 
 Applies a delay to the list of phonemes returned by the API.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_8.png)
+![](./images/GeppettoBlueprintLibrary_image_8.png)
 
 | **Parameter**        | **Description** |
 |----------------------|-----------------|
@@ -747,7 +747,7 @@ Applies a delay to the list of phonemes returned by the API.
 
 Applies a delay to the list of emotions returned by the API.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_9.png)
+![](./images/GeppettoBlueprintLibrary_image_9.png)
 
 | **Parameter**   | **Description**                                               |
 |-----------------|---------------------------------------------------------------|
@@ -762,7 +762,7 @@ Applies a delay to the list of emotions returned by the API.
 
 Returns the Morph Targets and corresponding values for a phoneme name from a given Phoneme Table.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_10.png)
+![](./images/GeppettoBlueprintLibrary_image_10.png)
 
 | **Parameter**     | **Description**                                              |
 |-------------------|--------------------------------------------------------------|
@@ -777,7 +777,7 @@ Returns the Morph Targets and corresponding values for a phoneme name from a giv
 
 Safe linear interpolation with clamping. Used internally to blend values without exceeding limits.
 
-![](./docs/images/GeppettoBlueprintLibrary_image_11.png)
+![](./images/GeppettoBlueprintLibrary_image_11.png)
 
 | **Parameter**   | **Description**                                                          |
 |-----------------|--------------------------------------------------------------------------|
@@ -799,7 +799,7 @@ A Data Asset is an Unreal Asset used to store Data. The Geppetto Plugin uses cus
 
 Geppetto Data Assets are used to store and save the generated phonemes and emotions generated from the API within the Editor in order to use them in the game later. You can use the Geppetto SoundWave Player node `Play Data Asset` to animate the data contained in the Data Asset. All fields are Blueprint Read-Only, but you can use the node `Save Geppetto Phonemes (as Asset)` to create a new Data Asset with Blueprint. Please note that the node is only available within the Editor.
 
-![](./docs/images/Geppetto_DataAsset_image_1.png)
+![](./images/Geppetto_DataAsset_image_1.png)
 
 | Audio               | The audio associated with the lip sync.                                  |
 |---------------------|-------------------------------------------------------------------------|
@@ -821,7 +821,7 @@ A `GeppettoSequence` is a custom asset that contains all the assets and logic to
 
 The `GeppettoSequence` asset can also be edited inside a custom editor which allows you to see the render of the lip-sync animation in a preview scene with the selected mesh. Here is an overview:
 
-![](./docs/images/Geppetto_Sequence_image_1.png)
+![](./images/Geppetto_Sequence_image_1.png)
 
 - The red box is the viewport. It gives you a preview of what the lip-sync animation will look like in-game.
 
@@ -866,7 +866,7 @@ Here you can find the list and details of all structs defined by the Geppetto Pl
 
 A struct containing all parameters to play a Geppetto Phoneme. All variables are Blueprint read-write:
 
-![](./docs/images/Structs_image_1.png)
+![](./images/Structs_image_1.png)
 
 | Name      | Description                                                      |
 |-----------|------------------------------------------------------------------|
@@ -881,7 +881,7 @@ A struct containing all parameters to play a Geppetto Phoneme. All variables are
 
 A struct containing all parameters to play a Geppetto Emotion. All variables are Blueprint read-write:
 
-![](./docs/images/Structs_image_2.png)
+![](./images/Structs_image_2.png)
 
 | Name               | Description                                                    |
 |--------------------|----------------------------------------------------------------|
@@ -898,7 +898,7 @@ A struct containing all parameters to play a Geppetto Emotion. All variables are
 
 A struct containing all parameters to play a Geppetto Micro Expression. All variables are Blueprint read-write:
 
-![](./docs/images/Structs_image_3.png)
+![](./images/Structs_image_3.png)
 
 | Parameter              | Description                                                                                      |
 |-----------------------|--------------------------------------------------------------------------------------------------|
@@ -916,7 +916,7 @@ A struct containing all parameters to play a Geppetto Micro Expression. All vari
 
 A struct containing all values related to dynamic Micro Expression Morph Targets. Used in Micro Expression Data Table:
 
-![](./docs/images/Structs_image_4.png)
+![](./images/Structs_image_4.png)
 
 | Parameter     | Description                       |
 |---------------|---------------------------------|
@@ -930,7 +930,7 @@ A struct containing all values related to dynamic Micro Expression Morph Targets
 
 Since Unreal `FTuple<float>` is not supported in Blueprint yet, this struct is used instead.
 
-![](./docs/images/Structs_image_5.png)
+![](./images/Structs_image_5.png)
 
 | Parameter | Description                              |
 |-----------|------------------------------------------|
