@@ -90,8 +90,6 @@ It should be called in ypur Blueprint *BeginPlay* event. Pass in the `Audio Comp
 | Audio Component | The audio component that will be used by the SoundWave player to play the audio file.            |
 
 
-![](./images/Geppetto_SoundWave_Player_image_3.png)
-
 ### 4.2.2 `Play Data Asset`
 
 Call this function to perform the lip sync coming from a [Geppetto Data Asset](#4101-geppetto-data-asset). The Data Asset can be be selected directly from within the node or through a variable:
