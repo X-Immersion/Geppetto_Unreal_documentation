@@ -56,22 +56,40 @@ If additional language support is needed, please contact us.
 
 ---
 
-#### Alignment with Audio: Two Model Approaches
+#### Quality
 
 ![](./images/RessourcesGeneral_image_4.png)
 
-There are two types of models available:
+There are four types of quality available, each of them is using a different combination of model, alignement with audio, and phonemizer:
 
-##### Model 0 (Fast)
+##### Low
+
+Use the fastest models for phonemes generation and alignment with audio. The results can sometimes be inaccurate.
+
+##### Medium
+
+Use a more precise model for phonemes generation. Still use the fastest model for phonemes alignment with audio.
+
+##### High
+
+Use the same model as 'Normal' for phonemes generation, but use a better (and much slower) model for alignment.
+
+##### Highest
+
+Use the most precise models for both phonemes generation and alignment. The phoneme generation time can be very long according to the audio length. (>1min.)
+
+---
+
+#### Types of model and alignement with audio files.
+
+##### Model 0
 
 This is a machine learning model that aligns silences in the audio with punctuation in the text. Using linear interpolation between the segmented text and audio, it predicts the most probable phonemes for each sequence and assigns a corresponding timestamp based on its position in the text. 
 
 - **Advantage**: This method is fast and requires minimal computing power, making it ideal for real-time applications.  
 - **Limitation**: Since it relies on a simple mapping strategy, it may not perfectly capture variations in speech rhythm or nuanced pronunciations.
 
----
-
-##### Model 1 (Accurate)
+##### Model 1
 
 This model employs deep learning for a more precise alignment:
 

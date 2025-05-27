@@ -100,13 +100,15 @@ Please read section [4.5](./API.md#45-geppetto-phoneme-data-table), [4.6](./API.
 The **keyboard 1 and 2** events are related to pre-generated phonemes.
 
 
-- Please read section [3.1.1 - Pre-Generated Phonemes generation](./Features.md#311-pre-generate-phonemes-as-a-geppetto-data-asset) of the documentation for more information on how to pre-generate phonemes in a Data Asset using the Geppetto Editor Interface.
+- Please read section [3.1.1 - Pre-Generated Phonemes generation](./Features.md#311-pre-generate-phonemes-as-a-geppetto-data-asset) of the documentation for more information on how to pre-generate phonemes in a Geppetto Sequence (or a Data Asset) using the Geppetto Editor Interface.
 
-- Please read section [3.1.2 - Play animation with SoundWave](./Features.md#312-play-a-geppetto-data-asset-with-soundwave) of the documentation for more information on how to play the Geppetto phonemes from a Data Asset
+- Please read section [3.1.3 - Play a Geppetto Sequence](./Features.md#313-play-a-geppetto-sequence) of the documentation for more information on how to play the Geppetto phonemes from a Geppetto Sequence
 
-- Please read section [4.10.1 - Geppetto Data Asset](./API.md#4101-geppetto-data-asset) of the documentation for more information about the Geppetto Data Asset structure
+- Please read section [4.11 - Geppetto Sequence](./API.md#411-geppetto-sequence) of the documentation for more information about the Geppetto Sequence asset
 
 ![](./images/Phonemes___Lipsync_image_1.png)
+
+> Note that this is also possible to play the Geppetto phonemes from a Data Asset. For more information, please refer to the section [3.1.2 - Play a Geppetto Data Asset with SoundWave](./Features.md#312-play-a-geppetto-data-asset-with-soundwave).
 
 The **keyboard 9 and 0 events** are related to runtime phonemes.
 
