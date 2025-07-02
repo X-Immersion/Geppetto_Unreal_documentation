@@ -89,7 +89,7 @@ You can use the node *Play Data Asset* from the [Geppetto SoundWave Player](./AP
 In the example below, the lip sync starts when the user presses the ‘s’ key (do not forget to enable input on this actor if you plan to do the same). 
 *You must provide the Data Asset that you want to play*
 
-  ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_5.png)
+s
 
 If you want to [Apply Delay](./API.md#495-apply-delay-phonemes) to the phonemes or emotions before playing the animation, please use the Geppetto SoundWave Player Play node instead. This node can also be used to change the audio SoundWave played with the Geppetto animation (*not recommended*) :
 

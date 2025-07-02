@@ -10,13 +10,13 @@
 
 ### **[Getting Started](./docs/GettingStarted.md)**
 
-- **[What is Geppetto ?](./docs/Setup.md#11-prerequisites)**
-- **[Character setup](./docs/Setup.md#12-metahuman)**
-- **[Geppetto Data Tables](./docs/Setup.md#13-installation---fab)**
-- **[Generate phonemes and emotions in the editor](./docs/Setup.md#14-installation---source-code)**
-- **[Generate phonemes and emotions on runtime](./docs/Setup.md#14-installation---source-code)**
-- **[Play lip-sync on a character](./docs/Setup.md#14-installation---source-code)**
-- **[Play an emotion or a micro expression on a character](./docs/Setup.md#14-installation---source-code)**
+- **[What is Geppetto ?](./docs/GettingStarted.md#21-what-is-geppetto)**
+- **[Character setup](./docs/GettingStarted.md#22-character-setup)**
+- **[Geppetto Data Tables](./docs/GettingStarted.md#23-geppetto-data-tables)**
+- **[Generate phonemes and emotions in the editor](./docs/GettingStarted.md#24-generate-phonemes-and-emotions-in-the-editor)**
+- **[Generate phonemes and emotions on runtime](./docs/GettingStarted.md#25-generate-phonemes-and-emotions-on-runtime)**
+- **[Play lip-sync on a character](./docs/GettingStarted.md#26-play-lip-sync-on-a-character)**
+- **[Play an emotion or a micro expression on a character](./docs/GettingStarted.md#27-play-an-emotion-or-a-micro-expression-on-a-character)**
 
 ### **[Quickstart](./docs/Quickstart.md)**
 
