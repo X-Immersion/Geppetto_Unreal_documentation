@@ -8,6 +8,16 @@
 - **[Installation – Fab](./docs/Setup.md#13-installation---fab)**
 - **[Installation – Source Code](./docs/Setup.md#14-installation---source-code)**
 
+### **[Getting Started](./docs/GettingStarted.md)**
+
+- **[What is Geppetto ?](./docs/Setup.md#11-prerequisites)**
+- **[Character setup](./docs/Setup.md#12-metahuman)**
+- **[Geppetto Data Tables](./docs/Setup.md#13-installation---fab)**
+- **[Generate phonemes and emotions in the editor](./docs/Setup.md#14-installation---source-code)**
+- **[Generate phonemes and emotions on runtime](./docs/Setup.md#14-installation---source-code)**
+- **[Play lip-sync on a character](./docs/Setup.md#14-installation---source-code)**
+- **[Play an emotion or a micro expression on a character](./docs/Setup.md#14-installation---source-code)**
+
 ### **[Quickstart](./docs/Quickstart.md)**
 
 - **[How to Open the Demo Level](./docs/Quickstart.md#21-how-to-open-the-demo-level)**
