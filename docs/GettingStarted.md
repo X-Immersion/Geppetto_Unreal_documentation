@@ -209,7 +209,7 @@ If you have any question, please feel free to contact us by mail or on Discord.
 
 ## 2.7 Play an emotion or a micro expression on a character
 
-Either you used a Geppetto DataAsset ou a Geppetto Sequence, you will need to use a [Geppetto Player Component](./API.md#43-geppetto-player-component).
+Either you used a Geppetto DataAsset or a Geppetto Sequence, you will need to use a [Geppetto Player Component](./API.md#43-geppetto-player-component).
 
 The [Geppetto Player Component](./API.md#43-geppetto-player-component) allows you to control character facial animations in real time. You can change emotions using the `Change Emotion` node, specifying the emotion name, intensity (0–100), and transition time.      **Emotions must be defined in the Emotion Data Table.**
 
