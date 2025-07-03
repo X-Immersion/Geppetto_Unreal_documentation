@@ -64,6 +64,13 @@ You can either create a new Phoneme DataTable in Unreal or import an existing on
 Predefined tables are available under Plugins > Geppetto Content > Phonemes, and you’re free to duplicate or customize them.    
 For more information, please see [4.5 Geppetto Phoneme Data Table](./API.md#45-geppetto-phoneme-data-table).
 
+> [!NOTE]  
+> If you do not see the **Plugins** folder or the **Geppetto Content** folder, click on **"Settings"** in the **Content Browser** and tick **"Show Plugin Content"**.     
+>If the Geppetto is installed within the Engine and not the project, you also have to tick **"Show Engine Content"**. 
+>
+>![Show where is the Engine and Plugin Content options](./images/How_to_open_the_demo_level_image_1.png)
+
+
 ### 2.3.2 Emotion Data Table
 
 The Geppetto Emotion Data Table is used to animate facial expressions tied to emotions. Each row corresponds to an emotion (like Happy, Sad, Angry, etc.) and specifies Morph Target values that sculpt the facial mesh into an expressive pose. This is ideal for customizing character emotion systems in Unreal Engine.    
@@ -185,14 +192,14 @@ See full details in [3.2 Runtime Phonemes Generation and Animation](./Features.m
 As we talked about before there is two assets that stores generated phonemes : [Geppetto DataAsset](./API.md#410-data-assets) and [Geppetto Sequence](./API.md#411-geppetto-sequence).    
 Here is an example on how to use both types to play a lipsync animation on a character.
 
-
 | Step                        | Geppetto Data Asset                                                                                                                                                                                                                                             | Geppetto Sequence                                                                                                                                          |
 |-----------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | **1. Create Blueprint**     | Create a Blueprint class or use an existing one.                                                                                                                                                                                                                | Same logic here, use any Blueprint class or create a new one.                                                                                              |
 | **2. Add Components**       | - Skeletal Mesh Component  <br> - Audio Component  <br> - `Geppetto SoundWave Player`  <br> - `Geppetto Player Component` (or custom Metahuman version)  <br>  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3.png)                | - Skeletal Mesh Component  <br> - `Geppetto Sequencer Component`  <br>  <br> ![](./images/Play_a_Geppetto_Sequence_image_3.png)                             |
-| **3. Initialize on BeginPlay** | - Call `Geppetto SoundWave Player Initialize`  <br> - Call `Geppetto Player Component Initialize`  <br>  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_4.png)                                                                    | - Call `Geppetto Sequencer Component Initialize`  <br>  <br> ![](./images/Play_a_Geppetto_Sequence_image_4.png)                                             |
-| **4. Play Animation**       | Use `Play Data Asset` node to play phonemes in sync with audio or the `Play` node for advanced options.  <br>  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_5.png)  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_6.png) | Use `Play` node with a reference to the `Geppetto Sequence` asset.  <br>  <br> ![](./images/Play_a_Geppetto_Sequence_image_5.png)                           |
-                  
+| **3. Create Variables**     | Create a variable of type `Geppetto DataAsset` and assign the previously generated DataAsset as its default value.     ![](./images/Getting_Started_image_10.png)                                                                                                  | Create a variable of type `Geppetto Sequence` and assign the previously generated Sequence as its default value.        ![](./images/Getting_Started_image_11.png)                                    |
+| **4. Initialize on BeginPlay** | - Call `Geppetto SoundWave Player Initialize`  <br> - Call `Geppetto Player Component Initialize`  <br>  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_4.png)                                                                    | - Call `Geppetto Sequencer Component Initialize`  <br>  <br> ![](./images/Play_a_Geppetto_Sequence_image_4.png)                                             |
+| **5. Play Animation**       | Use `Play Data Asset` node to play phonemes in sync with audio or the `Play` node for advanced options.  <br>  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_5.png)  <br> ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_6.png) | Use `Play` node with a reference to the `Geppetto Sequence` asset.  <br>  <br> ![](./images/Play_a_Geppetto_Sequence_image_5.png)                           |
+
                 
 > Both the `Geppetto Player Component` and `Geppetto Sequencer Component` can be subclassed to override default behavior. This is especially useful for custom characters or animation systems that require tailored playback logic or integration with other systems like emotion blending or gameplay triggers.
 
