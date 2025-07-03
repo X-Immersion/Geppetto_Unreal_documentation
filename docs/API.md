@@ -440,8 +440,6 @@ The Geppetto Phoneme Data Table contains all information related to phoneme (lip
 ![](./images/Geppetto_Phonemes_DataTable_image_5.png)
 ![](./images/Geppetto_Phonemes_DataTable_image_6.png)
 
-> *See [section 4.11.2](#4112-geppetto-format) for more information about Geppetto phoneme formats.*
-
 4. For each phoneme, add Morph Target values representing the pose at amplitude 100.
 
 ![](./images/Geppetto_Phonemes_DataTable_image_7.png)
@@ -657,7 +655,7 @@ Open the plugin's documentation link in your web browser.
 
 The following functions can be used in both runtime and editor assets, such as Blueprint classes. Please note that the following functions are declared in C++.
 
-### 4.9.1. Generate phonemes (using URL)
+### 4.9.1. Generate phonemes (using URL) (deprecated)
 
 Generate the phonemes for the given audio and sentence. The audio file is available through a publicly accessible URL. The audio must be in wav format (PCM16 recommended) :
 
@@ -668,7 +666,7 @@ Generate the phonemes for the given audio and sentence. The audio file is availa
 |------------------------|-----------------|
 | **URL**                | The audio URL. See section 3.2 for more details. |
 | **Sentence**           | The sentence spoken in the audio. Can include emotion tags. Please see section 3.3 for more details. |
-| **Format**             | The phoneme format returned by the API. Please read section 4.11.2 for more details. Default is `"Metahuman"`. |
+| **Format**             | The phoneme format returned by the API. Default is `"Metahuman"`. |
 | **Min Ampl**           | The minimum amplitude value (range 0–100). Default is `30`. |
 | **Max Ampl**           | The maximum amplitude value (range 0–100). Must be greater than or equal to `Min Ampl`. Default is `60`. |
 | **Silence Threshold**  | The threshold used to identify audio silences. Default is `-50 dB`. |
@@ -692,7 +690,7 @@ Generate the phonemes for the given SoundWave and sentence.
 |--------------------------|-----------------|
 | **Audio**                | The SoundWave used for phoneme generation. |
 | **Sentence**             | The sentence spoken in the audio. |
-| **Format**               | See section 4.11.2. |
+| **Format**               | The output format of your phonemes. You should not change it. Default is `Metahuman` |
 | **Min Ampl**, **Max Ampl** | Range of phoneme amplitude (0–100). |
 | **Silence Threshold**, **Silence Time** | Silence detection parameters. |
 

@@ -13,8 +13,6 @@
 
 ---
 
-![Logo](./images/General_image_1.png)
-
 Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show you how to use the plugin in Unreal Engine*.
 
 > 📧 *Please note that this notice assumes familiarity with Unreal Engine terminology and workflows. For more detailed information and examples, refer to the accompanying documentation or consult the provided links.*   
