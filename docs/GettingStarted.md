@@ -157,8 +157,13 @@ In this case, we will use once again the **DEMO** tables as they are adapted for
 
 ![](./images/Getting_Started_image_7.png) 
 
+> [!IMPORTANT]  
+> Make sure to set the `Loading Behaviour Override` parameter to `Force Inline` to enable runtime lip-sync in a packaged project.    
+**This setting is required for Unreal Engine version 5.2 and above.**
+> ![](./images/Getting_Started_image_12.png) 
+
 > Note that you could also generate the audio at runtime as pass it into your SoundWave variable to use it in the runtime lip-sync.    
-For more details, please check this part.
+For more details, please check this [part](./Features.md#32-runtime-phonemes-generation-and-animation-blueprint).
 
 5. Into your Event Graph, call the node `Generate Phonemes (using SoundWave)` and place it after your BeginPlay or any nodes you want in order to call the function.     
 Here, we will call the `Space Bar` which act as an event called the input **Space** is pressed.
