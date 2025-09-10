@@ -4,7 +4,7 @@ Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show
 
 **Geppetto is a facial animation and lip-sync plugin for Unreal Engine, designed to automatically generate lip-sync animations from audio or text files.**
 
-**The latest version (2.0.0) introduces the Geppetto Sequence Editor, enabling advanced customization of lip-sync animations with precise timing and amplitude adjustments for morph targets. This version also includes new features like automatic emotion detection and improved voice recognition.**
+**The latest version (2.1.0) introduces a better lipsync render and the ability to export yoour Geppetto sequence as an animation asset, enabling versatility and an increased customisation. This version also includes new features like headshift.**
 
 
 # Table of contents
