@@ -20,6 +20,7 @@ This chapter documents all the components, nodes, structures, enums, and tools p
 - **[Geppetto Sequence](#49-geppetto-sequence)**
 - **[Enums](#410-enums)**
 - **[Structs](#411-structs)**
+- **[Emotion Tag System](#412-emotion-tag-system)**
 
 
 ---
@@ -782,3 +783,32 @@ Since Unreal `FTuple<float>` is not supported in Blueprint yet, this struct is u
 |-----------|------------------------------------------|
 | **First**     | The tuple first value, i.e. the min value or the begin time. |
 | **Second**    | The tuple second value, i.e. the max value or the end time.   |
+
+---
+
+## 4.12 Emotion Tag System
+
+The emotion tag system allows you to change the character emotion at a specific point of the sentence. Its base syntax is the following :
+
+### Syntax
+
+`<emotion name intensity 80 transition 300 function_type linear>`
+
+
+### Parameters
+
+| Parameter         | Description                               | Default      |
+|---------------|-------------------------------------------|--------------|
+| emotion       | Name of the emotion                       | (required)   |
+| intensity     | Intensity (0-100)                         | 50           |
+| transition    | Transition time in ms                     | 200          |
+| function_type | Interpolation function (linear, cubic…)  | cubic        |
+
+### Example
+
+![](./images/Emotion_Tag_System_image_1.png)
+
+![](./images/Emotion_Tag_System_image_2.png)
+
+You can mix tags with runtime Blueprint emotion changes for full control.
+Please read section [2.7 Play an emotion on a character](./GettingStarted.md#27-play-an-emotion-on-a-character) of the documentation for more details on how to change an emotion at Runtime using Blueprints.

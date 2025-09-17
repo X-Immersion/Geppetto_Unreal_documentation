@@ -24,13 +24,15 @@ Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show
 - **[Generate phonemes and emotions in the editor](./docs/GettingStarted.md#24-generate-phonemes-and-emotions-in-the-editor)**
 - **[Generate phonemes and emotions on runtime](./docs/GettingStarted.md#25-generate-phonemes-and-emotions-on-runtime)**
 - **[Play lip-sync on a character](./docs/GettingStarted.md#26-play-lip-sync-on-a-character)**
-- **[Play an emotion or a micro expression on a character](./docs/GettingStarted.md#27-play-an-emotion-or-a-micro-expression-on-a-character)**
+- **[Export lipsync as an animation](./docs/GettingStarted.md#27-export-lipsync-as-an-animation)**
+- **[Play an emotion on a character](./docs/GettingStarted.md#28-play-an-emotion-on-a-character)**
+- **[Play a micro expression on a character](./docs/GettingStarted.md#29-play-a-micro-expression-on-a-character)**
 
-### **[Quickstart](./docs/Quickstart.md)**
+### **[Demo](./docs/Demo.md)**
 
-- **[How to Open the Demo Level](./docs/Quickstart.md#21-how-to-open-the-demo-level)**
-- **[Play with the Demo Level](./docs/Quickstart.md#22-play-with-the-demo-level)**
-- **[Understand the Demo Level](./docs/Quickstart.md#23-understand-the-demo-level)**
+- **[How to Open the Demo Level](./docs/Demo.md#21-how-to-open-the-demo-level)**
+- **[Play with the Demo Level](./docs/Demo.md#22-play-with-the-demo-level)**
+- **[Understand the Demo Level](./docs/Demo.md#23-understand-the-demo-level)**
 
 
 ### **[Features](./docs/Features.md)**
