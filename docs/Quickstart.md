@@ -25,32 +25,36 @@ The Geppetto plugin comes with a demo level and a skeletal mesh with morph targe
 ![Show where is the Engine and Plugin Content options](./images/How_to_open_the_demo_level_image_1.png)
 
 4. 📂 Navigate to the appropriate folder:
-   - **Marketplace install**: `All > Engine > Plugins > Geppetto Content > GeppettoExampleScene`
+   - **Marketplace (Fab) install**: `All > Engine > Plugins > Geppetto Content > GeppettoExampleScene`
    - **Source install**: `All > Plugins > Geppetto Content > GeppettoExampleScene`
 
 ![Path to the GeppettoExampleScene in Unreal](./images/How_to_open_the_demo_level_image_2.png)
 
 5. ▶️ Open the level and press **Play**.
-6. 🕹️ Use number keys (`1` to `0` or numpad) to test the Geppetto Plugin.
 
 ![Where to find the Play button](./images/How_to_open_the_demo_level_image_3.png)
 
 ## 2.2 Play with the Demo Level
 
-You can interact with the demo using keys at runtime:
+![Demo level overview](./images/Demo_level_overview.png)
+
+There are few things you can do on the demo scene:
+
+* On the *middle right*, you can see the **Controls** that can be used to interact with the demo level. Use the keyboard key 1-5 (or numpad key) to perform actions:
 
 | Key | Action                                                                 |
 |-----|------------------------------------------------------------------------|
-| 1   | Pre-generated Lip Sync with emotions (uses tags)                      |
-| 2   | Pre-generated Lip Sync without emotions                               |
-| 3   | Toggle Happy emotion                                                  |
-| 4   | Toggle Neutral emotion                                                |
-| 5   | Start blink loop                                                      |
-| 6   | Stop blink loop                                                       |
-| 7   | Start eyedart loop                                                    |
-| 8   | Stop eyedart loop                                                     |
-| 9   | Runtime Lip Sync from audio URL with emotions (uses tags)            |
-| 0   | Runtime Lip Sync from SoundWave (must contain PCM audio)             |
+| 1   | Play the selected pre-generated Geppetto Sequence                     |
+| 2   | Play the selected pre-genereted Geppetto Data Asset                     |
+| 3   | Use the selected SoundWave to generate lipsync at runtime and play it |
+| 4   | Change the camera angle |
+| 5   | Toggle UI |
+
+* On the *bottom right*, you can see the **Micro Expression** loops currently played. You can click on the (X) button to toggle them (on/off).
+
+* On the *bottom center*, you can see the **Emotions** dropdown. If you change the emotion, the emotion transition animation will be played.
+
+* On the *bottom left*, you can see the **Lip-sync** settings. Use them with the keys 1-3 to play various DataAsset/Sequence/SoundWave.
 
 ## 2.3 Understand the Demo Level
 
@@ -69,14 +73,17 @@ You’ll see a block for each key event and `BeginPlay`.
 
 ### 2.3.1 Components Required
 
-Every actor using the plugin must have these 4 components:
+Every actor using the plugin must have these 3 components:
 
 - ✅ A Skeletal Mesh with Morph Targets
 - 🔊 An Audio Component
-- 🧠 A [Geppetto Sound Wave Player](./API.md#41-geppetto-sound-wave-player-component) (e.g., DemoPlayerV2)
+- 🧠 A [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) (e.g., DemoPlayerV2)
 
 ![Components you should have](./images/Components_image_1.png)
 
+You can see on the [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) detail pannel the Data Tables used for phonemes, emotions, micro expressions and headshift.
+
+![Component setup](./images/Components_image_2.png)
 
 ### 2.3.2 Begin Play
 
