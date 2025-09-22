@@ -34,16 +34,6 @@ Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show
 - **[Play with the Demo Level](./docs/Demo.md#22-play-with-the-demo-level)**
 - **[Understand the Demo Level](./docs/Demo.md#23-understand-the-demo-level)**
 
-
-### **[Features](./docs/Features.md)**
-
-- **[Pre-generated Data Asset (Editor)](./docs/Features.md#31-pre-generated-data-asset-editor)**
-- **[Runtime Phonemes Generation and Animation (Blueprint)](./docs/Features.md#32-runtime-phonemes-generation-and-animation-blueprint)**
-- **[Change Emotions](./docs/Features.md#33-change-emotions)**
-- **[Play or Loop Micro Expressions](./docs/Features.md#34-play-or-loop-micro-expressions)**
-- **[Emotion Tag System](./docs/Features.md#35-emotion-tag-system)**
-
-
 ### **[API](./docs/API.md)**
 
 - **[Geppetto Base Component](./docs/API.md#41-geppetto-base-component)**
@@ -67,3 +57,8 @@ Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show
   - **[Amplitude Calculation](./docs/Others.md#52-amplitude-calculation)**
 - **[Adding Emotion Tags](./docs/Others.md#6-adding-emotion-tags)**
 - **[Output](./docs/Others.md#7-output)**
+
+
+# Contact
+
+If you have any question, do not hesitate to contact us through our [Discord server](https://discord.gg/qDMwNCDE8X) or by mail at [support@xandimmersion.com](mailto:support@xandimmersion.com).

@@ -25,8 +25,8 @@ The Geppetto plugin comes with a demo level and a skeletal mesh with morph targe
 ![Show where is the Engine and Plugin Content options](./images/How_to_open_the_demo_level_image_1.png)
 
 4. 📂 Navigate to the appropriate folder:
-   - **Marketplace (Fab) install**: `All > Engine > Plugins > Geppetto Content > GeppettoExampleScene`
-   - **Source install**: `All > Plugins > Geppetto Content > GeppettoExampleScene`
+   - **Marketplace (Fab) install**: `All > Engine > Plugins > Geppetto Content > GeppettoDemoScene`
+   - **Source install**: `All > Plugins > Geppetto Content > GeppettoDemoScene`
 
 ![Path to the GeppettoExampleScene in Unreal](./images/How_to_open_the_demo_level_image_2.png)
 
@@ -37,6 +37,8 @@ The Geppetto plugin comes with a demo level and a skeletal mesh with morph targe
 ## 2.2 Play with the Demo Level
 
 ![Demo level overview](./images/Demo_level_overview.png)
+
+<!-- TODO: Add colored box to the image and the text to be clearer, like for Ariel: https://github.com/X-Immersion/Ariel_Unreal_documentation/blob/main/doc/Quickstart.md#-editor-pre-generation -->
 
 There are few things you can do on the demo scene:
 
@@ -77,7 +79,7 @@ Every actor using the plugin must have these 3 components:
 
 - ✅ A Skeletal Mesh with Morph Targets
 - 🔊 An Audio Component
-- 🧠 A [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) (e.g., DemoPlayerV2)
+- 🧠 A [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) or any component that inherit from [Geppetto Base Component](API.md#component-inheritance) *(e.g., DemoPlayerV2)*
 
 ![Components you should have](./images/Components_image_1.png)
 
@@ -136,7 +138,6 @@ The **Emotion combo box in the scene** is related to emotions.
 - Please read section [4.11.2 - Geppetto Emotion](./API.md#4112-geppetto-emotion) of the documentation for more information about the Geppetto emotion structure.
 
 ![](./images/Emotions_image_1.png)
-![](./images/Emotions_image_2.png)
 
 The same way as phonemes, emotions use a [Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) to determine the Morph Target values for each emotion. Please read section [4.3 - Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) of the documentation for more information.
 
@@ -149,7 +150,6 @@ The **micro expressions scrollbox in the scene** is related to micro expressions
 - Please read section [4.1.7 - Start Micro Expression Loop](./API.md#417-start-micro-expression-loop) and [4.1.8 - Stop Micro Expression Loop](./API.md#418-stop-micro-expression-loop) of the documentation for more information about the nodes.
 
 ![](./images/Micro_Expressions_image_1.png)
-![](./images/Micro_Expressions_image_2.png)
 
 Like phonemes and emotions, micro expressions use a [Geppetto Micro Expressions Data Table](./API.md#44-geppetto-micro-expressions-data-table) to retrieve the Morph Targets values.   
 This time, however, the values can be **static** (like phonemes or emotions Morph Targets values) or **dynamic** (the Morph Targets values will change each time the Micro Expression is played).    

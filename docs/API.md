@@ -28,143 +28,191 @@ This chapter documents all the components, nodes, structures, enums, and tools p
 ## 4.1 Geppetto Sound Wave Player Component
 
 The base component inherited by other Geppetto Player Components such as `GeppettoDemoPlayerComponent`. 
-At `BeginPlay`, it retrieves a reference to the `Audio Component` and the `Skeletal Mesh Component` on his owner.
-> Note that you can also access the component and set the Mesh directly from your actor if you want to use another Mesh than the first found by the component.
+At `BeginPlay`, it retrieves a reference to the `Audio Component` from the owner.
+
+> [!NOTE]
+> If you have multiple Audio Component or if the one used is not part of the Actor, you can directly set the variable `AudioComponent` to the correct component, prior to playing any Lipsync animation. You can do the same with the Skeletal Mesh. **In this case, please create a new child component and override the function Set Morph Target**. [See more](#component-inheritance)
 
 When playing a lipsync, it generates Morph Target curves from the phonemes and emotions contained in the DataAsset, the Sequence or the arrays passed in parameters.
-Then it updates each MorphTarget based on the current play time which can either be computed by the component itself or aligned to the playing audio.
+Then it updates each MorphTarget based on the current play time which can be synced with the component tick or the current audio playback time.
 
 The Unreal events `OnPhonemeChanged` and `OnEmotionChanged` are broadcasted each time a phoneme or an emotion needs to be animated.
 The other events `OnLipsyncStarted`, `OnLipsyncChanged`, and `OnLipsyncFinished` are broadcasted each a lipsync animation start, change or is finished.
 
-They are 3 functions that needs to be override if you want to create your custom `Geppetto Sound Wave Player Component` :
-
-### `Set MorphTarget`
-
-Set the new value of a MorphTarget based on the current phoneme value, current emotion value and micro expressions value.   
-In the default implementation, we add the three values together and check if the component should blend values with the current Animation value. If so, we also add it to the final value.
-Then, we pass the final value to the `SetMorphTarget` function of the `SkeletalMehComponent`.  
-
-![](./images/Set_MorphTarget_image_1.png)
-
-
-### `Should Sync Current Time With Audio`
-
-Defines if the `Geppetto Sound Wave Player Component` current lipsync time is aligned to the audio play time or not.  
-
-![](./images/ShouldSyncWithAudioPlayTime_image_1.png)
-
-
-### `Get Audio Current Time`
-
-Get current play time of the audio.  
-
-![](./images/GetAudioCurrentTime_image_1.png)
-
-| Field    | Description                                                                                                                                                         |
-|----------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| Phonemes | The new phonemes list that will be processed by the component. If there were already phonemes remaining, the previous value will be overwritten.                   |
-| Emotions | The new emotions list that will be processed by the component. If there were already emotions remaining, the previous value will be overwritten.                   |
-
-
 ### Variables
 
+| **Field** | Type | Description |
+|-------|------|-------------|
+| **Update Duration From Audio Component** | `bool` | If true, sync animation with the audio play time. |
+| **Blend With Animation Morph Target Values** | `bool` | If true, blend the Geppetto Morph Target values with the already existing animation values |
+| **Audio Duration**            | `float` | Duration of the audio (used internally) |
+| **Previous Playback Percent** | `float` | Previous progress of the audio (used internally) |
+| **Current Audio Play Time**   | `float` | Current time of the playback. |
+| **Max Slope**                 | `float` | The maximum slope value allowed when creating Morph Target curves |
+| **Min Time Step**             | `float` | The minimum amount of time (in seconds) required between two Morph Target keys |
 
-| Field               | Description                                                                                                                                                                                                                           |
-|---------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `Update Duration From Audio Component`       | Boolean to define if the `Geppetto Sound Wave Player Component` should sync with the audio play time.                |
-| `Blend With Animation Morph Target Values`      | Boolean to define if the animation value is blend with phoneme, emotion and micro expression values.                                                                                                    |
-| `Audio Duration`  | Duration of the audio file.                                                                                                                                                         |
-| `Previous Playback Percent`  | Previous progress of the audio playback.                                                                                                                                                         |
-| `Current Audio Play Time`   | Current time of the playback. |
-| `Phoneme Data Table`   | Data table used to convert phonemes into MorphTargets compatible with the `Skeletal Mesh`. |
-| `Emotion Data Table`   | Data table used to convert emotions into MorphTargets compatible with the `Skeletal Mesh`. |
-| `Micro Expression Data Table`   | Data table used to convert micro expressions into MorphTargets compatible with the `Skeletal Mesh`. |
-| `Headshift Data Table`   | Data table used to convert headshift into MorphTargets compatible with the `Skeletal Mesh`. |
+### Inherited properties
+
+The `Geppetto SoundWave Player Component` is inherited from a C++ Component named `Geppetto Base Component`. This base C++ expose some other properties that can be set through the component details.
+
+![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3c.png)
+
+| Property name | Type | Description |
+|---------------|------|-------------|
+| **Phoneme Data Table** | `UDataTable` | The Phoneme Data Table used to translate a phoneme like 'A' into a list of Morph Target values. |
+| **Emotion Data Table** | `UDataTable` | The Emotion Data table used to translate an emotion like 'Happy' into a list of Morph Target values. |
+| **Micro Expression Data Table** | `UDataTable` | The Micro Expression Data Table used to translate a micro expression like 'Blink' into a list of Morph Target values. |
+| **Headshift Data Table** | `UDataTable` | The headshift Data table used to transalte an headshift pose like `generic` into a list of **bones** values. |
+| **Headshift > Generic Headshift Movement** | `UCurveFloat` | The headshift generic movement curve override. |
+| **Headshift > UseGenericHeadshift** | `bool` | Set it to true to have a generic headshift animation on your character. |
+| **Headshift > UseEmotionHeadshift** | `bool` | Set it to true to perform an headshift animation when playing emotions. |
+
+You can see on the component that there are a lot of other properties listed in read-only. These values are calculated and used internally and should **NOT** be set by the user itself. However, you can use this window to debug the animation.
 
 ### Events
 
-| Event                  | Description                                                                                                                                                                                                                                                                      |
-|---------------------------|----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| `On Lipsync Changed`   | This event is broadcasted each time the lipsync animation has changed, meaning each time the nodes `Play From Arrays`, `Play from Data Asset`, `Play From Sequence` are called.                                      |
-| `On Lipsync Started`        | This event is broadcasted each time a lipsync animation starts. No parameters are provided             |
-| `On Lipsync Finished`        | This event is broadcasted each time a lipsync animation ended. No parameters are provided |
-| `On Phoneme Changed`        | This event is broadcasted each time a new phoneme needs to be processed with the following phoneme information:<br>- The current Phoneme (with name and amplitude)<br>- The next Phoneme (with name and amplitude)<br>- The current Phoneme play time, in seconds             |
-| `On Emotion Changed`        | This event is broadcasted each time a new phoneme needs to be processed with the following emotion information:<br>- The emotion name<br>- The emotion Intensity<br>- The emotion Transition time<br>- The emotion Transition function<br>- The emotion play time, in seconds |
+| Event name                 | Description |
+|-----------------------|-------------|
+| `On Lipsync Changed`  | Broadcasted each time the lipsync animation has changed, meaning each time the nodes `Play From Arrays`, `Play from Data Asset`, `Play From Sequence` or `Generate and Play` are called. |
+| `On Lipsync Started`  | Broadcasted each time a lipsync animation starts. No parameters are provided |
+| `On Lipsync Finished` | Broadcasted each time a lipsync animation ended. No parameters are provided |
+| `On Phoneme Changed`  | Broadcasted each time a new phoneme needs to be processed with the following phoneme information:<br>- The current Phoneme (with name and amplitude)<br>- The next Phoneme (with name and amplitude)<br>- The current Phoneme play time, in seconds |
+| `On Emotion Changed`  | This event is broadcasted each time a new phoneme needs to be processed with the following emotion information:<br>- The emotion name<br>- The emotion Intensity<br>- The emotion Transition time<br>- The emotion Transition function<br>- The emotion play time, in seconds |
 
 ### Functions
 
-#### 4.1.1 Play From DataAsset
 
-Play a lipsync animation provided by a `Geppetto DataAsset`
+### 4.1.1 Generate and Play
+
+Generate Lipsync at runtime with the provided audio and sentence *(optional)* and play it. This will internally call [Generate phonemes (using SoundWave)](#471-generate-phonemes-using-soundwave)
+
+![](images/Geppetto_Sound_Wave_Player_Component_image_0.png)
+
+| Parameter name        | Description |
+|-----------------------|-------------|
+| **Audio**             | The SoundWave used to generate the lipsync. |
+| **Opt Sentence**      | Optional speech text in the audio. If empty, will perform STT on the audio to extract sentence |
+| **Quality**           | The lipsync generation quality. A higher quality will improve the results but may take longer to generate |
+| **Auto Emotion**      | If true, will automatically determine and add emotions to the text based on the speech |
+| **Amplitude Settings** | The min and max amplitudes used for phonemes generation (will impact the result animation) |
+
+If needed, you are free to add other parameters to the event, or create an other Custom Event with more parameters.
+
+
+### 4.1.2 Play From DataAsset
+
+Play a lipsync animation provided by a [Geppetto DataAsset](#481-geppetto-data-asset)
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_1.png)
 
-#### Parameters
-
-| Parameter                    | Description |
+| Parameter name              | Description |
 |-----------------------------|-------------|
-| **Data Asset** | The `Geppetto DataAsset` that contains the lipsync animation. |
+| **Data Asset** | The [Geppetto DataAsset](#481-geppetto-data-asset) that contains the lipsync phonemes and emotions (with time codes). |
 
-#### 4.1.2 Play From Arrays
+
+### 4.1.3 Play From Arrays
 
 Play a lipsync animation from the raw phonemes and emotions passed as parameters.
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_2.png)
 
-#### Parameters
-
-| Parameter                    | Description |
+| Parameter name              | Description |
 |-----------------------------|-------------|
 | **Sound Wave** | The audio wav to play. |
 | **Phonemes** | The phonemes to play. |
 | **Emotions** | The emotions to play. |
 
-#### 4.1.3 Play From Sequence
 
-Play a lipsync animation provided by a `Geppetto Sequence`
+### 4.1.4 Play From Sequence
+
+Play a lipsync animation provided by a [Geppetto Sequence](#49-geppetto-sequence)
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_3.png)
 
-#### Parameters
-
-| Parameter                    | Description |
+| Parameter name              | Description |
 |-----------------------------|-------------|
-| **Geppetto Sequence** | The `Geppetto Sequence` that contains the lipsync animation. |
+| **Geppetto Sequence** | The [Geppetto Sequence](#49-geppetto-sequence) that contains the lipsync animation. |
 
----
 
-#### 4.1.4 Play 
+### 4.1.5 Set Lipsync and Play (inherited from Base Component in C++)
 
-Play the current stored lipsync animation
+Create the lipsync morph target curves from the given phonemes and emotions and play the animation. Compared to the node [Play From Arrays](#413-play-from-arrays), this function does **NOT** automatically sync the animation with the audio playback time.
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_4.png)
 
-#### Parameters
+| Parameter name        | Description |
+|-----------------------|-------------|
+| **Phonemes**          | The Phonemes list used to generate the lipsync. |
+| **Emotions**          | *(can be empty)* The emotions list used to animate during the lipsync. |
+| **Start Time**        | Indicate the delay between calling this node and the beginning of this animation (`0.0f` = no wait time) |
+| **Max Slope**         | The maximum slope value allowed between two Morph Target keys |
+| **Min Time Step**     | The minimum amount of time (in seconds) required between two Morph Target keys |
+
+
+### 4.1.6 Set Lipsync (inherited from Base Component in C++)
+
+Create the lipsync morph target curves from the given phonemes and emotions, but do not start playing the animation yet.
+
+![](./images/Geppetto_Sound_Wave_Player_Component_image_5.png)
+
+| Parameter name        | Description |
+|-----------------------|-------------|
+| **Phonemes**          | The Phonemes list used to generate the lipsync. |
+| **Emotions**          | *(can be empty)* The emotions list used to animate during the lipsync. |
+| **Max Slope**         | The maximum slope value allowed between two Morph Target keys |
+| **Min Time Step**     | The minimum amount of time (in seconds) required between two Morph Target keys |
+
+
+### 4.1.7 Set Phonemes Curves (inherited from Base Component in C++)
+
+Directly give the Morph Target phonemes curves in order to play them. The Phonemes array is only used to trigger the [component Delegates](#events).
+
+![](./images/Geppetto_Sound_Wave_Player_Component_image_6.png)
+
+| Parameter name        | Description |
+|-----------------------|-------------|
+| **Phonemes**          | *(optional)* The Phonemes list used to trigger the components delegates |
+| **Phoneme Curves**    | A map of all morph target curves, where the `Key` is the Morph Target name and the `value` is the associated lipsync animation curve. |
+
+
+### 4.1.8 Set Emotions Curves (inherited from Base Component in C++)
+
+Directly give the Morph Target emotions curves in order to play them. The emotion array is only used to trigger the [component Delegates](#events).
+
+![](./images/Geppetto_Sound_Wave_Player_Component_image_7.png)
+
+| Parameter name        | Description |
+|-----------------------|-------------|
+| **Emotions**          | *(optional)* The Emotions list used to trigger the components delegates |
+| **Emotions Curves**    | A map of all morph target curves, where the `Key` is the Morph Target name and the `value` is the associated emotion(s) animation curve. |
+
+
+### 4.1.9 Play (inherited from Base Component in C++)
+
+Play the current stored lipsync animation
+
+![](./images/Geppetto_Sound_Wave_Player_Component_image_55.png)
+
 
 | Parameter                    | Description |
 |-----------------------------|-------------|
 | **Start Time** | The time to begin the lipsync animation. |
 
----
 
-#### 4.1.5 Change Emotion
+### 4.1.10 Change Emotion (inherited from Base Component in C++)
 
-Use this node to change the current emotion pose dynamically. For more details, see section [3.3 - Change Emotions](./Features.md#33-change-emotions) :
+Use this node to change the current emotion pose dynamically. [More information](GettingStarted.md#28-play-an-emotion-on-a-character)
 
 ![](./images/Geppetto_Player_Component_image_11.png)
 
 | Parameter | Description                     |
 |-----------|---------------------------------|
-| **Emotion** | Use the `GeppettoEmotion` structure. |
+| **Emotion** | Use the [GeppettoEmotion](#4112-geppetto-emotion) structure. |
 
 
----
+### 4.1.11 Play Micro Expression (inherited from Base Component in C++)
 
-
-#### 4.1.6 Play Micro Expression
-
-Use this node to play a micro expression one time. For more info, see section [3.4 - Play or Loop Micro Expressions](./Features.md#34-play-or-loop-micro-expressions).
+Use this node to play a micro expression one time. [More information](GettingStarted.md#29-play-a-micro-expression-on-a-character).
 
 ![](./images/Geppetto_Player_Component_image_12.png)
 
@@ -173,11 +221,10 @@ Use this node to play a micro expression one time. For more info, see section [3
 | **Name**     | The micro-expression name (must exist in the Micro Expressions Data Table). |
 | **Intensity**| Intensity value from 0 to 100.                                    |
 | **Speed**    | Playback speed of the micro-expression animation (must be greater than 0). |
+| **Curve Override** | If provided, do not use the default curve provided in the Micro Expression Data Table, but use this one instead. |
 
 
----
-
-#### 4.1.7 Start Micro Expression Loop
+### 4.1.12 Start Micro Expression Loop
 
 Use this node to play a micro expression repeatedly.
 
@@ -185,13 +232,8 @@ Use this node to play a micro expression repeatedly.
 
 | Parameter       | Description                                                                                     |
 |-----------------|-------------------------------------------------------------------------------------------------|
-| **Name**        | The micro-expression name.                                                                      |
-| **Time range**  | The time range between the execution of two micro-expressions. After each play, a random time between min and max is selected. |
-| **Intensity range** | The random intensity range for each play (min to max).                                      |
-| **Speed range** | The random playback speed range for each play (min to max).                                    |
+| **Settings**    | The [Micro Expression Loop](#4113-geppetto-micro-expression) settings. |
 
-
----
 
 #### 4.1.8 Stop Micro Expression Loop
 
@@ -205,30 +247,58 @@ Use this node to stop looping a micro expression.
 | **Name**  | The micro-expression name.      |
 
 
----
+## 4.2 - Component Inheritance
+
+Sometimes, the provided [Geppetto SoundWave Player Component](#41-geppetto-sound-wave-player-component) is not enough to animate the lipsync correctly. This will be the case if:
+* You don't use Unreal Audio Mixer and/or Unreal SoundWave within your game
+* You have more than one Skeletal Mesh Component inside your Actor (i.e.: Metahuman)
+* You do not rely to Morph Target to animate your Skeletal Mesh (i.e.: Metahuman - uses the Animation Blueprint `Face_AnimBP` instead)
+
+In these cases, you must create your own Geppetto Component. If you uses the Unreal audio mixer and SoundWaves, you can select the `Geppetto SoundWave Player Component` as the parent class. If not, you will need to select the `Geppetto Base Component V2` as the parent class. There are three Blueprint Implementable Event that must be override by all child classes:
+
+### Set MorphTarget
+
+Set the new value of a MorphTarget based on the current phoneme value, current emotion value and micro expressions value.   
+In the default implementation, we add the three values together and check if the component should blend values with the current Animation value. If so, we also add it to the final value.
+Then, we pass the final value to the `Set Morph Target` function of the `Skeletal Mesh Component`.  
+
+![](./images/Set_MorphTarget_image_1.png)
 
 
-### Component Inheritance
+### Should Sync Current Time With Audio
 
-When using Metahumans characters or a custom node to get and/or set the Morph Targets values to the Skeletal Mesh Asset used, it is required to create a new component class that will inherit from the `Geppetto Sound Wave Player Component` class and override the nodes [`Set Morph Target`](#set-morphtarget).    
-Follow these steps to create a new component :
+Defines if the current lipsync time is aligned to the audio play time or not.  
 
-1. Create a new Blueprint Class that have `Geppetto Sound Wave Player Compoinent` as parent class
+![](./images/ShouldSyncWithAudioPlayTime_image_1.png)
+
+
+### Get Audio Current Time
+
+Get current play time of the audio.  
+
+![](./images/GetAudioCurrentTime_image_1.png)
+![](./images/GetAudioCurrentTime_image_2.png)
+
+### Step-by-step guide
+
+1. Create a new Blueprint Class that have `GeppettoSoundWavePlayerComponent` *(recommanded)* or `GeppettoBaseComponentV2` as parent class
 
 ![](./images/Component_Inheritance_image_1.png)
 ![](./images/Component_Inheritance_image_2.png)
 
-2. Open the created Blueprint class and override the function named `Set Morph Target`
+2. Open the created Blueprint class and override the function named [Set Morph Target](#set-morphtarget)
 
 ![](./images/Component_Inheritance_image_3.png)
 
 3. Put the nodes used to change the morph target values inside the function. You can delete the call to the parent node (`Parent: Set Morph Target`).
 
-4. You can type `Get Skeletal Mesh` in the action selection to access the Skeletal Mesh Asset
+4. Here is an example working with **Metahumans** (UE 5.2 - 5.5):
+
+![](./images/Component_Inheritance_image_4.png)
 
 ![](./images/Component_Inheritance_image_5.png)
 
----
+5. If the parent class is the `Geppetto Base Component V2`, please override functions [Should Sync Current Time With Audio](#should-sync-current-time-with-audio) and [Get Audio Current Time](#get-audio-current-time) too.
 
 
 ## 4.2 Geppetto Phoneme Data Table
@@ -258,7 +328,8 @@ The Geppetto Phoneme Data Table contains all information related to phoneme (lip
 
 ![](./images/Geppetto_Phonemes_DataTable_image_7.png)
 
-> Note: You can only have a visual preview of Morph Targets in the Geppetto Sequencer editor currently. To create a Geppetto Sequencer, please read [this section.](#4102-geppetto-sequence) 
+> [!NOTE]
+> You can only have a visual preview of Morph Targets in the Geppetto Sequencer editor currently. To create a Geppetto Sequencer, please read [this section](GettingStarted.md#24-generate-phonemes-and-emotions-in-the-editor).
 
 ### Add/Edit from existing
 
@@ -457,71 +528,6 @@ Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export
 
 ---
 
-## 4.6. Geppetto Blueprint Library (Editor only)
-
-The following functions can only be used in Editor-only assets, such as Editor Utility Widget or Editor Utility Blueprint. Please note that the following functions are declared in C++.
-
----
-
-### 4.6.1. Generate phonemes (using SoundWave)
-
-Generate the phonemes for the given audio and sentence.  
-👉 THIS IS THE EDITOR-ONLY FUNCTION. FOR RUNTIME, SEE: [Generate phonemes (using SoundWave) ](#481-generate-phonemes-using-soundwave) in section 4.9.
-
-![](./images/Runtime_Phonemes_generation_and_animation__Blueprint__image_9.png)
-
-#### Parameters
-
-### Audio Input Configuration
-
-| **Parameter**         | **Description** |
-|-----------------------|-----------------|
-| **Audio**             | The `SoundWave` asset used as input audio. See [section 3.1.1](./Features.md#311-audio-import) for more details. |
-| **Sentence**          | The sentence spoken in the audio. You can include emotion tags (see [section 3.3](./Features.md#33-emotion-tags)). |
-| **Format**            | Audio file format. Supported formats include `WAV`, `MP3`, etc. |
-| **Amplitude range**   | The minimum and maximum values used to determine the intensity of phoneme animations. |
-| **Silence threshold** | The minimum decibel (dB) level considered as silence. Helps in ignoring background noise or breathing sounds. |
-| **Emotion detection** | If enabled, a deep learning model will automatically analyze the audio and extract the emotion content. |
-
-
----
-
-### 4.6.2. Save Geppetto Phonemes
-
-Save the generated phonemes as a `Geppetto Data Asset` or as a Sequencer track.
-
-![](./images/GeppettoBlueprintLibrary_image_1.png)
-
-#### Parameters
-
-| **Parameter**     | **Description** |
-|-------------------|-----------------|
-| **Save file as**  | Choose the output format: `DataAsset` (for playback using the `SoundWavePlayer`) or `Sequencer` (for timeline-based facial animation using `GeppettoSequence`). |
-| **Save file at**  | The directory path where the generated `.uasset` will be saved in your project. |
-
-
----
-
-### 4.6.3. Show save file selection dialog
-
-Show the operating system save file selection dialog for a Geppetto Data Asset.    
-**Please note that the whole engine is freezed while the OS file selection window is opened.**
-
-![](./images/GeppettoBlueprintLibrary_image_2.png)
-
-
-| **Parameter**      | **Description** |
-|--------------------|-----------------|
-| **Selected Path**  | The file path selected by the user, relative to the project's `Content` folder. Returns `"INVALID PATH"` or an empty string if no path was selected or if the path is invalid. |
-
-
-### 4.6.4. Get Documentation URL
-
-Open the plugin's documentation link in your web browser.
-
-![](./images/GeppettoBlueprintLibrary_image_3.png)
-
-
 ## 4.7. Geppetto Blueprint Library
 
 The following functions can be used in both runtime and editor assets, such as Blueprint classes. Please note that the following functions are declared in C++.
@@ -633,6 +639,45 @@ Safe linear interpolation with clamping. Used internally to blend values without
 | **Alpha**       | The alpha value used to interpolate between A and B                     |
 | **Return Value**| The safe linear interpolation result (either A, B, or a standard interpolation) |
 
+
+## 4.6. Geppetto Blueprint Library (Editor only)
+
+The following functions can only be used in Editor-only assets, such as Editor Utility Widget or Editor Utility Blueprint. Please note that the following functions are declared in C++.
+
+### 4.6.1 Save Geppetto Phonemes
+
+Save the generated phonemes as a `Geppetto Data Asset` or as a Sequencer track.
+
+![](./images/GeppettoBlueprintLibrary_image_1.png)
+
+#### Parameters
+
+| **Parameter**     | **Description** |
+|-------------------|-----------------|
+| **Save file as**  | Choose the output format: `DataAsset` (for playback using the `SoundWavePlayer`) or `Sequencer` (for timeline-based facial animation using `GeppettoSequence`). |
+| **Save file at**  | The directory path where the generated `.uasset` will be saved in your project. |
+
+
+---
+
+### 4.6.2 Show save file selection dialog
+
+Show the operating system save file selection dialog for a Geppetto Data Asset.    
+**Please note that the whole engine is freezed while the OS file selection window is opened.**
+
+![](./images/GeppettoBlueprintLibrary_image_2.png)
+
+
+| **Parameter**      | **Description** |
+|--------------------|-----------------|
+| **Selected Path**  | The file path selected by the user, relative to the project's `Content` folder. Returns `"INVALID PATH"` or an empty string if no path was selected or if the path is invalid. |
+
+
+### 4.6.3 Get Documentation URL
+
+Open the plugin's documentation link in your web browser.
+
+![](./images/GeppettoBlueprintLibrary_image_3.png)
 
 ---
 
