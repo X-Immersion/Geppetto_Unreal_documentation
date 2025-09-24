@@ -79,7 +79,7 @@ Here is an example with the **DEMO_PhonemesTable** that converts phonemes into t
 
 You can either create a new Phoneme DataTable in Unreal or import an existing one from a csv or json file.<br/>
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > Phonemes*, and you’re free to duplicate or customize them.<br/>
-For more information, please see [4.2 Geppetto Phoneme Data Table](./API.md#42-geppetto-phoneme-data-table).
+For more information, please see the section [Geppetto Phoneme Data Table](./API.md#44-geppetto-phoneme-data-table).
 
 > [!NOTE]  
 > If you do not see the **Plugins** folder or the **Geppetto Content** folder, click on **"Settings"** in the **Content Browser** and tick **"Show Plugin Content"**.     
@@ -97,7 +97,7 @@ Here is an example with the **DEMO_EmotionsTable** that converts emotions into t
 
 You can either create a new Emotion DataTable in Unreal or import an existing one from a csv or json file.<br/>
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > Emotions*, and you’re free to duplicate or customize them.<br/>
-For more information, please see [4.3 Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table).
+For more information, please see section [Geppetto Emotion Data Table](./API.md#45-geppetto-emotion-data-table).
 
 
 ### 2.3.3 Micro-expression Data Table
@@ -109,7 +109,7 @@ Dynamic targets introduce random variation to keep animations lively and natural
 
 You can either create a new Micro Expression DataTable in Unreal or import an existing one from a csv or json file.<br/>
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > MicroExpressions*, and you’re free to duplicate or customize them.<br/>
-For more information, please see [4.4 Geppetto Micro Expressions Data Table](./API.md#44-geppetto-micro-expressions-data-table).
+For more information, please see section [Geppetto Micro Expressions Data Table](./API.md#46-geppetto-micro-expressions-data-table).
 
 
 ### 2.3.4 Headshift Data Table
@@ -121,7 +121,7 @@ Each neck movement is composed of a curve, a speed, an amplitude, and influenced
 
 You can either create a new Headshift DataTable in Unreal or import an existing one from a csv or json file.<br/>
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > MicroExpressions > Headshift*, and you’re free to duplicate or customize them.<br/>
-For more information, please see [4.5 Geppetto Headshift Data Table](./API.md#45-geppetto-headshift-data-table).
+For more information, please see section [Geppetto Headshift Data Table](./API.md#47-geppetto-headshift-data-table).
 
 
 <br/>
@@ -148,8 +148,8 @@ For this example, we will use **SentenceExample_MaleVoice_1** which is available
 3. Tick the `Add emotion tag automatically` checkbox to allow Geppetto to automatically detect emotions in your audio file (based on the speech).
 
 4. Then, choose where to store your generated phonemes with the `Save file as` parameter.    
-There are two types of assets: [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence). Each of them has different use cases.   
-[Below](#26-play-lip-sync-on-a-character), you will find an example on how to use and play both assets on your Character.
+There are two types of assets: [Geppetto DataAsset](./API.md#4121-geppetto-data-asset) and [Geppetto Sequence](./API.md#4122-geppetto-sequence). Each of them has different use cases.   
+[Below](#25-play-editor-lip-sync-assets-on-a-character), you will find an example on how to use and play both assets on your Character.
 
 5. Finally, hit the `Generate Phonemes` button to generate your .uasset file.     
 **This may take a while depending on the audio duration and phonemes quality selected.**
@@ -175,23 +175,23 @@ There are two types of assets: [Geppetto DataAsset](./API.md#48-data-assets) and
 | ⏱️    | **Advanced Settings > Delay**               | Apply a global delay to all generated phonemes/emotions. Can be positive or negative. |
 | 👄    | **Close Mouth At End Of Speech**          | Force to add a phoneme that closes the mouth at the end of the animation. |
 | 🎞️    | **Sequencer Frame Rate**                 | Higher FPS = better edit control and better animation but use more performance. |
-| 💾    | **Save as**                               | Choose between [Data Asset](API.md#481-geppetto-data-asset) or [Sequencer](API.md#49-geppetto-sequence). |
+| 💾    | **Save as**                               | Choose between [Data Asset](API.md#4121-geppetto-data-asset) or [Sequencer](API.md#4122-geppetto-sequence). |
 | 📁    | **Save as > At**                          | Specify the asset save location. Must be inside the project. Click "Choose" to open a save dialog window. |
 </details>
 </br>
 
 
-**Once done**, choose a destination to save the generation. You can either save the generation as a [Data Asset](API.md#481-geppetto-data-asset) or as a [Sequence](API.md#49-geppetto-sequence). Geppetto Sequence can then be converted to Unreal Animation Asset. [See more](GettingStarted.md#27-export-lipsync-as-an-animation).
+**Once done**, choose a destination to save the generation. You can either save the generation as a [Data Asset](API.md#4121-geppetto-data-asset) or as a [Sequence](API.md#4122-geppetto-sequence). Geppetto Sequence can then be converted to Unreal Animation Asset. [See more](GettingStarted.md#26-export-lipsync-as-an-animation).
 
 > [!TIP]
-> See chapter [Play lip-sync on a character](#26-play-lip-sync-on-a-character) below to use and play your saved geppetto assets at runtime!
+> See chapter [Play lip-sync on a character](#25-play-editor-lip-sync-assets-on-a-character) below to use and play your saved geppetto assets at runtime!
 
 
 <br/>
 
 ## 2.5 Play Editor lip-sync assets on a character
 
-As we talked about before, there are two assets that store generated phonemes: [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence).    
+As we talked about before, there are two assets that store generated phonemes: [Geppetto DataAsset](API.md#4121-geppetto-data-asset) and [Geppetto Sequence](API.md#4122-geppetto-sequence).    
 Here is an example on how to use both types to play a lipsync animation on a character.
 
 | Step                        | Geppetto Data Asset                                                                                                                                                                                                                                             | Geppetto Sequence                                                                                                                                          |
@@ -204,7 +204,7 @@ Here is an example on how to use both types to play a lipsync animation on a cha
                 
 > [!NOTE]
 > The `Geppetto Demo Player Component` can be subclassed to override default behavior. This is especially useful for custom characters or animation systems that require tailored playback logic or integration with other systems like emotion blending or gameplay triggers.   
-> Please read the section concerning the [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) for more information.
+> Please read the section concerning the [Geppetto Sound Wave Player Component](./API.md#42-geppetto-soundwave-player-component) for more information.
 
 That is all about how to play a pre-generated lip-sync.   
 You now have all the essentials to create your own animation and play it on any character.   
@@ -248,10 +248,10 @@ To generate and play lip-sync at runtime, such as from microphone input or a TTS
 2. Add a `Skeletal Mesh Component`, an `Audio Component`, and the `GeppettoSoundWavePlayerComponent`.
 > [!IMPORTANT]
 > If your Skeletal Mesh Component uses an Animation Blueprint or a custom function to set Morph Targets (such as Metahumans). You must create a new child component that inherit from `GeppettoSoundWavePlayerComponent` and override the function 'Set Morph Target'.    
-You can see on the `GeppettoDemoPlayerComponent` how this is done for the Demo player Actor. [More information](API.md#component-inheritance)
+You can see on the `GeppettoDemoPlayerComponent` how this is done for the Demo player Actor. [More information](API.md#43-component-inheritance)
 
 > [!NOTE]
-> This also applies if your Blueprint Actor have multiple Skeletal Mesh Component. By default, the `GeppettoSoundWavePlayerComponent` will use the first found Skeletal Mesh Component using the node ***Get Component By Class***. In this case, please ensure that the Skeletal Mesh Component with the face Morph Targets is the first Component returned by ***Get Component By Class*** or create a new child component that inherit from `GeppettoSoundWavePlayerComponent` and override the function 'Set Morph Target'. [More information](Others.md#TODO)
+> This also applies if your Blueprint Actor have multiple Skeletal Mesh Component. By default, the `GeppettoSoundWavePlayerComponent` will use the first found Skeletal Mesh Component using the node ***Get Component By Class***. In this case, please ensure that the Skeletal Mesh Component with the face Morph Targets is the first Component returned by ***Get Component By Class*** or create a new child component that inherit from `GeppettoSoundWavePlayerComponent` and override the function 'Set Morph Target'. [More information](API.md#43-component-inheritance)
 
 ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3.png) 
 
@@ -283,10 +283,10 @@ You can see on the `GeppettoDemoPlayerComponent` how this is done for the Demo p
 > You can also generate the audio at runtime and pass it into your SoundWave variable to use it in the runtime lip-sync.    
 > For more details, please check [this part](Others.md#TODO).
 
-5. Into your Event Graph, call the node [Generate Phonemes (using SoundWave)](API.md#471-generate-phonemes-using-soundwave) and place it after your BeginPlay or any nodes you want in order to call the function.     
+5. Into your Event Graph, call the node [Generate Phonemes (using SoundWave)](API.md#481-generate-phonemes-using-soundwave) and place it after your BeginPlay or any nodes you want in order to call the function.     
 Here, we will call the `Space Bar` which act as an event called the input **Space** is pressed.
 
-6. Change the following parameters *([more information](API.md#471-generate-phonemes-using-soundwave))*: 
+6. Change the following parameters *([more information](API.md#481-generate-phonemes-using-soundwave))*: 
 
     - `Sound Wave` : Set your **SoundWave** variable
     - *(optional)* `Sentence` : Enter the audio speech text
@@ -304,7 +304,7 @@ Here, we will call the `Space Bar` which act as an event called the input **Spac
 
 ![](./images/Getting_Started_image_8b.png)
 
-7. On the `OnPhonemesGenerated` custom event, call the function [Play from Arrays](API.md#412-play-from-arrays) from `GeppettoSoundWavePlayerComponent` *(or any child component)*.
+7. On the `OnPhonemesGenerated` custom event, call the function [Play from Arrays](API.md#423-play-from-arrays) from `GeppettoSoundWavePlayerComponent` *(or any child component)*.
 
 8. Bind the SoundWave parameter to your SoundWave variable. Bind the Phonemes and Emotions parameters to those in `OnPhonemesGenerated`.
 
@@ -319,15 +319,15 @@ Here, we will call the `Space Bar` which act as an event called the input **Spac
 
 ## 2.8 Play an emotion on a character
 
-You will need to use a [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) or any inherited Component.
+You will need to use a [Geppetto Sound Wave Player Component](./API.md#42-geppetto-soundwave-player-component) or any inherited Component.
 
-The [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) allows you to control character facial animations in real time. You can change emotions using the [Change Emotion](API.md#415-change-emotion) node, specifying the emotion name, intensity (0–100), and transition time.     
+The [Geppetto Sound Wave Player Component](./API.md#42-geppetto-soundwave-player-component) allows you to control character facial animations in real time. You can change emotions using the [Change Emotion](API.md#416-change-emotion) node, specifying the emotion name, intensity (0–100), and transition time.     
  **Emotions must be defined in the Geppetto Component Emotion Data Table.**
 
  ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3c.png)
 
  > [!TIP]
- > Emotions can be changed when a sentence is pronounced by using tags. Please read section [4.12 - Emotion Tag System](./API.md#412-emotion-tag-system) for more information on how to use tags. 
+ > Emotions can be changed when a sentence is pronounced by using tags. Please read the section [Emotion Tag System](./Others.md#6-adding-emotion-tags) for more information on how to use tags. 
 
 ![](./images/Change_Emotions_image_3.png)
 
@@ -344,4 +344,4 @@ Micro-expressions, such as blinks or subtle twitches, can be triggered using eit
 ![](./images/Play_or_Loop_Micro_Expressions_image_1.png) <!-- TODO rempalce image with one that does not have Get Micro Expression Optimal Parameters (does not exist outside of BP_ExampleActor) -->
 
 
-[More information about GeppettoMicroExpression struct](./API.md#4113-geppetto-micro-expression)
+[More information about GeppettoMicroExpression struct](./API.md#4143-geppetto-micro-expression)

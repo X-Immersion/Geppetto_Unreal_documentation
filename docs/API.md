@@ -249,10 +249,10 @@ Use this node to stop looping a micro expression.
 
 The Geppetto SoundWave Player Component is a Blueprint Actor Component that inherits from the [Geppetto Base Component](#41-geppetto-base-component) and can be used to play Geppetto animation on a `Skeletal Mesh` using the function [USkeletalMeshComponent::SetMorphTarget](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/Components/USkeletalMeshComponent/SetMorphTarget), syncing it with a `USoundWave` played through an `Audio Component`. 
 
-This Component uses **The first Skeletal Mesh Component and Audio Component** found in the owning actor. If you have multiple SkeletalMesh/Audio components attached to your Actor, or they are not directly attached to the owning Actor, or if you rely on another method to animate your Skeletal Mesh (such as an Animation Blueprint), we recommend you to create a new [Geppetto Component](#41-geppetto-base-component) that inherits from the Geppetto SoundWave Player Component and override the logic to put yours instead. More information in the chapter [Component Inheritance](#42---component-inheritance).
+This Component uses **The first Skeletal Mesh Component and Audio Component** found in the owning actor. If you have multiple SkeletalMesh/Audio components attached to your Actor, or they are not directly attached to the owning Actor, or if you rely on another method to animate your Skeletal Mesh (such as an Animation Blueprint), we recommend you to create a new [Geppetto Component](#41-geppetto-base-component) that inherits from the Geppetto SoundWave Player Component and override the logic to put yours instead. More information in the chapter [Component Inheritance](#43-component-inheritance).
 
 > [!IMPORTANT]
-> Because Metahuman Blueprint Actor has multiple Skeletal Mesh Components and uses custom Controls to animate the face, you **must** create a new child Blueprint Component that inherits from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information in the chapters [Component Inheritance](#42---component-inheritance) and [Use Geppetto with Metahuman](#TODO).
+> Because Metahuman Blueprint Actor has multiple Skeletal Mesh Components and uses custom Controls to animate the face, you **must** create a new child Blueprint Component that inherits from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information in the chapters [Component Inheritance](#43-component-inheritance) and [Use Geppetto with Metahuman](#TODO).
 
 When playing a lipsync, it generates Morph Target curves from the phonemes and emotions contained in the [DataAsset](#481-geppetto-data-asset), the [Sequence](#49-geppetto-sequence) or the [Phonemes](#4111-geppetto-phoneme) and [Emotions](#4112-geppetto-emotion) passed in parameters.
 Then it updates each MorphTarget based on the current play time which can be synced with the component tick or the current audio playback time.
@@ -309,9 +309,9 @@ Generate Lipsync at runtime with the provided audio and sentence *(optional)* an
 |-----------------------|------|---------------|-------------|
 | **Audio**             | `USoundWave` | - | The SoundWave used to generate the lipsync. |
 | **Opt Sentence**      | `FString` | *Empty string* | Optional speech text in the audio. If empty, will perform STT on the audio to extract sentence |
-| **Quality**           | [Geppetto Quality](#TODO) | High | The lipsync generation quality. A higher quality will improve the results but may take longer to generate |
+| **Quality**           | [Geppetto Quality](#4134-geppetto-quality) | High | The lipsync generation quality. A higher quality will improve the results but may take longer to generate |
 | **Auto Emotion**      | `bool` | false | If true, will automatically determine and add emotions to the text based on the speech |
-| **Amplitude Settings** | [Geppetto Amplitude](#TODO) | 30-70 | The min and max amplitudes used for phonemes generation (will impact the result animation) |
+| **Amplitude Settings** | [Geppetto Amplitude](#4148-geppetto-amplitude) | 30-70 | The min and max amplitudes used for phonemes generation (will impact the result animation) |
 
 
 ### 4.2.2 Play From DataAsset
@@ -665,17 +665,17 @@ Generate the phonemes for the given SoundWave and sentence. Can be used in edito
 |-------------------------|--------------|---------------|-------------|
 | **SoundWave**           | `USoundWave` | - | The SoundWave used for phoneme generation |
 | **Sentence**            | `FString`    | *Empty string* | The sentence spoken in the audio. If empty, perform STT to retrieve the text |
-| **Language**            | [Geppetto Language](#TODO) | English | The speech language |
-| **Format**              | [Geppetto Format](#TODO) | Metahuman | The output format of your phonemes. **Do not change unless you know exactly what you are doing** |
-| **Quality**             | [Geppetto Quality](#TODO) | Low | The phoneme generation quality |
-| **Amplitude Settings**  | [Geppetto Amplitude](#TODO) | 30 - 70 | The minimum and maximum phoneme amplitude values |
-| **Silence Settings**    | [Geppetto Silence](#TODO) | -50dB - 200ms | The threshold values used distinguish speech from silences parts |
+| **Language**            | [Geppetto Language](#4133-geppetto-language) | English | The speech language |
+| **Format**              | [Geppetto Format](#4132-geppetto-format) | Metahuman | The output format of your phonemes. **Do not change unless you know exactly what you are doing** |
+| **Quality**             | [Geppetto Quality](#4134-geppetto-quality) | Low | The phoneme generation quality |
+| **Amplitude Settings**  | [Geppetto Amplitude](#4148-geppetto-amplitude) | 30 - 70 | The minimum and maximum phoneme amplitude values |
+| **Silence Settings**    | [Geppetto Silence](#4149-geppetto-silence) | -50dB - 200ms | The threshold values used distinguish speech from silences parts |
 | **Close Mouth at End**  | `bool` | false |  If true, will add a PAUSE phoneme at the very end of the list to ensure the lipsync ends with the mouth closed |
 | **Auto Emotion**        | `bool` | false | If true, will use the speech to determine and automatically change the emotion during lipsync |
 | **Remove Noise**        | `bool` | true | If true, perform noise removal to isolate the speech from the background noise |
 | **Local** ❌ not available on Fab | `bool` | false | If true, do not use the Geppetto API to generate phonemes but use the local server instead (The local server is not available through Fab) |
 | **Logs**                | `bool` | true | If true, print Geppetto logs to the console |
-| **On Response**         | `FDelegate` | - | Delegate called when the generation is done (or an error occurred), with:<br/>- **Is Error:** Indicates if an error occurred during generation<br/>- **Phonemes:** The generated [Geppetto Phonemes](#4111-geppetto-phoneme)<br/>- **Emotions:** The generated [Geppetto Emotions](#4112-geppetto-emotion) (if any)<br/>- **Settings:** [Geppetto Response Settings](#TODO), Contains the STT generated sentence (if not given as input) |
+| **On Response**         | `FDelegate` | - | Delegate called when the generation is done (or an error occurred), with:<br/>- **Is Error:** Indicates if an error occurred during generation<br/>- **Phonemes:** The generated [Geppetto Phonemes](#4111-geppetto-phoneme)<br/>- **Emotions:** The generated [Geppetto Emotions](#4112-geppetto-emotion) (if any)<br/>- **Settings:** [Geppetto Response Settings](#41410-geppetto-response-settings), Contains the STT generated sentence (if not given as input) |
 
 
 ### 4.8.2 Generate phonemes (using PCM bytes)
@@ -897,8 +897,8 @@ Calculate the values for a new headshift movement
 
 | Parameter                   | Type  | Default value   | Description |
 |-----------------------------|-------|-----------------|-------------|
-| **Headshift Movement Data** | [Geppetto Headshift Data](#TODO) | *Default* | The new headshift movement parameters |
-| **New Headshift Movement**  | [Geppetto Headshift Movement](#TODO) | - | (in-out) The resulting headshift movement, beginning at where the actual headshift movement was |
+| **Headshift Movement Data** | [Geppetto Headshift Data](#4146-geppetto-headshift-data) | *Default* | The new headshift movement parameters |
+| **New Headshift Movement**  | [Geppetto Headshift Movement](#4145-geppetto-headshift-movement) | - | (in-out) The resulting headshift movement, beginning at where the actual headshift movement was |
 | ***Return Value***          | `bool` | - | True if the new headshift movement can be done, false otherwise |
 
 ### 4.10.2 Update Generic Movement
@@ -911,7 +911,7 @@ Calculate the new values for the given headshift movement
 
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
-| **Headshift Movement**  | [Geppetto Headshift Movement](#TODO) | - | (in-out) the headshift movement |
+| **Headshift Movement**  | [Geppetto Headshift Movement](#4145-geppetto-headshift-movement) | - | (in-out) the headshift movement |
 | **Delta Time**          | `float` | - | The current tick delta time |
 | **Lerp Rotation**       | `FRotator` | - | The headshift lerp rotation |
 | ***Return Value***      | `bool` | - | True if the headshift movement has reached completion (alpha >= 1.0), false otherwise. |
@@ -954,8 +954,8 @@ Save the generated lipsync phonemes as a [Geppetto Data Asset](#481-geppetto-dat
 | **Audio**                 | `USoundWave`  | - |  A reference to the SoundWave object used to generate the Phonemes |
 | **Sentence**              | `FString`     | *Empty string* | The Sentence used to generate the Phonemes, or the STT sentence in response |
 | **Auto Detect Sentence**  | `bool`        | false | Was the sentence automatically generated (STT) or sent with the API request |
-| **Amplitude Settings**    | [Geppetto Amplitude](#TODO) | 30 - 70 | The minimum and maximum amplitudes used to generate the Phonemes |
-| **Silence Settings**      | [Geppetto Silence](#TODO) | -50dB - 200ms | The silence threshold and time used to generate the Phonemes |
+| **Amplitude Settings**    | [Geppetto Amplitude](#4148-geppetto-amplitude) | 30 - 70 | The minimum and maximum amplitudes used to generate the Phonemes |
+| **Silence Settings**      | [Geppetto Silence](#4149-geppetto-silence) | -50dB - 200ms | The silence threshold and time used to generate the Phonemes |
 | **Phonemes Delay**        | `float`       | 0.0 | The delay (in seconds) applied to the time codes of the generated Phonemes |
 | **Emotions Delay**        | `float`       | 0.0 | The delay (in seconds) applied to the time codes of the generated Emotions |
 | **Phonemes**              | [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
@@ -978,7 +978,7 @@ Saves the provided audio and animation data as a Geppetto sequence asset at the 
 | **Phonemes**              | [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
 | **Emotions**              | [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
 | **Package Path**          | `FString`     | *Empty string* | The file save location, in UE package path format |
-| **Frame Rate**            | [Geppetto Sequencer FPS](#TODO) | 120fps | The desired frame rate for the created sequence asset. |
+| **Frame Rate**            | [Geppetto Sequence FPS](#4135-geppetto-sequence-fps) | 120fps | The desired frame rate for the created sequence asset. |
 | ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occurred |
 
 
@@ -1000,7 +1000,7 @@ Converts a Geppetto sequence asset into an Unreal Engine animation asset and sav
 
 C++ Function: `static UGeppettoEditorPresetDataAsset* UGeppettoEditorLibrary::CreateEditorDataPreset(const FString PackagePath, const FString PresetName)`
 
-Creates a new [Geppetto Preset DataAsset](#TODO) at the specified package path with the given preset name.
+Creates a new [Geppetto Preset DataAsset](#4123-geppetto-preset-data-asset-editor-only) at the specified package path with the given preset name.
 
 ![](./images/GeppettoEdotprBlueprintLibrary_image_4.png)
 
@@ -1008,7 +1008,7 @@ Creates a new [Geppetto Preset DataAsset](#TODO) at the specified package path w
 |---------------------|---------------|-----------------|-------------|
 | **Package Path**    | `FString` | *Empty string* | The UE package path where the new preset data asset will be created |
 | **Preset Name**     | `FString` | *Empty string* | The desired name for the new preset data asset |
-| ***Return Value***  | [Geppetto Preset DataAsset](#TODO) | - | A pointer to the created Geppetto editor preset data asset, or nullptr if the operation fails |
+| ***Return Value***  | [Geppetto Preset DataAsset](#4123-geppetto-preset-data-asset-editor-only) | - | A pointer to the created Geppetto editor preset data asset, or nullptr if the operation fails |
 
 
 ### 4.11.5 Show save file selection dialog
@@ -1069,9 +1069,9 @@ All fields are Blueprint Read-Only, but you can use the Editor-only node [Save G
 | **Audio**                 | `USoundWave`  | -               | The audio associated with the lip sync. |
 | **Sentence**              | `FString`     | *Empty string*  | (Info only) The sentence used for generation. |
 | **Auto Detect Sentence**  | `bool`        | false           | (Info only) The minimum amplitude value used for generation. |
-| **Amplitude Settings**    | [Geppetto Amplitude](#TODO) | 30 - 70 | (Info only) The minimum and maximum amplitude value used for generation. |
-| **Silence Settings**      | [Geppetto Silence](#TODO) | -50dB - 200ms |(Info only) The silence time (in milliseconds) used for generation. |
-| **Delay**                 | [Tuple Float](#TODO) | 0 - 0 | (Info only) The delay applied to phonemes and emotions after generation. |
+| **Amplitude Settings**    | [Geppetto Amplitude](#4148-geppetto-amplitude) | 30 - 70 | (Info only) The minimum and maximum amplitude value used for generation. |
+| **Silence Settings**      | [Geppetto Silence](#4149-geppetto-silence) | -50dB - 200ms |(Info only) The silence time (in milliseconds) used for generation. |
+| **Delay**                 | [Tuple Float](#41411-tuple-float) | 0 - 0 | (Info only) The delay applied to phonemes and emotions after generation. |
 | **Phonemes**              | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The phonemes list generated by the API, used to animate lip sync. |
 | **Emotions**              | Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The emotions list generated by the API, used to animate emotions. |
 
@@ -1235,7 +1235,7 @@ A struct containing all parameters to play a Geppetto Micro Expression. All vari
 |-------------------------|-----------|-----------------|-------------|
 | **Name**                | `FName`   | *Empty name* | The micro expression name. |
 | **Curve**               | `UCurveFloat` | - | The curve used to determine the micro expression animation time and transition interpolation. Must be a “Float” type curve. |
-| **Transition Morph Targets** | Map of <`FName`, [Tuple Float](#TODO)> | *Empty map* | The micro expression Morph Targets and their values used for animation.                          |
+| **Transition Morph Targets** | Map of <`FName`, [Tuple Float](#41411-tuple-float)> | *Empty map* | The micro expression Morph Targets and their values used for animation.                          |
 | **Current Tick Morph Targets** | Map of <`FName`, `float`> | *Empty map* | The current tick Morph Targets values used by the micro expression, managed by the Geppetto Player Component. |
 | **Speed**               | `float` | 1.0 | The animation speed of the micro expression. Must be greater than 0.                             |
 | **Is Animating**        | `bool`  | false | Indicates whether the micro expression is currently animating (not started, finished). Managed by the Geppetto Player. |
@@ -1251,9 +1251,9 @@ A struct containing all parameters to play a Geppetto Micro Expression Loop. All
 | Parameter               | Type      | Default value   | Description |
 |-------------------------|-----------|-----------------|-------------|
 | **Name**                | `FName`   | *Empty name* | The micro expression name. |
-| **Time Range**          | [Tuple Float](#TODO) | 0 - 0 | The min and max wait time between two micro expressions loops |
-| **Intensity Range**     | [Tuple Float](#TODO) | 0 - 100 | The min and max intensity for the micro expression loops |
-| **Speed Range**         | [Tuple Float](#TODO) | 1 - 1 | The min and max speed for the micro expression loops |
+| **Time Range**          | [Tuple Float](#41411-tuple-float) | 0 - 0 | The min and max wait time between two micro expressions loops |
+| **Intensity Range**     | [Tuple Float](#41411-tuple-float) | 0 - 100 | The min and max intensity for the micro expression loops |
+| **Speed Range**         | [Tuple Float](#41411-tuple-float) | 1 - 1 | The min and max speed for the micro expression loops |
 | **Curve Override**      | `UCurveFloat` | - | *(Optional)* Provide a custom micro expression curve to use instead of the one defined in the [Micro Expression Data Table](#46-geppetto-micro-expressions-data-table) |
 
 
@@ -1266,7 +1266,7 @@ A struct containing all values related to dynamic Micro Expression Morph Targets
 | Parameter         | Type      | Default value   | Description |
 |-------------------|-----------|-----------------|-------------|
 | **Morph Targets** | Array of `FName` | *Empty array* | The dynamic Morph Targets names. |
-| **Value Range**   | [Tuple Float](#TODO) | 0 - 0 | The dynamic Morph Target min and max values. |
+| **Value Range**   | [Tuple Float](#41411-tuple-float) | 0 - 0 | The dynamic Morph Target min and max values. |
 
 ### 4.14.5 Geppetto Headshift Movement
 
@@ -1292,8 +1292,8 @@ A struct containing all parameters to perform a Headshift Movement on Skeletal M
 | Parameter         | Type      | Default value   | Description |
 |-------------------|-----------|-----------------|-------------|
 | **Movement Curve** | `UCurveFloat` | - |  The headshift movement curve |
-| **Range Speed** | [Tuple Float](#TODO) | - | |
-| **Range Amplitude** | [Tuple Float](#TODO) | - | |
+| **Range Speed** | [Tuple Float](#41411-tuple-float) | - | |
+| **Range Amplitude** | [Tuple Float](#41411-tuple-float) | - | |
 | **Max Influenced Axis** | `FRotator` | - | |
 | **Min Influenced Axis** | `FRotator` | - | |
 
