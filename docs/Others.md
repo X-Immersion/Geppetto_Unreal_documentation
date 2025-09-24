@@ -14,6 +14,7 @@ This chapter documents all the components, nodes, structures, enums, and tools p
   - **[Amplitude Calculation](#52-amplitude-calculation)**
 - **[Adding Emotion Tags](#6-adding-emotion-tags)**
 - **[Output](#7-output)**
+- **[Known bugs](#8-known-bugs)**
 
 
 ---
@@ -47,7 +48,7 @@ If additional language support is needed, please contact us.
 
 ![](./images/RessourcesGeneral_image_4.png)
 
-There are four types of quality available, each of them is using a different combination of model, alignement with audio, and phonemizer:
+There are four types of quality available, each of them uses a different combination of model, alignment with audio, and phonemizer:
 
 ##### Low
 
@@ -71,7 +72,7 @@ Use the best model for phonemes generation (still in beta) and phoneme alignment
 
 ---
 
-#### Types of model and alignement with audio files.
+#### Types of models and alignment with audio files.
 
 ##### Model 0
 
@@ -133,7 +134,7 @@ The final output is a structured list of (phoneme, timestamp, amplitude). This l
 
 ---
 
-## Known bugs
+## 8. Known bugs
 
 **The plugin shows control-related errors**
 

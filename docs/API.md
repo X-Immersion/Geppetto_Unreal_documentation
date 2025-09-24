@@ -32,12 +32,12 @@ This chapter documents all the components, nodes, structures, enums, and tools p
 The Geppetto Base Component is an Actor Component declared in C++ that helps you to perform Geppetto animations (lipsync, emotions, micro-expressions, headshift)
 on your Unreal Actors. This component is intended to be inherited in Blueprint, such as for the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) that provide syncing animation with Unreal SoundWave played through an `AudioComponent`. 
 
-This component have three functions that needs to be overriden by the BP inherited classes to work properly:
+This component has three functions that need to be overridden by the BP inherited classes to work properly:
 * [Set Morph Target](#431-set-morph-target)
 * [Should Sync With Audio]()
 * [Get Audio Current Time]()
 
-You can find more information on how to create a new child component on chapter [Component Inheritance](#42---component-inheritance).
+You can find more information on how to create a new child component in chapter [Component Inheritance](#42---component-inheritance).
 
 ### Events
 

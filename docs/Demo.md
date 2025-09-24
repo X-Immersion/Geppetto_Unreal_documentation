@@ -40,14 +40,14 @@ The Geppetto plugin comes with a demo level and a skeletal mesh with morph targe
 
 <!-- TODO: Add colored box to the image and the text to be clearer, like for Ariel: https://github.com/X-Immersion/Ariel_Unreal_documentation/blob/main/doc/Quickstart.md#-editor-pre-generation -->
 
-There are few things you can do on the demo scene:
+There are a few things you can do in the demo scene:
 
 * On the *middle right*, you can see the **Controls** that can be used to interact with the demo level. Use the keyboard key 1-5 (or numpad key) to perform actions:
 
 | Key | Action                                                                 |
 |-----|------------------------------------------------------------------------|
 | 1   | Play the selected pre-generated Geppetto Sequence                     |
-| 2   | Play the selected pre-genereted Geppetto Data Asset                     |
+| 2   | Play the selected pre-generated Geppetto Data Asset                     |
 | 3   | Use the selected SoundWave to generate lipsync at runtime and play it |
 | 4   | Change the camera angle |
 | 5   | Toggle UI |
@@ -65,7 +65,7 @@ Geppetto plugin works.
 
 ![Where to find the GeppettoExampleActor in the Outlier](./images/Understand_the_demo_level_image_1.png)
 
-![Click on the EventGraph tu unfold all the available graphs](./images/Understand_the_demo_level_image_2.png)
+![Click on the EventGraph to unfold all the available graphs](./images/Understand_the_demo_level_image_2.png)
 
 You’ll see a block for each key event and `BeginPlay`.
 
@@ -79,11 +79,11 @@ Every actor using the plugin must have these 3 components:
 
 - ✅ A Skeletal Mesh with Morph Targets
 - 🔊 An Audio Component
-- 🧠 A [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) or any component that inherit from [Geppetto Base Component](API.md#component-inheritance) *(e.g., DemoPlayerV2)*
+- 🧠 A [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) or any component that inherits from [Geppetto Base Component](API.md#component-inheritance) *(e.g., DemoPlayerV2)*
 
 ![Components you should have](./images/Components_image_1.png)
 
-You can see on the [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) detail pannel the Data Tables used for phonemes, emotions, micro expressions and headshift.
+You can see on the [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) detail panel the Data Tables used for phonemes, emotions, micro expressions and headshift.
 
 ![Component setup](./images/Components_image_2.png)
 
@@ -101,7 +101,7 @@ A MicroExpression DataTable with the two micro expressions is needed to play the
 Please read section [4.2](./API.md#42-geppetto-phoneme-data-table), [4.3](./API.md#43-geppetto-emotion-data-table) and [4.4](./API.md#44-geppetto-micro-expressions-data-table) for more details.
 
 
-### 2.3.3. Phonemes / Lipsync
+### 2.3.3 Phonemes / Lipsync
 
 The **keyboard 1 and 2** events are related to pre-generated phonemes.
 
@@ -119,17 +119,16 @@ The **keyboard 1 and 2** events are related to pre-generated phonemes.
 The **keyboard 3 event** is related to runtime phonemes.
 
 - Please read section [3.2 - Runtime Phoneme Generation](./Features.md#32-runtime-phonemes-generation-and-animation-blueprint) of the documentation for more information on how to generate and play runtime generated phonemes.
-- Please read section [4.7.1 - Generate phonemes (using SoundWave)](./API.md#471-generate-phonemes-using-soundwave) for more
-information on how to generate phoneme from a local audio file (SoundWave, PCM or file)
+- Please read section [4.7.1 - Generate phonemes (using SoundWave)](./API.md#471-generate-phonemes-using-soundwave) for more information on how to generate phonemes from a local audio file (SoundWave, PCM or file)
 
 ![](./images/Phonemes___Lipsync_image_2.png)
 
 
-The plugin uses a [Geppetto Phoneme Data Table](./API.md#42-geppetto-phoneme-data-table) to know all Morph Targets values for each phoneme. If the skeletal mesh of your characters have different Morph Targets, it is required to create a new [Geppetto Phoneme Data Table](./API.md#42-geppetto-phoneme-data-table) with the Morph Targets used in your characters.     
-**Please note that Data Tables for Metahuman are included in this plugin !**   
+The plugin uses a [Geppetto Phoneme Data Table](./API.md#42-geppetto-phoneme-data-table) to know all Morph Target values for each phoneme. If the skeletal mesh of your characters has different Morph Targets, it is required to create a new [Geppetto Phoneme Data Table](./API.md#42-geppetto-phoneme-data-table) with the Morph Targets used in your characters.     
+**Please note that Data Tables for Metahuman are included in this plugin!**   
 The Data Table used by the plugin is passed through the [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) variables.
 
-### 2.3.4. Emotions
+### 2.3.4 Emotions
 
 The **Emotion combo box in the scene** is related to emotions.
 
@@ -139,9 +138,9 @@ The **Emotion combo box in the scene** is related to emotions.
 
 ![](./images/Emotions_image_1.png)
 
-The same way as phonemes, emotions use a [Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) to determine the Morph Target values for each emotion. Please read section [4.3 - Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) of the documentation for more information.
+In the same way as phonemes, emotions use a [Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) to determine the Morph Target values for each emotion. Please read section [4.3 - Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) of the documentation for more information.
 
-### 2.3.5. Micro Expressions
+### 2.3.5 Micro Expressions
 
 The **micro expressions scrollbox in the scene** is related to micro expressions.
 
@@ -151,6 +150,6 @@ The **micro expressions scrollbox in the scene** is related to micro expressions
 
 ![](./images/Micro_Expressions_image_1.png)
 
-Like phonemes and emotions, micro expressions use a [Geppetto Micro Expressions Data Table](./API.md#44-geppetto-micro-expressions-data-table) to retrieve the Morph Targets values.   
-This time, however, the values can be **static** (like phonemes or emotions Morph Targets values) or **dynamic** (the Morph Targets values will change each time the Micro Expression is played).    
+Like phonemes and emotions, micro expressions use a [Geppetto Micro Expressions Data Table](./API.md#44-geppetto-micro-expressions-data-table) to retrieve the Morph Target values.   
+This time, however, the values can be **static** (like phonemes or emotions Morph Target values) or **dynamic** (the Morph Target values will change each time the Micro Expression is played).    
 Please read section [4.4 - Geppetto Micro Expressions Data Table](./API.md#44-geppetto-micro-expressions-data-table) of the documentation for more information.

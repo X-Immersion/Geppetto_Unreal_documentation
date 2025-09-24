@@ -13,7 +13,7 @@
 
 ---
 
-Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show you how to use the plugin in Unreal Engine*.
+Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show you how to use the plugin in Unreal Engine.
 
 > 📧 *Please note that this notice assumes familiarity with Unreal Engine terminology and workflows. For more detailed information and examples, refer to the accompanying documentation or consult the provided links.*   
 *If you have any questions, feel free to contact us: support@xandimmersion.com*
@@ -45,7 +45,7 @@ To use the Geppetto plugin with Metahuman, follow these links to configure your 
 Please read [How to use Geppetto with Metahuman](GettingStarted.md#TODO) to integrate Geppetto on a Metahuman character.
 
 > [!TIP]
-> Unreal Engine Metahuman setup have changed since UE5.6 and now use the [Metahuman Creator]((https://dev.epicgames.com/documentation/metahuman/metahuman-creator?application_version=5.6)) Plugin. Please read the Unreal Engine documentation [Getting Started in MHC](https://dev.epicgames.com/documentation/metahuman/getting-started-with-metahuman-creator) and [Creating a Character](https://dev.epicgames.com/documentation/metahuman/creating-a-character) to use Metahuman with UE5.6.
+> Unreal Engine Metahuman setup has changed since UE5.6 and now uses the [Metahuman Creator](https://dev.epicgames.com/documentation/metahuman/metahuman-creator?application_version=5.6) Plugin. Please read the Unreal Engine documentation [Getting Started in MHC](https://dev.epicgames.com/documentation/metahuman/getting-started-with-metahuman-creator) and [Creating a Character](https://dev.epicgames.com/documentation/metahuman/creating-a-character) to use Metahuman with UE5.6.
 
 ## 1.3 Installation - Fab
 
@@ -59,7 +59,7 @@ Then, open your project and go to *Edit > Plugins*. Search “Geppetto” and en
 
 ## 1.4 Installation - Source Code
 
-1. ❌ **Close the unreal engine project where you want Geppetto to be installed !**
+1. ❌ **Close the Unreal Engine project where you want Geppetto to be installed!**
 
 2. 📦 Extract the content of the plugin `.zip` archive.
 3. 📁 Paste the extracted folder into the root of your project directory.

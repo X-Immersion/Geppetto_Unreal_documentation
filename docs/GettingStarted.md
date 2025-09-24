@@ -1,6 +1,6 @@
 # Geppetto UE 2.0.0 – Getting Started
 
-This chapter provides a complete flow of the Geppetto plugin to crate a pre-generated or a runtime lipsync in the Unreal Editor.
+This chapter provides a complete flow of the Geppetto plugin to create a pre-generated or a runtime lipsync in the Unreal Editor.
 
 **[← Table of contents](../README.md#table-of-contents)**
 
@@ -30,16 +30,16 @@ This chapter provides a complete flow of the Geppetto plugin to crate a pre-gene
 
 **Geppetto is a facial animation and lip-sync plugin for Unreal Engine, designed to automatically generate lip-sync animations from audio or text files.**
 
-**The latest version (2.1.0) introduces a better lipsync render and the ability to export yoour Geppetto sequence as an animation asset, enabling versatility and an increased customisation. This version also includes new features like headshift.**
+**The latest version (2.1.0) introduces a better lipsync render and the ability to export your Geppetto sequence as an animation asset, enabling versatility and increased customization. This version also includes new features like headshift.**
 
 ## 2.2 Character setup
 
 In order to use Geppetto on a character, the Skeletal Mesh must have Morph Targets *(aka Blendshapes)* and/or an Anim Instance that cover facial animation (such as Metahuman `Face_AnimBP` Blueprint class).
 
 For this example, we will use this  [rigged character](https://sketchfab.com/3d-models/rigged-t-pose-human-male-w-50-face-blendshapes-cc7e4596bcd145208a6992c757854c07) made by [Mike Alger](https://mikealger.com/).    
-This character possess 50 face blendshapes that we will use to create a lip-sync animation.
+This character possesses 50 face blendshapes that we will use to create a lip-sync animation.
 
-Here are the steps to set up the character in Unreal :
+Here are the steps to set up the character in Unreal:
 
 1. Download the character in FBX format from sketchfab with the link given above.
 2. Unzip the character archive wherever you want.
@@ -55,9 +55,9 @@ Here are the steps to set up the character in Unreal :
 ![](./images/Getting_Started_image_2.png)
 
 > [!NOTE]  
-> The "MorphTargets" tab may vary a bit depending of your version of the engine but the content still remains the same. 
+> The "MorphTargets" tab may vary a bit depending on your version of the engine but the content still remains the same. 
 
-**Well done ! Your character is now setup and can be used with Geppetto !**    
+**Well done! Your character is now set up and can be used with Geppetto!**    
 Check the next steps to learn how to bind Geppetto to your character and play a lip-sync animation.
 
 
@@ -68,7 +68,7 @@ Check the next steps to learn how to bind Geppetto to your character and play a 
 
 **The Geppetto Phoneme Data Table in Unreal Engine is designed to drive facial animation through phoneme-based lip sync.**    
 Each row represents a phoneme (like A, E, U, etc.) and contains values for Morph Targets, which are specific facial poses. This allows for detailed, expressive character dialogue.    
-Here is an example with the **DEMO_PhonemesTable** that convert phonemes into the blendshapes of the rigged character we just imported :
+Here is an example with the **DEMO_PhonemesTable** that converts phonemes into the blendshapes of the rigged character we just imported:
 
 ![](./images/Getting_Started_image_4.png)
 
@@ -86,7 +86,7 @@ For more information, please see [4.2 Geppetto Phoneme Data Table](./API.md#42-g
 ### 2.3.2 Emotion Data Table
 
 The Geppetto Emotion Data Table is used to animate facial expressions tied to emotions. Each row corresponds to an emotion (like Happy, Sad, Angry, etc.) and specifies Morph Target values that sculpt the facial mesh into an expressive pose. This is ideal for customizing character emotion systems in Unreal Engine.    
-Here is an example with the **DEMO_EmotionsTable** that convert emotions into the blendshapes of the rigged character we just imported :
+Here is an example with the **DEMO_EmotionsTable** that converts emotions into the blendshapes of the rigged character we just imported:
 
 ![](./images/Getting_Started_image_5.png)
 
@@ -128,7 +128,7 @@ The interface will open. It contains several parameters to customize your phonem
 
 ![](./images/Getting_Started_image_3.png)
 
-Here a the following steps to generate a basic lip-sync animation. You can find more information about all fields on the dropdown menu [below](#complete-list-of-editor-parameters).
+Here are the following steps to generate a basic lip-sync animation. You can find more information about all fields in the dropdown menu [below](#complete-list-of-editor-parameters).
 
 1. Pass your audio file in the `Audio` parameter.    
 For this example, we will use **SentenceExample_MaleVoice_1** which is available in *(Editor) > Plugins > Geppetto Content > Examples* if you want to use it, but you are free to choose **any audio file speech you want**.
@@ -137,12 +137,12 @@ For this example, we will use **SentenceExample_MaleVoice_1** which is available
 
 3. Tick the `Add emotion tag automatically` checkbox to allow Geppetto to automatically detect emotions in your audio file (based on the speech).
 
-4. Then, choose in which asset store your generated phonemes with the `Save file as` parameter.    
-There is two types of asset : [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence). Each of them has different use case.   
+4. Then, choose where to store your generated phonemes with the `Save file as` parameter.    
+There are two types of assets: [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence). Each of them has different use cases.   
 [Below](#26-play-lip-sync-on-a-character), you will find an example on how to use and play both assets on your Character.
 
 5. Finally, hit the `Generate Phonemes` button to generate your .uasset file.     
-**This may take a while according to the audio duration and phonemes quality selected.**
+**This may take a while depending on the audio duration and phonemes quality selected.**
 
 ### Complete list of editor parameters
 
@@ -178,7 +178,7 @@ There is two types of asset : [Geppetto DataAsset](./API.md#48-data-assets) and 
 
 ## 2.5 Play Editor lip-sync assets on a character
 
-As we talked about before there is two assets that stores generated phonemes : [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence).    
+As we talked about before, there are two assets that store generated phonemes: [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence).    
 Here is an example on how to use both types to play a lipsync animation on a character.
 
 | Step                        | Geppetto Data Asset                                                                                                                                                                                                                                             | Geppetto Sequence                                                                                                                                          |
@@ -194,13 +194,13 @@ Here is an example on how to use both types to play a lipsync animation on a cha
 > Please read the section concerning the [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) for more information.
 
 That is all about how to play a pre-generated lip-sync.   
-You now have all the essentials to create you own animation and play it on any character.   
-If you have any question, please feel free to contact us by mail at support@xandimmersion.com or on our [Discord server](https://l.linklyhq.com/l/1fMJz).
+You now have all the essentials to create your own animation and play it on any character.   
+If you have any questions, please feel free to contact us by mail at support@xandimmersion.com or on our [Discord server](https://l.linklyhq.com/l/1fMJz).
 
 ## 2.6 Export lipsync as an animation
 
 With Geppetto, you can export a lipsync animation as an Animation Asset or as an FBX file, compatible with any external animation software.   
-Here is a step by step tutorial to export your lipsync :
+Here is a step-by-step tutorial to export your lipsync:
 
 1. Generate a Geppetto Sequence asset as explained [above](#24-generate-phonemes-and-emotions-in-the-editor).
 2. Open your new Geppetto Sequence and add a `Skeletal Mesh Asset`, a `PhonemeDataTable` and an `EmotionDataTable`.
@@ -222,7 +222,7 @@ You can now use your lipsync as is or export it as a FBX.
 
 ## 2.7 Generate phonemes and emotions on runtime
 
-To generate and play lip-sync at runtime, such as from microphone input or a TTS system, you will need to follow these steps :
+To generate and play lip-sync at runtime, such as from microphone input or a TTS system, you will need to follow these steps:
 
 1. Create a new Blueprint Actor or open an existing one.
 
@@ -293,7 +293,7 @@ Here, we will call the `Space Bar` which act as an event called the input **Spac
 
 > In our example we added a Branch node to ensure the validity of our generated phonemes and emotions.
 
-**Well done ! You learned how to generate and play a runtime lip-sync animation !**    
+**Well done! You learned how to generate and play a runtime lip-sync animation!**    
 
 ## 2.8 Play an emotion on a character
 
