@@ -147,7 +147,7 @@ Disable this option if you prefer maximum control and optimized performance spee
 ![](./images/Emotion_Tag_System_image_2.png)
 
 You can mix tags with runtime Blueprint emotion changes for full control.
-Please read section [2.7 Play an emotion on a character](./GettingStarted.md#27-play-an-emotion-on-a-character) of the documentation for more details on how to change an emotion at Runtime using Blueprints.
+Please read section [Play an emotion on a character](./GettingStarted.md#28-play-an-emotion-on-a-character) of the documentation for more details on how to change an emotion at Runtime using Blueprints.
 
 ## 7. Output
 
