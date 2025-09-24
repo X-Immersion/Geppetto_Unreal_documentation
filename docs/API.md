@@ -91,8 +91,8 @@ on your Unreal Actors. This component is intended to be inherited in Blueprint, 
 
 This component has three functions that need to be overridden by the BP inherited classes to work properly:
 * [Set Morph Target](#431-set-morph-target)
-* [Should Sync With Audio]()
-* [Get Audio Current Time]()
+* [Should Sync With Audio](#432-should-sync-current-time-with-audio)
+* [Get Audio Current Time](#433-get-audio-current-time)
 
 You can find more information on how to create a new child component in chapter [Component Inheritance](#43-component-inheritance).
 
@@ -132,14 +132,14 @@ You can see in the component that there are a lot of other properties listed as 
 
 ### 4.1.1 Set Lipsync and Play
 
-Create the lipsync morph target curves from the given phonemes and emotions and play the animation. Compared to the node [Play From Arrays](#413-play-from-arrays), this function does **NOT** automatically sync the animation with the audio playback time.
+Create the lipsync morph target curves from the given phonemes and emotions and play the animation. Compared to the node [Play From Arrays](#423-play-from-arrays), this function does **NOT** automatically sync the animation with the audio playback time.
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_4.png)
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Phonemes**          | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - |The Phonemes list used to generate the lipsync. |
-| **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The emotions list used to animate during the lipsync. |
+| **Phonemes**          | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - |The Phonemes list used to generate the lipsync. |
+| **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The emotions list used to animate during the lipsync. |
 | **Start Time**        | `float` | 0.0 | Indicates the delay between calling this node and the beginning of this animation (`0.0f` = no wait time) |
 | **Max Slope**         | `float` | 4.0 | The maximum slope value allowed between two Morph Target keys |
 | **Min Time Step**     | `float` | 0.0001 | The minimum amount of time (in seconds) required between two Morph Target keys |
@@ -153,8 +153,8 @@ Create the lipsync morph target curves from the given phonemes and emotions, but
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Phonemes**          | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - |The Phonemes list used to generate the lipsync. |
-| **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The emotions list used to animate during the lipsync. |
+| **Phonemes**          | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - |The Phonemes list used to generate the lipsync. |
+| **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The emotions list used to animate during the lipsync. |
 | **Max Slope**         | `float` | 4.0 | The maximum slope value allowed between two Morph Target keys |
 | **Min Time Step**     | `float` | 0.0001 | The minimum amount of time (in seconds) required between two Morph Target keys |
 
@@ -167,7 +167,7 @@ Directly give the Morph Target phonemes curves in order to play them. The Phonem
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Phonemes**          | *(optional)* Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The Phonemes list used to trigger the components delegates |
+| **Phonemes**          | *(optional)* Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | *Empty array* | The Phonemes list used to trigger the components delegates |
 | **Phoneme Curves**    | Map of <`Fname`, `UCurveFloat`> | - | A map of all morph target curves, where the `Key` is the Morph Target name and the `value` is the associated lipsync animation curve. |
 
 
@@ -179,7 +179,7 @@ Directly give the Morph Target emotions curves in order to play them. The emotio
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions list used to trigger the components delegates |
+| **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The Emotions list used to trigger the components delegates |
 | **Emotions Curves**   | Map of <`Fname`, `UCurveFloat`> | - | A map of all morph target curves, where the `Key` is the Morph Target name and the `value` is the associated emotion(s) animation curve. |
 
 
@@ -203,7 +203,7 @@ Use this node to change the current emotion pose dynamically. [More information]
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Emotion** | [Geppetto Emotion](#4112-geppetto-emotion) | - | The emotion to animate (must be defined in the [Emotion Data Table](#43-geppetto-emotion-data-table)) |
+| **Emotion** | [Geppetto Emotion](#4142-geppetto-emotion) | - | The emotion to animate (must be defined in the [Emotion Data Table](#45-geppetto-emotion-data-table)) |
 
 
 ### 4.1.7 Play Micro Expression
@@ -214,7 +214,7 @@ Use this node to play a micro expression one time. [More information](GettingSta
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Name**      | `FName` | - | The micro-expression name (must be defined in the [Micro Expressions Data Table](#44-geppetto-micro-expressions-data-table)). |
+| **Name**      | `FName` | - | The micro-expression name (must be defined in the [Micro Expressions Data Table](#46-geppetto-micro-expressions-data-table)). |
 | **Intensity** | `float` | 100.0 | The micro-expression intensity value from 0 to 100. |
 | **Speed**     | `float` | 1.0 | Playback speed of the micro-expression animation (must be greater than 0.0, 1.0 = default speed). |
 | **Curve Override** | `UCurveFloat` | - | If provided, do not use the default curve provided in the Micro Expression Data Table, but use this one instead. |
@@ -228,7 +228,7 @@ Use this node to play a micro expression repeatedly.
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Settings** | [Micro Expression Loop](#4113-geppetto-micro-expression) | - | The loop settings. |
+| **Settings** | [Micro Expression Loop](#4143-geppetto-micro-expression-loop) | - | The loop settings. |
 
 
 #### 4.1.9 Stop Micro Expression Loop
@@ -254,7 +254,7 @@ This Component uses **The first Skeletal Mesh Component and Audio Component** fo
 > [!IMPORTANT]
 > Because Metahuman Blueprint Actor has multiple Skeletal Mesh Components and uses custom Controls to animate the face, you **must** create a new child Blueprint Component that inherits from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information in the chapters [Component Inheritance](#43-component-inheritance) and [Use Geppetto with Metahuman](#TODO).
 
-When playing a lipsync, it generates Morph Target curves from the phonemes and emotions contained in the [DataAsset](#481-geppetto-data-asset), the [Sequence](#49-geppetto-sequence) or the [Phonemes](#4111-geppetto-phoneme) and [Emotions](#4112-geppetto-emotion) passed in parameters.
+When playing a lipsync, it generates Morph Target curves from the phonemes and emotions contained in the [DataAsset](#4121-geppetto-data-asset), the [Sequence](#4122-geppetto-sequence) or the [Phonemes](#4141-geppetto-phoneme) and [Emotions](#4142-geppetto-emotion) passed in parameters.
 Then it updates each MorphTarget based on the current play time which can be synced with the component tick or the current audio playback time.
 
 ### Events
@@ -301,7 +301,7 @@ The Geppetto SoundWave Player Component inherits the [functions](#functions) dec
 
 ### 4.2.1 Generate and Play
 
-Generate Lipsync at runtime with the provided audio and sentence *(optional)* and play it. This will internally call [Generate phonemes (using SoundWave)](#471-generate-phonemes-using-soundwave)
+Generate Lipsync at runtime with the provided audio and sentence *(optional)* and play it. This will internally call [Generate phonemes (using SoundWave)](#481-generate-phonemes-using-soundwave)
 
 ![](images/Geppetto_Sound_Wave_Player_Component_image_0.png)
 
@@ -316,13 +316,13 @@ Generate Lipsync at runtime with the provided audio and sentence *(optional)* an
 
 ### 4.2.2 Play From DataAsset
 
-Play a lipsync animation provided by a [Geppetto DataAsset](#481-geppetto-data-asset)
+Play a lipsync animation provided by a [Geppetto DataAsset](#4121-geppetto-data-asset)
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_1.png)
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Data Asset**        | [Geppetto DataAsset](#481-geppetto-data-asset) | - | The saved lipsync phonemes and emotions (with time codes) |
+| **Data Asset**        | [Geppetto DataAsset](#4121-geppetto-data-asset) | - | The saved lipsync phonemes and emotions (with time codes) |
 
 
 ### 4.2.3 Play From Arrays
@@ -334,26 +334,26 @@ Play a lipsync animation from the raw phonemes and emotions passed as parameters
 | Parameter name  | Type | Default value | Description |
 |-----------------|------|---------------|-------------|
 | **Sound Wave**  | `USoundWave` | - | The SoundWave to play |
-| **Phonemes**    | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - | The Phonemes to animate while playing the SoundWave (synced) |
-| **Emotions**    | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions to animate while playing the SoundWave (synced) |
+| **Phonemes**    | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - | The Phonemes to animate while playing the SoundWave (synced) |
+| **Emotions**    | *(optional)* Array of [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The Emotions to animate while playing the SoundWave (synced) |
 
 
 ### 4.2.4 Play From Sequence
 
-Play a lipsync animation provided by a [Geppetto Sequence](#49-geppetto-sequence)
+Play a lipsync animation provided by a [Geppetto Sequence](#4122-geppetto-sequence)
 
 ![](./images/Geppetto_Sound_Wave_Player_Component_image_3.png)
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Geppetto Sequence** | [Geppetto Sequence](#49-geppetto-sequence) | - | The sequence that contains the lipsync animation. |
+| **Geppetto Sequence** | [Geppetto Sequence](#4122-geppetto-sequence) | - | The sequence that contains the lipsync animation. |
 
 
 <br/>
 
 ## 4.3 Component Inheritance
 
-Sometimes, the provided [Geppetto SoundWave Player Component](#41-geppetto-sound-wave-player-component) is not enough to animate the lipsync correctly. This will be the case if:
+Sometimes, the provided [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) is not enough to animate the lipsync correctly. This will be the case if:
 * You don't use the Audio Component attached to the owning Actor or you have multiple Audio Components
 * You don't use Unreal Audio Mixer and/or Unreal SoundWave within your game
 * You don't use the Skeletal Mesh Component attached to the owning Actor or you have multiple Skeletal Mesh Components (i.e.: Metahuman - has multiple Mesh Components)
@@ -398,7 +398,7 @@ Get current play time of the audio.
 
 ![](./images/Component_Inheritance_image_2.png)
 
-2. Open the created Blueprint class and override the function named [Set Morph Target](#set-morphtarget)
+2. Open the created Blueprint class and override the function named [Set Morph Target](#431-set-morph-target)
 
 ![](./images/Component_Inheritance_image_3.png)
 
@@ -410,7 +410,7 @@ Get current play time of the audio.
 
 ![](./images/Component_Inheritance_image_5.png)
 
-5. If the parent class is the `Geppetto Base Component V2`, please override functions [Should Sync Current Time With Audio](#should-sync-current-time-with-audio) and [Get Audio Current Time](#get-audio-current-time) too.
+5. If the parent class is the `Geppetto Base Component V2`, please override functions [Should Sync Current Time With Audio](#432-should-sync-current-time-with-audio) and [Get Audio Current Time](#433-get-audio-current-time) too.
 
 ![](./images/Component_Inheritance_image_6.png)
 
@@ -521,7 +521,7 @@ Feel free to duplicate and/or edit the existing Data Table in order to change ex
 ### 4.5.3 Import/Export JSON
 
 Like Phoneme Data Table, Emotion Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. The import and export steps are the same as the Phoneme Data Table.   
-Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
+Please read the section [Import from JSON/CSV](#443-import-from-jsoncsv) and [Export as JSON/CSV](#444-export-as-jsoncsv) for more details.
 
 <br/>
 
@@ -582,7 +582,7 @@ Feel free to duplicate and/or edit the existing Data Table in order to change ex
 
 Like Phoneme Data Table, Micro Expressions Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. 
 The import and export steps are the same as the Phoneme Data Table.   
-Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
+Please read the section [Import from JSON/CSV](#443-import-from-jsoncsv) and [Export as JSON/CSV](#444-export-as-jsoncsv) for more details.
 
 <br/>
 
@@ -639,7 +639,7 @@ Feel free to duplicate and/or edit the existing Data Table in order to change ex
 
 Like Phoneme Data Table, Headshift Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. 
 The import and export steps are the same as the Phoneme Data Table.   
-Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
+Please read the section [Import from JSON/CSV](#443-import-from-jsoncsv) and [Export as JSON/CSV](#444-export-as-jsoncsv) for more details.
 
 <br/>
 
@@ -675,7 +675,7 @@ Generate the phonemes for the given SoundWave and sentence. Can be used in edito
 | **Remove Noise**        | `bool` | true | If true, perform noise removal to isolate the speech from the background noise |
 | **Local** ❌ not available on Fab | `bool` | false | If true, do not use the Geppetto API to generate phonemes but use the local server instead (The local server is not available through Fab) |
 | **Logs**                | `bool` | true | If true, print Geppetto logs to the console |
-| **On Response**         | `FDelegate` | - | Delegate called when the generation is done (or an error occurred), with:<br/>- **Is Error:** Indicates if an error occurred during generation<br/>- **Phonemes:** The generated [Geppetto Phonemes](#4111-geppetto-phoneme)<br/>- **Emotions:** The generated [Geppetto Emotions](#4112-geppetto-emotion) (if any)<br/>- **Settings:** [Geppetto Response Settings](#41410-geppetto-response-settings), Contains the STT generated sentence (if not given as input) |
+| **On Response**         | `FDelegate` | - | Delegate called when the generation is done (or an error occurred), with:<br/>- **Is Error:** Indicates if an error occurred during generation<br/>- **Phonemes:** The generated [Geppetto Phonemes](#4141-geppetto-phoneme)<br/>- **Emotions:** The generated [Geppetto Emotions](#4142-geppetto-emotion) (if any)<br/>- **Settings:** [Geppetto Response Settings](#41410-geppetto-response-settings), Contains the STT generated sentence (if not given as input) |
 
 
 ### 4.8.2 Generate phonemes (using PCM bytes)
@@ -721,7 +721,7 @@ Applies a delay to the list of phonemes returned by the API.
 
 | Parameter     | Type  | Default value   | Description |
 |---------------|-------|-----------------|-------------|
-| **Phonemes**  | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - | The phonemes to apply delay to (by reference) |  
+| **Phonemes**  | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - | The phonemes to apply delay to (by reference) |  
 | **Delay**     | `float` | 0.0 | The delay to apply. Can be positive or negative |
 
 
@@ -735,7 +735,7 @@ Applies a delay to the list of emotions returned by the API.
 
 | Parameter     | Type  | Default value   | Description |
 |---------------|-------|-----------------|-------------|
-| **Emotions**  | Array of [Geppetto Emotion](#4112-geppetto-emotion) | - | The emotions to apply delay to (by reference) |  
+| **Emotions**  | Array of [Geppetto Emotion](#4142-geppetto-emotion) | - | The emotions to apply delay to (by reference) |  
 | **Delay**     | `float` | 0.0 | The delay to apply. Can be positive or negative |
 
 
@@ -765,7 +765,7 @@ Returns the Morph Targets and corresponding values for an emotion name from a gi
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
 | **Emotion**       | `FName` | - | The emotion name |
-| **Phoneme Table** | [Emotion Data Table](#44-geppetto-emotion-data-table) | - | The Emotion Data Table used to retrieve Morph Target values |
+| **Phoneme Table** | [Emotion Data Table](#45-geppetto-emotion-data-table) | - | The Emotion Data Table used to retrieve Morph Target values |
 | ***Return Value***  | Map of <`Fname`, `float`> | - | The list of all Morph Targets used for the emotion and their values at max intensity (100) |
 
 
@@ -789,7 +789,7 @@ Safe linear interpolation with clamping. Used internally to blend values without
 
 ## 4.9 Geppetto Curve Generator Blueprint Library
 
-The following functions can be used to translate [Geppetto Phonemes](#4111-geppetto-phoneme) and [Geppetto Emotions](#4112-geppetto-emotion) into animation curves.
+The following functions can be used to translate [Geppetto Phonemes](#4141-geppetto-phoneme) and [Geppetto Emotions](#4142-geppetto-emotion) into animation curves.
 
 
 ### 4.9.1 Create Phoneme Curves
@@ -803,7 +803,7 @@ Create the phoneme Morph Target curves for lipsync animation.
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
 | **Phoneme Table** | [Phoneme Data Table](#44-geppetto-phoneme-data-table) | - | The Phoneme Table used  |
-| **Phonemes**      | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - | The lipsync phonemes list |
+| **Phonemes**      | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - | The lipsync phonemes list |
 | **Interp Mode**   | `ERichCurveInterpMode` | Linear | The curve keys interpolation mode |
 | **Tangent Mode**  | `ERichCurveTangentMode` | Auto | The curve keys tangent mode if interpolation=Cubic (Auto=will compute and set tangents value automatically) |
 | **Max Slope**     | `float` | 4.0 | The maximum float value allowed between two morph target keys. If the slope is higher, one key value will be changed to match the max slope | 
@@ -823,7 +823,7 @@ Create the emotion Morph Target curves for lipsync animation.
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
 | **Emotion Table** | [Emotion Data Table](#45-geppetto-emotion-data-table) | - | The Emotion Table used  |
-| **Emotions**      | Array of [Geppetto Emotion](#4112-geppetto-emotion) | - | The lipsync emotions list |
+| **Emotions**      | Array of [Geppetto Emotion](#4142-geppetto-emotion) | - | The lipsync emotions list |
 | **Prev Emotion Morph Targets** | Map of <`FName`, `float`> | *Empty map* | *(optional )* The current emotion Morph Target values. This will be used to start the emotion animation with the given values, allowing a smooth blend between the currently active emotion and the created one |
 | **Curves Outer**  | `UObject` | - | *(optional)* The outer of the created curves. If not set, the curves can be garbage collected on next GC collect |
 | ***Return Value*** | Map of <`FName`, `UCurveFloat`> | - | A map of all Morph Target animation curves used for emotions animation |
@@ -841,8 +841,8 @@ Create the phonemes and emotions Morph Target curves for lipsync animation.
 |-------------------|-------|-----------------|-------------|
 | **Phoneme Table** | [Phoneme Data Table](#44-geppetto-phoneme-data-table) | - | The Phoneme Table used  |
 | **Emotion Table** | [Emotion Data Table](#45-geppetto-emotion-data-table) | - | The Emotion Table used  |
-| **Phonemes**      | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - | The lipsync phonemes list |
-| **Emotions**      | Array of [Geppetto Emotion](#4112-geppetto-emotion) | - | The lipsync emotions list |
+| **Phonemes**      | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - | The lipsync phonemes list |
+| **Emotions**      | Array of [Geppetto Emotion](#4142-geppetto-emotion) | - | The lipsync emotions list |
 | **Interp Mode**   | `ERichCurveInterpMode` | Linear | The curve keys interpolation mode |
 | **Tangent Mode**  | `ERichCurveTangentMode` | Auto | The curve keys tangent mode if interpolation=Cubic (Auto=will compute and set tangents value automatically) |
 | **Custom Transition Settings**  | ❌ not available | - | Unused |
@@ -857,15 +857,15 @@ Create the phonemes and emotions Morph Target curves for lipsync animation.
 
 C++ Function: `static void UGeppettoCurveGenerator::ExtractPhonemesAndEmotionsFromSequence(...)`
 
-Retrieve the [Phonemes](#4111-geppetto-phoneme) and [Emotions](#4112-geppetto-emotion) list from a [Sequence](#49-geppetto-sequence).
+Retrieve the [Phonemes](#4141-geppetto-phoneme) and [Emotions](#4142-geppetto-emotion) list from a [Sequence](#4122-geppetto-sequence).
 
 ![](./images/GeppettoCurveGenerator_image_4.png)
 
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
-| **Sequence**      | [Geppetto Sequence](#49-geppetto-sequence) | - | The sequence to extract phonemes and emotions |
-| ***Phonemes***    | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - | The extracted phoneme list |
-| ***Emotions***    | Array of [Geppetto Emotion](#4112-geppetto-emotion) | - | The extracted emotion list |
+| **Sequence**      | [Geppetto Sequence](#4122-geppetto-sequence) | - | The sequence to extract phonemes and emotions |
+| ***Phonemes***    | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | - | The extracted phoneme list |
+| ***Emotions***    | Array of [Geppetto Emotion](#4142-geppetto-emotion) | - | The extracted emotion list |
 
 ### 4.9.5 Get Curves Max Time
 
@@ -945,7 +945,7 @@ The following functions can only be used in **Editor-only assets**, such as Edit
 
 C++ Function: `static UGeppettoDataAsset* UGeppettoEditorLibrary::SaveGeppettoPhonemes(...)`
 
-Save the generated lipsync phonemes as a [Geppetto Data Asset](#481-geppetto-data-asset)
+Save the generated lipsync phonemes as a [Geppetto Data Asset](#4121-geppetto-data-asset)
 
 ![](./images/GeppettoEdotprBlueprintLibrary_image_1.png)
 
@@ -958,10 +958,10 @@ Save the generated lipsync phonemes as a [Geppetto Data Asset](#481-geppetto-dat
 | **Silence Settings**      | [Geppetto Silence](#4149-geppetto-silence) | -50dB - 200ms | The silence threshold and time used to generate the Phonemes |
 | **Phonemes Delay**        | `float`       | 0.0 | The delay (in seconds) applied to the time codes of the generated Phonemes |
 | **Emotions Delay**        | `float`       | 0.0 | The delay (in seconds) applied to the time codes of the generated Emotions |
-| **Phonemes**              | [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
-| **Emotions**              | [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
+| **Phonemes**              | [Geppetto Phoneme](#4141-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
+| **Emotions**              | [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
 | **Package Path**          | `FString`     | *Empty string* | The file save location, in UE package path format |
-| ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occurred |
+| ***Return Value***        | [Geppetto Data Asset](#4121-geppetto-data-asset) | - | The created asset, or null if an error occurred |
 
 
 ### 4.11.2 Save as Sequence 
@@ -975,11 +975,11 @@ Saves the provided audio and animation data as a Geppetto sequence asset at the 
 | Parameter                 | Type          | Default value   | Description |
 |---------------------------|---------------|-----------------|-------------|
 | **Audio**                 | `USoundWave`  | - | A reference to the SoundWave object used to generate the Phonemes |
-| **Phonemes**              | [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
-| **Emotions**              | [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
+| **Phonemes**              | [Geppetto Phoneme](#4141-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
+| **Emotions**              | [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
 | **Package Path**          | `FString`     | *Empty string* | The file save location, in UE package path format |
 | **Frame Rate**            | [Geppetto Sequence FPS](#4135-geppetto-sequence-fps) | 120fps | The desired frame rate for the created sequence asset. |
-| ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occurred |
+| ***Return Value***        | [Geppetto Data Asset](#4121-geppetto-data-asset) | - | The created asset, or null if an error occurred |
 
 
 ### 4.11.3 Convert Geppetto Sequence Into Animation
@@ -992,7 +992,7 @@ Converts a Geppetto sequence asset into an Unreal Engine animation asset and sav
 
 | Parameter           | Type          | Default value   | Description |
 |---------------------|---------------|-----------------|-------------|
-| **Sequence**        | [Geppetto Sequence](#49-geppetto-sequence) | - | The Geppetto sequence asset to convert into an animation |
+| **Sequence**        | [Geppetto Sequence](#4122-geppetto-sequence) | - | The Geppetto sequence asset to convert into an animation |
 | **Package Path**    | `FString` | *Empty string* | The UE package path where the generated animation asset will be saved |
 | ***Return Value***  | `UAnimSequence` | - | A pointer to the created animation sequence asset, or nullptr if the conversion process fails |
 
@@ -1055,7 +1055,7 @@ The Geppetto Plugin use custom Assets, such as custom DataAsset or LevelSequence
 
 ### 4.12.1 Geppetto Data Asset
 
-Geppetto Data Assets are used to store and save the [Phonemes](#4111-geppetto-phoneme) and [Emotions](#4112-geppetto-emotion) generated from the API in order to use them later. You can use any BP inherited [Geppetto Component](#41-geppetto-base-component) such as the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) to animate the data contained in the Data Asset. 
+Geppetto Data Assets are used to store and save the [Phonemes](#4141-geppetto-phoneme) and [Emotions](#4142-geppetto-emotion) generated from the API in order to use them later. You can use any BP inherited [Geppetto Component](#41-geppetto-base-component) such as the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) to animate the data contained in the Data Asset. 
 
 All fields are Blueprint Read-Only, but you can use the Editor-only node [Save Geppetto Phonemes](#4111-save-geppetto-phonemes-as-data-asset) to create a new DataAsset in Blueprint.
 
@@ -1072,13 +1072,13 @@ All fields are Blueprint Read-Only, but you can use the Editor-only node [Save G
 | **Amplitude Settings**    | [Geppetto Amplitude](#4148-geppetto-amplitude) | 30 - 70 | (Info only) The minimum and maximum amplitude value used for generation. |
 | **Silence Settings**      | [Geppetto Silence](#4149-geppetto-silence) | -50dB - 200ms |(Info only) The silence time (in milliseconds) used for generation. |
 | **Delay**                 | [Tuple Float](#41411-tuple-float) | 0 - 0 | (Info only) The delay applied to phonemes and emotions after generation. |
-| **Phonemes**              | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The phonemes list generated by the API, used to animate lip sync. |
-| **Emotions**              | Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The emotions list generated by the API, used to animate emotions. |
+| **Phonemes**              | Array of [Geppetto Phoneme](#4141-geppetto-phoneme) | *Empty array* | The phonemes list generated by the API, used to animate lip sync. |
+| **Emotions**              | Array of [Geppetto Emotion](#4142-geppetto-emotion) | *Empty array* | The emotions list generated by the API, used to animate emotions. |
 
 
 ### 4.12.2 Geppetto Sequence
 
-A `GeppettoSequence` is a custom asset that contains all the assets and logic to play a lip-sync animation in one file. This asset contains a `LevelSequence` with a timeline for the audio file, a timeline for all [Phonemes](#4111-geppetto-phoneme) used and a timeline for all [Emotions](#4112-geppetto-emotion) used. That is the main element of this asset as it handles all the logic of the lip-sync animation to play on a character.
+A `GeppettoSequence` is a custom asset that contains all the assets and logic to play a lip-sync animation in one file. This asset contains a `LevelSequence` with a timeline for the audio file, a timeline for all [Phonemes](#4141-geppetto-phoneme) used and a timeline for all [Emotions](#4142-geppetto-emotion) used. That is the main element of this asset as it handles all the logic of the lip-sync animation to play on a character.
 
 > [!TIP]
 > Use the Editor-only node [Save as Sequence](#4112-save-as-sequence) to create a new Sequence in Blueprint.
@@ -1121,7 +1121,7 @@ Here you can find the list and values of all enums defined by the Geppetto Plugi
 
 ### 4.13.1 Geppetto Emotion Transition
 
-This enum is used to choose the emotion transition each time the emotion pose changes. Used in [Geppetto Emotion](#4112-geppetto-emotion).
+This enum is used to choose the emotion transition each time the emotion pose changes. Used in [Geppetto Emotion](#4142-geppetto-emotion).
 
 | Interpolation Type | Description                                  |
 |--------------------|----------------------------------------------|

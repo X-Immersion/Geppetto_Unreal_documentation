@@ -38,7 +38,12 @@ Welcome to the **Geppetto UE Plugin** for Unreal Engine. This document will show
 - **[Play with the Demo Level](./docs/Demo.md#22-play-with-the-demo-level)**
 - **[Understand the Demo Level](./docs/Demo.md#23-understand-the-demo-level)**
 
-### **[API](./docs/API.md)**
+### **[Metahuman integration](./docs/Metahuman.md)**
+
+- **[Old version (UE5.5 and prior)](./docs/Metahuman.md#TODO)**
+- **[New version (UE5.6+)](./docs/Metahuman.md#TODO)**
+
+### **[API Reference](./docs/API.md)**
 
 #### *Components*
 - **[Geppetto Base Component](./docs/API.md#41-geppetto-base-component)**
