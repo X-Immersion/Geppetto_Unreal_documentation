@@ -126,7 +126,28 @@ You can also enable the automatic emotion detection parameter. Using a deep lear
 
 Disable this option if you prefer maximum control and optimized performance speed.
 
----
+### Syntax
+
+`<emotion name intensity 80 transition 300 function_type linear>`
+
+
+### Parameters
+
+| Parameter         | Description                               | Default      |
+|---------------|-------------------------------------------|--------------|
+| emotion       | Name of the emotion                       | (required)   |
+| intensity     | Intensity (0-100)                         | 50           |
+| transition    | Transition time in ms                     | 200          |
+| function_type | Interpolation function (linear, cubic…)  | cubic        |
+
+### Example
+
+![](./images/Emotion_Tag_System_image_1.png)
+
+![](./images/Emotion_Tag_System_image_2.png)
+
+You can mix tags with runtime Blueprint emotion changes for full control.
+Please read section [2.7 Play an emotion on a character](./GettingStarted.md#27-play-an-emotion-on-a-character) of the documentation for more details on how to change an emotion at Runtime using Blueprints.
 
 ## 7. Output
 

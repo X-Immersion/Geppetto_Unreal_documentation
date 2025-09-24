@@ -9,18 +9,75 @@ This chapter documents all the components, nodes, structures, enums, and tools p
 
 ### On this page
 
-- **[Geppetto Sound Wave Player Component](#41-geppetto-sound-wave-player-component)**
-- **[Geppetto Phoneme Data Table](#42-geppetto-phoneme-data-table)**
-- **[Geppetto Emotion Data Table](#43-geppetto-emotion-data-table)**
-- **[Geppetto Micro Expressions Data Table](#44-geppetto-micro-expressions-data-table)**
-- **[Geppetto Headshift Data Table](#45-geppetto-headshift-data-table)**
-- **[Geppetto Blueprint Library (Editor only)](#46-geppetto-blueprint-library-editor-only)**
-- **[Geppetto Blueprint Library](#47-geppetto-blueprint-library)**
-- **[Data Assets](#48-data-assets)**
-- **[Geppetto Sequence](#49-geppetto-sequence)**
-- **[Enums](#410-enums)**
-- **[Structs](#411-structs)**
-- **[Emotion Tag System](#412-emotion-tag-system)**
+#### *Components*
+- **[Geppetto Base Component](#41-geppetto-base-component)**
+- **[Geppetto Sound Wave Player Component](#42-geppetto-soundwave-player-component)**
+- **[Component Inheritance](#43-component-inheritance)**
+   - ***[Step by step guide](#step-by-step-guide)***
+
+#### *Data Tables*
+- **[Phoneme Data Table](#44-geppetto-phoneme-data-table)**
+- **[Emotion Data Table](#45-geppetto-emotion-data-table)**
+- **[Micro expression Data Table](#46-geppetto-micro-expressions-data-table)**
+- **[Headshift Data Table](#47-geppetto-headshift-data-table)**
+
+#### *Blueprint Libraries (Nodes)*
+- **[Geppetto BP Library](#48-geppetto-blueprint-library)**
+   - ***[Generate phonemes (using SoundWave)](#481-generate-phonemes-using-soundwave)***
+   - ***[Generate phonemes (using PCM bytes)](#482-generate-phonemes-using-pcm-bytes)***
+   - ***[Generate phonemes (using File bytes)](#483-generate-phonemes-using-file-bytes)***
+   - ***[Apply Delay (phonemes)](#484-apply-delay-phonemes)***
+   - ***[Apply Delay (emotions)](#485-apply-delay-emotions)***
+   - ***[Get Morph Targets for Phoneme](#486-get-morph-targets-for-phoneme)***
+   - ***[Get Morph Targets for Emotion](#487-get-morph-targets-for-emotion)***
+   - ***[Safe Lerp](#488-safe-lerp)***
+
+- **[Curve Generator BP Library](#49-geppetto-curve-generator-blueprint-library)**
+   - ***[Create Phoneme Curves](#491-create-phoneme-curves)***
+   - ***[Create Emotion Curves](#492-create-emotion-curves)***
+   - ***[Create All Curves](#493-create-all-curves)***
+   - ***[Extract Phonemes and Emotions from Sequence](#494-extract-phonemes-and-emotions-from-sequence)***
+   - ***[Get Curves Max Time](#495-get-curves-max-time)***
+
+- **[Headshift BP Library](#410-geppetto-headshift-blueprint-library)**
+   - ***[Initialize new Movement](#4101-initialize-new-movement)***
+   - ***[Update Generic Movement](#4102-update-generic-movement)***
+   - ***[Blend Emotion Headshift](#4103-blend-emotion-headshift)***
+
+- **[Geppetto Editor BP Library *(Editor only)*](#411-geppetto-blueprint-library-editor-only)**
+   - ***[Save Geppetto Phonemes as Data Asset](#4111-save-geppetto-phonemes-as-data-asset)***
+   - ***[Save as Sequence](#4112-save-as-sequence)***
+   - ***[Convert Geppetto Sequence into animation](#4113-convert-geppetto-sequence-into-animation)***
+   - ***[Create editor Data Preset](#4114-create-editor-data-preset)***
+   - ***[Show Save File Selection Dialog](#4115-show-save-file-selection-dialog)***
+   - ***[Get Documentation URL](#4116-get-documentation-url)***
+   - ***[Is PIE Mode Active](#4117-is-pie-mode-active)***
+
+#### *Assets*
+- **[Geppetto DataAsset](#4121-geppetto-data-asset)**
+- **[Geppetto Sequence](#4122-geppetto-sequence)**
+- **[Geppetto Preset DataAsset *(Editor only)*](#4123-geppetto-preset-data-asset-editor-only)**
+
+
+#### *Enums*
+- **[Emotion Transition](#4131-geppetto-emotion-transition)**
+- **[Format](#4132-geppetto-format)**
+- **[Language](#4133-geppetto-language)**
+- **[Quality](#4134-geppetto-quality)**
+- **[Sequence FPS](#4135-geppetto-sequence-fps)**
+
+#### *Structs*
+- **[Phoneme](#4141-geppetto-phoneme)**
+- **[Emotion](#4142-geppetto-emotion)**
+- **[Micro expression](#4143-geppetto-micro-expression)**
+- **[Dynamic Micro expression](#4144-dynamic-micro-expression)**
+- **[Headshift Movement](#4145-geppetto-headshift-movement)**
+- **[Headshift Data](#4146-geppetto-headshift-data)**
+- **[Emotion Headshift](#4147-geppetto-emotion-headshift)**
+- **[Amplitude](#4148-geppetto-amplitude)**
+- **[Silence](#4149-geppetto-silence)**
+- **[Response Settings](#41410-geppetto-response-settings)**
+- **[Tuple Float](#41411-tuple-float)**
 
 <br/><br/>
 
@@ -30,14 +87,14 @@ This chapter documents all the components, nodes, structures, enums, and tools p
 > The current name of the component is `Geppetto Base Component V2`.
 
 The Geppetto Base Component is an Actor Component declared in C++ that helps you to perform Geppetto animations (lipsync, emotions, micro-expressions, headshift)
-on your Unreal Actors. This component is intended to be inherited in Blueprint, such as for the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) that provide syncing animation with Unreal SoundWave played through an `AudioComponent`. 
+on your Unreal Actors. This component is intended to be inherited in Blueprint, such as for the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) that provides syncing animation with Unreal SoundWave played through an `AudioComponent`. 
 
 This component has three functions that need to be overridden by the BP inherited classes to work properly:
 * [Set Morph Target](#431-set-morph-target)
 * [Should Sync With Audio]()
 * [Get Audio Current Time]()
 
-You can find more information on how to create a new child component in chapter [Component Inheritance](#42---component-inheritance).
+You can find more information on how to create a new child component in chapter [Component Inheritance](#43-component-inheritance).
 
 ### Events
 
@@ -61,15 +118,15 @@ Your Blueprint classes can be bound to the following events declared in C++ in o
 | **Phoneme Data Table** | `UDataTable` | - | The Phoneme Data Table used to translate a phoneme like 'A' into a list of Morph Target values |
 | **Emotion Data Table** | `UDataTable` | - | The Emotion Data table used to translate an emotion like 'Happy' into a list of Morph Target values |
 | **Micro Expression Data Table** | `UDataTable` | - | The Micro Expression Data Table used to translate a micro expression like 'Blink' into a list of Morph Target values |
-| **Headshift Data Table** | `UDataTable` | - | The headshift Data table used to transalte an headshift pose like `generic` into a list of **bones** values. |
+| **Headshift Data Table** | `UDataTable` | - | The headshift Data table used to translate a headshift pose like `generic` into a list of **bones** values. |
 | **Headshift > Generic Headshift Movement** | `UCurveFloat` | - | The headshift generic movement curve override. |
 | **Headshift > Headshift Blend Emotion Speed** | `float` | 3.0 | The time to blend from the current headshift to the emotion headshift |
 | **Headshift > UseGenericHeadshift** | `bool` | false | Set it to true to have a generic headshift animation on your character. |
-| **Headshift > UseEmotionHeadshift** | `bool` | true | Set it to true to perform an headshift animation when playing emotions. |
+| **Headshift > UseEmotionHeadshift** | `bool` | true | Set it to true to perform a headshift animation when playing emotions. |
 
 ![](./images/Geppetto_component_vars.png)
 
-You can see on the component that there are a lot of other properties listed in read-only. These values are calculated and used internally and should **NOT** be set by the user itself. However, you can use this window to debug the animation.
+You can see in the component that there are a lot of other properties listed as read-only. These values are calculated and used internally and should **NOT** be set by the user. However, you can use this window to debug the animation.
 
 ### Functions
 
@@ -83,7 +140,7 @@ Create the lipsync morph target curves from the given phonemes and emotions and 
 |-----------------------|------|---------------|-------------|
 | **Phonemes**          | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - |The Phonemes list used to generate the lipsync. |
 | **Emotions**          | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The emotions list used to animate during the lipsync. |
-| **Start Time**        | `float` | 0.0 | Indicate the delay between calling this node and the beginning of this animation (`0.0f` = no wait time) |
+| **Start Time**        | `float` | 0.0 | Indicates the delay between calling this node and the beginning of this animation (`0.0f` = no wait time) |
 | **Max Slope**         | `float` | 4.0 | The maximum slope value allowed between two Morph Target keys |
 | **Min Time Step**     | `float` | 0.0001 | The minimum amount of time (in seconds) required between two Morph Target keys |
 
@@ -135,7 +192,7 @@ Play the current stored lipsync animation.
 
 | Parameter name        | Type | Default value | Description |
 |-----------------------|------|---------------|-------------|
-| **Start Time**        | `float` | 0.0 | Indicate the delay between calling this node and the beginning of this animation (`0.0f` = no wait time) |
+| **Start Time**        | `float` | 0.0 | Indicates the delay between calling this node and the beginning of this animation (`0.0f` = no wait time) |
 
 
 ### 4.1.6 Change Emotion
@@ -190,12 +247,12 @@ Use this node to stop looping a micro expression.
 
 ## 4.2 Geppetto SoundWave Player Component
 
-The Geppetto SoundWave Player Component is a Blueprint Actor Component that inherit from the [Geppetto Base Component](#41-geppetto-base-component) and can be used to play Geppetto animation on a `Skeletal Mesh` using the function [USkeletalMeshComponent::SetMorphTarget](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/Components/USkeletalMeshComponent/SetMorphTarget), syncing it with a `USoundWave` played through an `Audio Component`. 
+The Geppetto SoundWave Player Component is a Blueprint Actor Component that inherits from the [Geppetto Base Component](#41-geppetto-base-component) and can be used to play Geppetto animation on a `Skeletal Mesh` using the function [USkeletalMeshComponent::SetMorphTarget](https://dev.epicgames.com/documentation/unreal-engine/API/Runtime/Engine/Components/USkeletalMeshComponent/SetMorphTarget), syncing it with a `USoundWave` played through an `Audio Component`. 
 
-This Component use **The first Skeletal Mesh Component and Audio Component** found in the owning actor. If you have multiple SkeletalMesh/Audio components attached to your Actor, or they are not directly attached to the owning Actor, or if you rely on an other method to animate your Skeletal Mesh (such as an Animation Blueprint), we recommand you to create a new [Geppetto Component](#41-geppetto-base-component) that inherit from the Geppetto SoundWave Player Component and override the logic to put your instead. More information on the chapter [Component Inheritance](#42---component-inheritance).
+This Component uses **The first Skeletal Mesh Component and Audio Component** found in the owning actor. If you have multiple SkeletalMesh/Audio components attached to your Actor, or they are not directly attached to the owning Actor, or if you rely on another method to animate your Skeletal Mesh (such as an Animation Blueprint), we recommend you to create a new [Geppetto Component](#41-geppetto-base-component) that inherits from the Geppetto SoundWave Player Component and override the logic to put yours instead. More information in the chapter [Component Inheritance](#42---component-inheritance).
 
 > [!IMPORTANT]
-> Because Metahuman Blueprint Actor have multiple Skeletal Mesh Component and use custom Controls to animate the face, you **must** create a new child Blueprint Component that inherit from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information on the chapters [Component Inheritance](#42---component-inheritance) and [Use Geppetto with Metahuman](#TODO).
+> Because Metahuman Blueprint Actor has multiple Skeletal Mesh Components and uses custom Controls to animate the face, you **must** create a new child Blueprint Component that inherits from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information in the chapters [Component Inheritance](#42---component-inheritance) and [Use Geppetto with Metahuman](#TODO).
 
 When playing a lipsync, it generates Morph Target curves from the phonemes and emotions contained in the [DataAsset](#481-geppetto-data-asset), the [Sequence](#49-geppetto-sequence) or the [Phonemes](#4111-geppetto-phoneme) and [Emotions](#4112-geppetto-emotion) passed in parameters.
 Then it updates each MorphTarget based on the current play time which can be synced with the component tick or the current audio playback time.
@@ -205,7 +262,7 @@ Then it updates each MorphTarget based on the current play time which can be syn
 The Geppetto SoundWave Player Component inherits the [events](#events) declared in the [Geppetto Base Component](#41-geppetto-base-component).
 
 The Unreal events `OnPhonemeChanged` and `OnEmotionChanged` are broadcasted each time a phoneme or an emotion needs to be animated.
-The other events `OnLipsyncStarted`, `OnLipsyncChanged`, and `OnLipsyncFinished` are broadcasted each a lipsync animation start, change or is finished. [More information](#events)
+The other events `OnLipsyncStarted`, `OnLipsyncChanged`, and `OnLipsyncFinished` are broadcasted each time a lipsync animation starts, changes or is finished. [More information](#events)
 
 ### Variables
 
@@ -218,11 +275,11 @@ The Geppetto SoundWave Player Component inherits the [variables](#variables) dec
 
 ### Internal variables
 
-The following properties are used by the component internaly and **should not be set by the user directly**. Child components may override them if necessary.
+The following properties are used by the component internally and **should not be set by the user directly**. Child components may override them if necessary.
 
 | Property name                 | Type    | Description |
 |-------------------------------|---------|-------------|
-| **Audio Component**           | `UAudioComponent` | The audio component to use to play the SounWave and sync the animation with it | 
+| **Audio Component**           | `UAudioComponent` | The audio component to use to play the SoundWave and sync the animation with it | 
 | **Update Duration From Audio Component** | `bool` | If true, sync animation with the audio play time. If false, sync with the tick delta time |
 | **Audio Duration**            | `float` | Total duration of the current audio  |
 | **Previous Playback Percent** | `float` | Previous progress percent of the audio |
@@ -278,7 +335,7 @@ Play a lipsync animation from the raw phonemes and emotions passed as parameters
 |-----------------|------|---------------|-------------|
 | **Sound Wave**  | `USoundWave` | - | The SoundWave to play |
 | **Phonemes**    | Array of [Geppetto Phoneme](#4111-geppetto-phoneme) | - | The Phonemes to animate while playing the SoundWave (synced) |
-| **Emotions**    | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Phonemes to animate while playing the SoundWave (synced) |
+| **Emotions**    | *(optional)* Array of [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions to animate while playing the SoundWave (synced) |
 
 
 ### 4.2.4 Play From Sequence
@@ -299,14 +356,14 @@ Play a lipsync animation provided by a [Geppetto Sequence](#49-geppetto-sequence
 Sometimes, the provided [Geppetto SoundWave Player Component](#41-geppetto-sound-wave-player-component) is not enough to animate the lipsync correctly. This will be the case if:
 * You don't use the Audio Component attached to the owning Actor or you have multiple Audio Components
 * You don't use Unreal Audio Mixer and/or Unreal SoundWave within your game
-* You don't use the Skeletal Mesh Component attached to the owning Actor or you have multiple Skeletal Mesh Components (i.e.: Metahuman - have multiple Mesh Components)
-* You do not rely to Morph Target to animate your Skeletal Mesh (i.e.: Metahuman - uses the Animation Blueprint `Face_AnimBP` instead)
+* You don't use the Skeletal Mesh Component attached to the owning Actor or you have multiple Skeletal Mesh Components (i.e.: Metahuman - has multiple Mesh Components)
+* You do not rely on Morph Targets to animate your Skeletal Mesh (i.e.: Metahuman - uses the Animation Blueprint `Face_AnimBP` instead)
 * You don't use Unreal Skeletal Mesh within your game
 
-In these cases, you must create your own Geppetto Component. If you uses the Unreal audio mixer and SoundWaves, you can select the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) as the parent class. If not, you will need to select the [Geppetto Base Component](#41-geppetto-base-component) as the parent class. There are three Blueprint Implementable Event that **must be override by all child classes**:
+In these cases, you must create your own Geppetto Component. If you use the Unreal audio mixer and SoundWaves, you can select the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) as the parent class. If not, you will need to select the [Geppetto Base Component](#41-geppetto-base-component) as the parent class. There are three Blueprint Implementable Events that **must be overridden by all child classes**:
 
-> [!IMOPRTANT]
-> For Metahuman, you can download a pre-existing Geppetto Component on this repository and use them directly in your projects. Drag and drop the `.uasset` files **at the root of your project `Content` folder**:
+> [!IMPORTANT]
+> For Metahuman, you can download a pre-existing Geppetto Component from this repository and use them directly in your projects. Drag and drop the `.uasset` files **at the root of your project `Content` folder**:
 > * **UE5.2 - UE5.5:** [Geppetto Metahuman Component](#TODO)
 > * **UE5.6:** [Face_AnimBP](#TODO) and [Geppetto Metahuman Component](#TODO). [More information](#TODO)
 
@@ -335,7 +392,7 @@ Get current play time of the audio.
 
 ### Step-by-step guide
 
-1. Create a new Blueprint Class that have `GeppettoSoundWavePlayerComponent` *(recommanded)* or `GeppettoBaseComponentV2` as parent class
+1. Create a new Blueprint Class that has `GeppettoSoundWavePlayerComponent` *(recommended)* or `GeppettoBaseComponentV2` as parent class
 
 ![](./images/Component_Inheritance_image_1.png)
 
@@ -361,7 +418,7 @@ Get current play time of the audio.
 
 ## 4.4 Geppetto Phoneme Data Table
 
-The Geppetto Phoneme Data Table contains all information related to phoneme (lip sync) animation. Each phoneme associates with a list of Morph Targets and their values. You can create your own Data Tables to animate any Skeletal Mesh with custom facial controls.
+The Geppetto Phoneme Data Table contains all information related to phoneme (lip sync) animation. Each phoneme is associated with a list of Morph Targets and their values. You can create your own Data Tables to animate any Skeletal Mesh with custom facial controls.
 
 ### 4.4.1 Create from scratch
 
@@ -392,7 +449,7 @@ The Geppetto Phoneme Data Table contains all information related to phoneme (lip
 ### 4.4.2 Add/Edit from existing
 
 You can find pre-made Phoneme Data Tables for the Demo Scene and Metahuman characters under (`All > (Engine) > Plugins > Geppetto Content > Phonemes`).    
-Feel free to duplicate and/or edit the existing Data Table in order to change the phonemes pose ! 
+Feel free to duplicate and/or edit the existing Data Table in order to change the phonemes pose! 
 
 ![](./images/Geppetto_Phonemes_DataTable_image_8.png)
 
@@ -402,7 +459,7 @@ Feel free to duplicate and/or edit the existing Data Table in order to change th
 
 ### 4.4.3 Import from JSON/CSV
 
-Unreal Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. Create a new JSON file with the following structure :
+Unreal Data Tables can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. Create a new JSON file with the following structure:
 
 ![](./images/Geppetto_Phonemes_DataTable_image_9.png)
 
@@ -420,9 +477,9 @@ Right-click the Data Table asset and choose **Export as JSON** or **Export as CS
 
 ## 4.5 Geppetto Emotion Data Table
 
-The Geppetto Emotion Data Table contains all information related to the emotions animation. The Data Table associates each emotion with a list of Morph Targets and their values. The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Emotion Data Table can be created directly within the inspector or imported from a JSON file.
+The Geppetto Emotion Data Table contains all information related to emotions animation. The Data Table associates each emotion with a list of Morph Targets and their values. The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Emotion Data Table can be created directly within the inspector or imported from a JSON file.
 
-*Morph Target (or Blendshapes or Shapekeys) can be added on any 3D models software that you want. You can use an add-on on Blender or Maya for exemple. Or you can use Iclone 8 to add the Arkit Shapekeys standard to your 3D model.*
+*Morph Targets (or Blendshapes or Shapekeys) can be added in any 3D modeling software that you want. You can use an add-on in Blender or Maya for example. Or you can use iClone 8 to add the ARKit Shapekeys standard to your 3D model.*
 
 
 ### 4.5.1 Create from scratch
@@ -453,7 +510,7 @@ The Geppetto Emotion Data Table contains all information related to the emotions
 Pre-made tables under:  
 `All > (Engine) > Plugins > Geppetto Content > Emotions`
 
-Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
+Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones! 
 
 ![](./images/Geppetto_Emotions_DataTable_image_6.png)
 
@@ -463,22 +520,22 @@ Feel free to duplicate and/or edit the existing Data Table in order to change ex
 
 ### 4.5.3 Import/Export JSON
 
-Like Phoneme Data Table, Emotion Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. The import and export steps are the same as Phoneme Data Table.   
+Like Phoneme Data Table, Emotion Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. The import and export steps are the same as the Phoneme Data Table.   
 Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
 
 <br/>
 
 ## 4.6 Geppetto Micro Expressions Data Table
 
-The Geppetto Micro Expressions Data Table contains all information related to the micro expressions animation. The Data Table associates each micro expression with a list of Morph Targets and their values.    
-The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Micro Expressions Data Table can be created directly within the inspector or imported from a JSON file :
+The Geppetto Micro Expressions Data Table contains all information related to micro expressions animation. The Data Table associates each micro expression with a list of Morph Targets and their values.    
+The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Micro Expressions Data Table can be created directly within the inspector or imported from a JSON file:
 
 *Morph Target (or Blendshapes or Shapekeys) can be added on any 3D models software that you want. You can use an add-on on Blender or Maya for exemple. Or you can use Iclone 8 to add the Arkit Shapekeys standard to your 3D model.*
 
 ### 4.6.1 Create from scratch
 
-1. On the Content Drawer (Ctrl+Space), right click at the desired location and create new Data Table (under *Miscellaneous > Data Table*).
-On the Pick Row Structure window, select `GeppettoMicroExpressionTableRow` :
+1. In the Content Drawer (Ctrl+Space), right click at the desired location and create new Data Table (under *Miscellaneous > Data Table*).
+In the Pick Row Structure window, select `GeppettoMicroExpressionTableRow`:
 
 ![](./images/Geppetto_Phonemes_DataTable_image_1.png)
 ![](./images/Geppetto_MicroExpressions_DataTable_image_2.png)
@@ -505,15 +562,15 @@ On the Pick Row Structure window, select `GeppettoMicroExpressionTableRow` :
 | **Morph Targets**| The Morph Target names that will share a common randomly selected value. Allows grouped randomization. |
 | **Value Range**  | The random range (min = "First", max = "Second") from which a new value will be chosen every time the micro expression is played. |
 
-> *Please note that the same micro expression can have fixed and dynamic Morph Targets values. If a Morph Target is defined in both lists, the value defined in Fixed Morph Targets will be ignored.    
-**We recommend to always plays dynamic micro expressions with the highest intensity (100), as the value is already chosen randomly between a min and a max.***
+> *Please note that the same micro expression can have fixed and dynamic Morph Target values. If a Morph Target is defined in both lists, the value defined in Fixed Morph Targets will be ignored.    
+**We recommend always playing dynamic micro expressions with the highest intensity (100), as the value is already chosen randomly between a min and a max.***
 
 ### 4.6.2 Add/Edit from existing
 
 Pre-made tables under:  
 `All > (Engine) > Plugins > Geppetto Content > MicroExpressions`
 
-Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
+Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones! 
 
 ![](./images/Geppetto_MicroExpressions_DataTable_image_6.png)
 
@@ -524,22 +581,22 @@ Feel free to duplicate and/or edit the existing Data Table in order to change ex
 ### 4.6.3 Import/Export JSON like above.
 
 Like Phoneme Data Table, Micro Expressions Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. 
-The import and export steps are the same as Phoneme Data Table.   
+The import and export steps are the same as the Phoneme Data Table.   
 Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
 
 <br/>
 
 ## 4.7 Geppetto Headshift Data Table
 
-The Geppetto Headshift Data Table contains all information related to the headshift animation. The Data Table associates each emotion or procedural neck movement (called *Generic*) with a list of Morph Targets and their values.    
-The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Headshift Data Table can be created directly within the inspector or imported from a JSON file :
+The Geppetto Headshift Data Table contains all information related to headshift animation. The Data Table associates each emotion or procedural neck movement (called *Generic*) with a list of Morph Targets and their values.    
+The Geppetto plugin provides a way to create your own Data Tables in order to animate any Skeletal Mesh with custom facial controls (Morph Targets). The Headshift Data Table can be created directly within the inspector or imported from a JSON file:
 
 *Morph Target (or Blendshapes or Shapekeys) can be added on any 3D models software that you want. You can use an add-on on Blender or Maya for exemple. Or you can use Iclone 8 to add the Arkit Shapekeys standard to your 3D model.*
 
 ### 4.7.1 Create from scratch
 
-1. On the Content Drawer (Ctrl+Space), right click at the desired location and create new Data Table (under *Miscellaneous > Data Table*).
-On the Pick Row Structure window, select `GeppettoHeadshiftTableRow` :
+1. In the Content Drawer (Ctrl+Space), right click at the desired location and create new Data Table (under *Miscellaneous > Data Table*).
+In the Pick Row Structure window, select `GeppettoHeadshiftTableRow`:
 
 ![](./images/Geppetto_Phonemes_DataTable_image_1.png)
 ![](./images/Geppetto_Headshift_DataTable_image_2.png)
@@ -547,11 +604,11 @@ On the Pick Row Structure window, select `GeppettoHeadshiftTableRow` :
 2. Each row on the Data Table defines a headshift. The row name is used to identify the headshift "action", like "Happy" for neck movements to play when character is happy (double-click on the “Row Name” field or press F2 to rename it).
 
 > Please note that the row "Generic" represents procedural headshift animation.    
-If you want to enable procedural, be sure that the used Headshift DataTable possess a "Generic" row.
+If you want to enable procedural, be sure that the used Headshift DataTable possesses a "Generic" row.
 
 ![](./images/Geppetto_Phonemes_DataTable_image_4.png)
 
-3. Use the Row Editor to set the Morph Targets values :
+3. Use the Row Editor to set the Morph Target values:
   
 ![](./images/Geppetto_Headshift_DataTable_image_5.png)
 
@@ -570,7 +627,7 @@ If you want to enable procedural, be sure that the used Headshift DataTable poss
 Pre-made tables under:  
 `All > (Engine) > Plugins > Geppetto Content > MicroExpressions > Headshift`
 
-Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones ! 
+Feel free to duplicate and/or edit the existing Data Table in order to change existing emotions or add new ones! 
 
 ![](./images/Geppetto_Headshift_DataTable_image_6.png)
 
@@ -581,7 +638,7 @@ Feel free to duplicate and/or edit the existing Data Table in order to change ex
 ### 4.7.3 Import/Export JSON like above.
 
 Like Phoneme Data Table, Headshift Data Table can be imported from a JSON file or a CSV file. We highly recommend using JSON instead of CSV files. 
-The import and export steps are the same as Phoneme Data Table.   
+The import and export steps are the same as the Phoneme Data Table.   
 Please read the section [Import from JSON/CSV](#import-from-jsoncsv) and [Export as JSON/CSV](#export-as-jsoncsv) for more details.
 
 <br/>
@@ -597,7 +654,7 @@ C++ Function: `static void UGeppettoBPLibrary::GetPhonemesSoundWave(...)`
 Generate the phonemes for the given SoundWave and sentence. Can be used in editor or at runtime.
 
 > [!IMPORTANT]
-> If you use the node at runtime on a packaged game with `USoundWave` assets, please make sur that the SoundWave asset have a Loading Behaviour Override set to `Force Inline`, otherwise Geppetto won't be able to get the audio data from the SoundWave. In editor, or for runtime generated SoundWave such as `UProceduralSoundWave` this is not required.
+> If you use the node at runtime in a packaged game with `USoundWave` assets, please make sure that the SoundWave asset has a Loading Behaviour Override set to `Force Inline`, otherwise Geppetto won't be able to get the audio data from the SoundWave. In editor, or for runtime generated SoundWave such as `UProceduralSoundWave` this is not required.
 >
 >  ![](./images/GeppettoBlueprintLibrary_image_6.png)
 
@@ -615,10 +672,10 @@ Generate the phonemes for the given SoundWave and sentence. Can be used in edito
 | **Silence Settings**    | [Geppetto Silence](#TODO) | -50dB - 200ms | The threshold values used distinguish speech from silences parts |
 | **Close Mouth at End**  | `bool` | false |  If true, will add a PAUSE phoneme at the very end of the list to ensure the lipsync ends with the mouth closed |
 | **Auto Emotion**        | `bool` | false | If true, will use the speech to determine and automatically change the emotion during lipsync |
-| **Remove Noise**        | `bool` | true | If true, perform noise removal to isolate the speech brom the background noise |
+| **Remove Noise**        | `bool` | true | If true, perform noise removal to isolate the speech from the background noise |
 | **Local** ❌ not available on Fab | `bool` | false | If true, do not use the Geppetto API to generate phonemes but use the local server instead (The local server is not available through Fab) |
 | **Logs**                | `bool` | true | If true, print Geppetto logs to the console |
-| **On Response**         | `FDelegate` | - | Delegate called when the generation is done (or an error occured), with:<br/>- **Is Error:** Indicate if an error occured during generation<br/>- **Phonemes:** The generated [Geppetto Phonemes](#4111-geppetto-phoneme)<br/>- **Emotions:** The generated [Geppetto Emotions](#4112-geppetto-emotion) (if any)<br/>- **Settings:** [Geppetto Response Settings](#TODO), Contains the STT generated sentence (if not given as input) |
+| **On Response**         | `FDelegate` | - | Delegate called when the generation is done (or an error occurred), with:<br/>- **Is Error:** Indicates if an error occurred during generation<br/>- **Phonemes:** The generated [Geppetto Phonemes](#4111-geppetto-phoneme)<br/>- **Emotions:** The generated [Geppetto Emotions](#4112-geppetto-emotion) (if any)<br/>- **Settings:** [Geppetto Response Settings](#TODO), Contains the STT generated sentence (if not given as input) |
 
 
 ### 4.8.2 Generate phonemes (using PCM bytes)
@@ -642,13 +699,13 @@ Generate the phonemes using a PCM raw byte buffer and sentence.
 
 C++ Function: `static void UGeppettoBPLibrary::GetPhonemesFile(...)`
 
-Generate the phonemes using a file bytes. The file can be in WAV structure (`.wav`) or MPEG structure (`.mp3`). Other audio structure such as `.flac`, `.ogg`, `.aac` might not work.
+Generate the phonemes using file bytes. The file can be in WAV structure (`.wav`) or MPEG structure (`.mp3`). Other audio structures such as `.flac`, `.ogg`, `.aac` might not work.
 
 ![](./images/GeppettoBlueprintLibrary_image_7.1.png)
 
 | Parameter             | Type  | Default value   | Description |
 |-----------------------|-------|-----------------|-------------|
-| **Audio File**        | Array of `uint8` | -    | The file bytes. Can be all type of files. |
+| **Audio File**        | Array of `uint8` | -    | The file bytes. Can be any type of file. |
 | **Filename**          | `FString` | audio.wav   | The filename that will be sent and read by the API. No real impact. |
 | **File Content Type** | `FString` | audio/x-wav | The HTTP MIME Content-Type of the file. Must match the file structure. |
 | **Other parameters**  | -         | -           | Please see [Generate phonemes (using SoundWave)](#481-generate-phonemes-using-soundwave). |
@@ -697,22 +754,22 @@ Returns the Morph Targets and corresponding values for a phoneme name from a giv
 | ***Return Value***  | Map of <`Fname`, `float`> | - | The list of all Morph Targets used for the phoneme and their values at max amplitude (100) |
 
 
-### 4.8.6 Get Morph Targets for Emotion
+### 4.8.7 Get Morph Targets for Emotion
 
 C++ Function: `static TMap<FName, float> UGeppettoBPLibrary::GetEmotionMorphTargets(const FName& Emotion, const UDataTable* EmotionTable);`
 
-Returns the Morph Targets and corresponding values for a emotion name from a given Emotion Table.
+Returns the Morph Targets and corresponding values for an emotion name from a given Emotion Table.
 
 ![](./images/GeppettoBlueprintLibrary_image_10.png)
 
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
 | **Emotion**       | `FName` | - | The emotion name |
-| **Phoneme Table** | [Emotion Data Table](#44-geppetto-emotion-data-table) | - | The Emotion Data Table used to retrieve Morph Targets values |
+| **Phoneme Table** | [Emotion Data Table](#44-geppetto-emotion-data-table) | - | The Emotion Data Table used to retrieve Morph Target values |
 | ***Return Value***  | Map of <`Fname`, `float`> | - | The list of all Morph Targets used for the emotion and their values at max intensity (100) |
 
 
-### 4.8.7 Safe Lerp
+### 4.8.8 Safe Lerp
 
 C++ Function: `static float UGeppettoBPLibrary::SafeLerp(const float A, const float B, const float Alpha)`
 
@@ -727,6 +784,7 @@ Safe linear interpolation with clamping. Used internally to blend values without
 | **Alpha**         | `float` | 0.0 | The alpha value used to interpolate between A and B |
 | ***Return Value***  | `float` | -   | The safe linear interpolation result (either A, B, or a standard interpolation) |
 
+
 <br/>
 
 ## 4.9 Geppetto Curve Generator Blueprint Library
@@ -738,7 +796,7 @@ The following functions can be used to translate [Geppetto Phonemes](#4111-geppe
 
 C++ Function: `static TMap<FName, UCurveFloat*> UGeppettoCurveGenerator::CreatePhonemeCurves(...)`
 
-Create the phoneme Morph target curves for lipsync animation.
+Create the phoneme Morph Target curves for lipsync animation.
 
 ![](./images/GeppettoCurveGenerator_image_1.png)
 
@@ -758,7 +816,7 @@ Create the phoneme Morph target curves for lipsync animation.
 
 C++ Function: `static TMap<FName, UCurveFloat*> UGeppettoCurveGenerator::CreateEmotionCurves(...)`
 
-Create the emotion Morph target curves for lipsync animation.
+Create the emotion Morph Target curves for lipsync animation.
 
 ![](./images/GeppettoCurveGenerator_image_2.png)
 
@@ -775,7 +833,7 @@ Create the emotion Morph target curves for lipsync animation.
 
 C++ Function: `static void UGeppettoCurveGenerator::CreateAllCurves(...)`
 
-Create the phonemes and emotions Morph target curves for lipsync animation.
+Create the phonemes and emotions Morph Target curves for lipsync animation.
 
 ![](./images/GeppettoCurveGenerator_image_3.png)
 
@@ -813,7 +871,7 @@ Retrieve the [Phonemes](#4111-geppetto-phoneme) and [Emotions](#4112-geppetto-em
 
 C++ Function: `static float UGeppettoCurveGenerator::GetCurvesMaxTime(const TMap<FName, UCurveFloat*>& Curves)`
 
-Retrieves the maximum time value across all specified morph target curves.
+Retrieves the maximum time value across all specified Morph Target curves.
 
 ![](./images/GeppettoCurveGenerator_image_5.png)
 
@@ -822,11 +880,12 @@ Retrieves the maximum time value across all specified morph target curves.
 | **Curves**        | Map of <`FName`, `UCurveFloat`> | - | The curves to look for max time |
 | ***Return Value***    | `float` | - | The maximum time (in sec) |
 
+
 <br/>
 
-## 4.10 Geppetto Headhift Blueprint Library
+## 4.10 Geppetto Headshift Blueprint Library
 
-The following function can be used to help performing Headshift animations.
+The following functions can be used to help perform Headshift animations.
 
 ### 4.10.1 Initialize New Movement
 
@@ -839,7 +898,7 @@ Calculate the values for a new headshift movement
 | Parameter                   | Type  | Default value   | Description |
 |-----------------------------|-------|-----------------|-------------|
 | **Headshift Movement Data** | [Geppetto Headshift Data](#TODO) | *Default* | The new headshift movement parameters |
-| **New Headshift Movement**  | [Geppetto Headshift Movement](#TODO) | - | (in-out) The resulting headshift movement, begining at where the actual headshift movement was |
+| **New Headshift Movement**  | [Geppetto Headshift Movement](#TODO) | - | (in-out) The resulting headshift movement, beginning at where the actual headshift movement was |
 | ***Return Value***          | `bool` | - | True if the new headshift movement can be done, false otherwise |
 
 ### 4.10.2 Update Generic Movement
@@ -852,7 +911,7 @@ Calculate the new values for the given headshift movement
 
 | Parameter         | Type  | Default value   | Description |
 |-------------------|-------|-----------------|-------------|
-| **Headshift Movement**  | [Geppetto Headshift Movement](#TODO) | - | (in-out) the headshift movement  |
+| **Headshift Movement**  | [Geppetto Headshift Movement](#TODO) | - | (in-out) the headshift movement |
 | **Delta Time**          | `float` | - | The current tick delta time |
 | **Lerp Rotation**       | `FRotator` | - | The headshift lerp rotation |
 | ***Return Value***      | `bool` | - | True if the headshift movement has reached completion (alpha >= 1.0), false otherwise. |
@@ -894,7 +953,7 @@ Save the generated lipsync phonemes as a [Geppetto Data Asset](#481-geppetto-dat
 |---------------------------|---------------|-----------------|-------------|
 | **Audio**                 | `USoundWave`  | - |  A reference to the SoundWave object used to generate the Phonemes |
 | **Sentence**              | `FString`     | *Empty string* | The Sentence used to generate the Phonemes, or the STT sentence in response |
-| **Auto Detect Sentence**  | `bool`        | false | Was the sentence automatically generated (STT) or send with the API request |
+| **Auto Detect Sentence**  | `bool`        | false | Was the sentence automatically generated (STT) or sent with the API request |
 | **Amplitude Settings**    | [Geppetto Amplitude](#TODO) | 30 - 70 | The minimum and maximum amplitudes used to generate the Phonemes |
 | **Silence Settings**      | [Geppetto Silence](#TODO) | -50dB - 200ms | The silence threshold and time used to generate the Phonemes |
 | **Phonemes Delay**        | `float`       | 0.0 | The delay (in seconds) applied to the time codes of the generated Phonemes |
@@ -902,7 +961,7 @@ Save the generated lipsync phonemes as a [Geppetto Data Asset](#481-geppetto-dat
 | **Phonemes**              | [Geppetto Phoneme](#4111-geppetto-phoneme) | *Empty array* | The Phonemes generated by the API |
 | **Emotions**              | [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
 | **Package Path**          | `FString`     | *Empty string* | The file save location, in UE package path format |
-| ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occured |
+| ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occurred |
 
 
 ### 4.11.2 Save as Sequence 
@@ -920,7 +979,7 @@ Saves the provided audio and animation data as a Geppetto sequence asset at the 
 | **Emotions**              | [Geppetto Emotion](#4112-geppetto-emotion) | *Empty array* | The Emotions generated by the API or given in the sentence |
 | **Package Path**          | `FString`     | *Empty string* | The file save location, in UE package path format |
 | **Frame Rate**            | [Geppetto Sequencer FPS](#TODO) | 120fps | The desired frame rate for the created sequence asset. |
-| ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occured |
+| ***Return Value***        | [Geppetto Data Asset](#481-geppetto-data-asset) | - | The created asset, or null if an error occurred |
 
 
 ### 4.11.3 Convert Geppetto Sequence Into Animation
@@ -955,7 +1014,7 @@ Creates a new [Geppetto Preset DataAsset](#TODO) at the specified package path w
 ### 4.11.5 Show save file selection dialog
 
 Show the operating system save file selection dialog for a Geppetto Data Asset.    
-**Please note that the whole engine is freezed while the OS file selection window is opened.**
+**Please note that the whole engine is frozen while the OS file selection window is opened.**
 
 ![](./images/GeppettoEdotprBlueprintLibrary_image_5.png)
 
@@ -1040,7 +1099,7 @@ The `GeppettoSequence` asset can be edited inside a custom editor which allows y
 | **Emotion Table**   | [Emotion Data Table](#45-geppetto-emotion-data-table) | - | The emotion table used to perform emotion animation. |
 | **Face Animation**  | `UAnimBlueprint` | - | This is an optional parameter to use when your character is not animated through Morph Targets but with an Anim Instance instead (such as for Metahuman with the `Face_AnimBP`). You should select the AnimationBlueprint of your character in order to properly preview the lip-sync animation. |
 | **Max Slope**       | `float` | 4.0 | The max slope value allowed between two Morph target curve keys in preview animation |
-| **Min Time Step**   | `float` | 0.0001 | The min time allowed between two Morph target curve keys in the rpreview animation |
+| **Min Time Step**   | `float` | 0.0001 | The min time allowed between two Morph target curve keys in the preview animation |
 
 
 ### 4.12.3 Geppetto Preset Data Asset (Editor only)
@@ -1101,7 +1160,7 @@ The language used in the speech.
 | **Spanish** |
 | **German**  |
 | **Italian** |
-| **Portugese** |
+| **Portuguese** |
 
 > [!TIP]
 > When using `Beta` [Geppetto Quality](#4134-geppetto-quality), you have way more available languages: English, French, Spanish, German, Italian, Portuguese, Afrikaans, Albanian, Armenian, Bengali, Bosnian, Bulgarian, Catalan, Croatian, Czech, Danish, Dutch, Estonian, Persian, Finnish, Georgian, Greek, Gujarati, Hindi, Hungarian, Icelandic, Indonesian, Kannada, Latin, Latvian, Lithuanian, Macedonian, Malayalam, Malay, Nepali, Punjabi, Polish, Romanian, Russian, Serbian, Slovak, Swahili, Swedish, Tamil, Telugu, Turkish, Vietnamese, Welsh
@@ -1193,7 +1252,7 @@ A struct containing all parameters to play a Geppetto Micro Expression Loop. All
 |-------------------------|-----------|-----------------|-------------|
 | **Name**                | `FName`   | *Empty name* | The micro expression name. |
 | **Time Range**          | [Tuple Float](#TODO) | 0 - 0 | The min and max wait time between two micro expressions loops |
-| **Intensity Range**     | [Tuple Float](#TODO) | 0 - 100 | he min and max intensity for the micro expression loops |
+| **Intensity Range**     | [Tuple Float](#TODO) | 0 - 100 | The min and max intensity for the micro expression loops |
 | **Speed Range**         | [Tuple Float](#TODO) | 1 - 1 | The min and max speed for the micro expression loops |
 | **Curve Override**      | `UCurveFloat` | - | *(Optional)* Provide a custom micro expression curve to use instead of the one defined in the [Micro Expression Data Table](#46-geppetto-micro-expressions-data-table) |
 
@@ -1211,7 +1270,7 @@ A struct containing all values related to dynamic Micro Expression Morph Targets
 
 ### 4.14.5 Geppetto Headshift Movement
 
-A struct containg all parameters to perform a Headshift Movement. All variables are Blueprint read-write.
+A struct containing all parameters to perform a Headshift Movement. All variables are Blueprint read-write.
 
 ![](./images/Structs_image_5.png)
 
@@ -1226,7 +1285,7 @@ A struct containg all parameters to perform a Headshift Movement. All variables 
 
 ### 4.14.6 Geppetto Headshift Data
 
-A struct containg all parameters to perform a Headshift Movement on Skeletal Mesh bone. All variables are Blueprint read-write.
+A struct containing all parameters to perform a Headshift Movement on Skeletal Mesh bone. All variables are Blueprint read-write.
 
 ![](./images/Structs_image_6.png)
 
@@ -1252,7 +1311,7 @@ A struct containing all Headshift data related to an emotion. All variables are 
 
 ### 4.14.8 Geppetto Amplitude
 
-A struct containg information about Geppetto amplitudes for phoneme generation.
+A struct containing information about Geppetto amplitudes for phoneme generation.
 
 ![](./images/Structs_image_8.png)
 
@@ -1264,7 +1323,7 @@ A struct containg information about Geppetto amplitudes for phoneme generation.
 
 ### 4.14.9 Geppetto Silence
 
-A struct containg information about Geppetto silence detection for phoneme generation.
+A struct containing information about Geppetto silence detection for phoneme generation.
 
 ![](./images/Structs_image_9.png)
 
@@ -1275,7 +1334,7 @@ A struct containg information about Geppetto silence detection for phoneme gener
 
 ### 4.14.10 Geppetto Response Settings
 
-A struct containg all information about the Geppetto API response.
+A struct containing all information about the Geppetto API response.
 
 ![](./images/Structs_image_10.png)
 
@@ -1297,31 +1356,3 @@ Since Unreal `FTuple<float>` is not supported in Blueprint yet, this struct is u
 | **First**     | The tuple first value, i.e. the min value or the begin time. |
 | **Second**    | The tuple second value, i.e. the max value or the end time.   |
 
-<br/>
-
-## 4.12 Emotion Tag System
-
-The emotion tag system allows you to change the character emotion at a specific point of the sentence. Its base syntax is the following :
-
-### Syntax
-
-`<emotion name intensity 80 transition 300 function_type linear>`
-
-
-### Parameters
-
-| Parameter         | Description                               | Default      |
-|---------------|-------------------------------------------|--------------|
-| emotion       | Name of the emotion                       | (required)   |
-| intensity     | Intensity (0-100)                         | 50           |
-| transition    | Transition time in ms                     | 200          |
-| function_type | Interpolation function (linear, cubic…)  | cubic        |
-
-### Example
-
-![](./images/Emotion_Tag_System_image_1.png)
-
-![](./images/Emotion_Tag_System_image_2.png)
-
-You can mix tags with runtime Blueprint emotion changes for full control.
-Please read section [2.7 Play an emotion on a character](./GettingStarted.md#27-play-an-emotion-on-a-character) of the documentation for more details on how to change an emotion at Runtime using Blueprints.

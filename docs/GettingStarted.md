@@ -8,7 +8,7 @@ This chapter provides a complete flow of the Geppetto plugin to create a pre-gen
 
 ### On this page
 
-- **[What is Geppetto ?](#21-what-is-geppetto)**
+- **[What is Geppetto ?](#21-what-is-geppetto-)**
 - **[Character setup](#22-character-setup)**
 - **[Geppetto Data Tables](#23-geppetto-data-tables)**
   - ***[Phoneme Data Table](#231-phoneme-data-table)***
@@ -17,10 +17,10 @@ This chapter provides a complete flow of the Geppetto plugin to create a pre-gen
   - ***[Headshift Data Table](#234-headshift-data-table)***
 - **Editor (pre-generated) usage**
   - **[Generate phonemes and emotions in the editor](#24-generate-phonemes-and-emotions-in-the-editor)**
-  - **[Play editor lip-sync asset on a character](#26-play-editor-lip-sync-assets-on-a-character)**
-  - **[Export lipsync as an animation](#27-export-lipsync-as-an-animation)**
+  - **[Play editor lip-sync asset on a character](#25-play-editor-lip-sync-assets-on-a-character)**
+  - **[Export lipsync as an animation](#26-export-lipsync-as-an-animation)**
 - **Runtime (live) usage**
-  - **[Generate phonemes and emotions on runtime](#25-generate-phonemes-and-emotions-on-runtime)**
+  - **[Generate phonemes and emotions on runtime](#27-generate-phonemes-and-emotions-on-runtime)**
   - **[Play an emotion on a character](#28-play-an-emotion-on-a-character)**
   - **[Play micro expression on a character](#29-play-a-micro-expression-on-a-character)**
 
@@ -31,6 +31,9 @@ This chapter provides a complete flow of the Geppetto plugin to create a pre-gen
 **Geppetto is a facial animation and lip-sync plugin for Unreal Engine, designed to automatically generate lip-sync animations from audio or text files.**
 
 **The latest version (2.1.0) introduces a better lipsync render and the ability to export your Geppetto sequence as an animation asset, enabling versatility and increased customization. This version also includes new features like headshift.**
+
+
+<br/>
 
 ## 2.2 Character setup
 
@@ -61,8 +64,10 @@ Here are the steps to set up the character in Unreal:
 Check the next steps to learn how to bind Geppetto to your character and play a lip-sync animation.
 
 
+<br/>
 
 ## 2.3 Geppetto Data Tables
+
 
 ### 2.3.1 Phoneme Data Table
 
@@ -94,6 +99,7 @@ You can either create a new Emotion DataTable in Unreal or import an existing on
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > Emotions*, and you’re free to duplicate or customize them.<br/>
 For more information, please see [4.3 Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table).
 
+
 ### 2.3.3 Micro-expression Data Table
 
 The Geppetto Micro Expressions Data Table defines subtle facial movements like blinks or eyebrow twitches. Each row maps a micro expression to Morph Target values, either fixed or dynamic.     
@@ -105,6 +111,7 @@ You can either create a new Micro Expression DataTable in Unreal or import an ex
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > MicroExpressions*, and you’re free to duplicate or customize them.<br/>
 For more information, please see [4.4 Geppetto Micro Expressions Data Table](./API.md#44-geppetto-micro-expressions-data-table).
 
+
 ### 2.3.4 Headshift Data Table
 
 The Geppetto Headshift Data Table defines neck movements. Each row represents one or several neck movements to play procedurally or when an emotion is played.     
@@ -115,6 +122,9 @@ Each neck movement is composed of a curve, a speed, an amplitude, and influenced
 You can either create a new Headshift DataTable in Unreal or import an existing one from a csv or json file.<br/>
 Predefined tables are available under *(Engine) > Plugins > Geppetto Content > MicroExpressions > Headshift*, and you’re free to duplicate or customize them.<br/>
 For more information, please see [4.5 Geppetto Headshift Data Table](./API.md#45-geppetto-headshift-data-table).
+
+
+<br/>
 
 ## 2.4 Generate phonemes and emotions in the Editor
 
@@ -176,6 +186,9 @@ There are two types of assets: [Geppetto DataAsset](./API.md#48-data-assets) and
 > [!TIP]
 > See chapter [Play lip-sync on a character](#26-play-lip-sync-on-a-character) below to use and play your saved geppetto assets at runtime!
 
+
+<br/>
+
 ## 2.5 Play Editor lip-sync assets on a character
 
 As we talked about before, there are two assets that store generated phonemes: [Geppetto DataAsset](./API.md#48-data-assets) and [Geppetto Sequence](./API.md#49-geppetto-sequence).    
@@ -196,6 +209,9 @@ Here is an example on how to use both types to play a lipsync animation on a cha
 That is all about how to play a pre-generated lip-sync.   
 You now have all the essentials to create your own animation and play it on any character.   
 If you have any questions, please feel free to contact us by mail at support@xandimmersion.com or on our [Discord server](https://l.linklyhq.com/l/1fMJz).
+
+
+<br/>
 
 ## 2.6 Export lipsync as an animation
 
@@ -219,6 +235,9 @@ Here is a step-by-step tutorial to export your lipsync:
 You can now use your lipsync as is or export it as a FBX.
 
 ![](./images/Export_a_Geppetto_Sequence_image_3.png)
+
+
+<br/>
 
 ## 2.7 Generate phonemes and emotions on runtime
 
@@ -295,6 +314,9 @@ Here, we will call the `Space Bar` which act as an event called the input **Spac
 
 **Well done! You learned how to generate and play a runtime lip-sync animation!**    
 
+
+<br/>
+
 ## 2.8 Play an emotion on a character
 
 You will need to use a [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) or any inherited Component.
@@ -310,6 +332,8 @@ The [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-playe
 ![](./images/Change_Emotions_image_3.png)
 
 [More information about GeppettoEmotion struct](./API.md#4112-geppetto-emotion)
+
+<br/>
 
 ## 2.9 Play a micro expression on a character
 

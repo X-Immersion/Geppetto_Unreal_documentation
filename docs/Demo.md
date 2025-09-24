@@ -14,6 +14,9 @@
 
 The Geppetto plugin comes with a demo level and a skeletal mesh with morph targets, thanks to [Rigged T-Pose Human Male w 50 Face Blendshapes](https://sketchfab.com/3d-models/rigged-t-pose-human-male-w-50-face-blendshapes-cc7e4596bcd145208a6992c757854c07) by Mike Alger, licensed under [Creative Commons Attribution](https://creativecommons.org/licenses/by/4.0/).
 
+
+<br/>
+
 ## 2.1 How to Open the Demo Level
 
 1. 🎮 Open or create a project with the Geppetto plugin installed.
@@ -33,6 +36,9 @@ The Geppetto plugin comes with a demo level and a skeletal mesh with morph targe
 5. ▶️ Open the level and press **Play**.
 
 ![Where to find the Play button](./images/How_to_open_the_demo_level_image_3.png)
+
+
+<br/>
 
 ## 2.2 Play with the Demo Level
 
@@ -58,6 +64,9 @@ There are a few things you can do in the demo scene:
 
 * On the *bottom left*, you can see the **Lip-sync** settings. Use them with the keys 1-3 to play various DataAsset/Sequence/SoundWave.
 
+
+<br/>
+
 ## 2.3 Understand the Demo Level
 
 Open `BP_GeppettoExampleActor > Event Graph` to start exploring how the
@@ -73,6 +82,7 @@ You’ll see a block for each key event and `BeginPlay`.
 
 ![Screen of the various Blueprint nodes available in this example actor](./images/Understand_the_demo_level_image_4.png)
 
+
 ### 2.3.1 Components Required
 
 Every actor using the plugin must have these 3 components:
@@ -86,6 +96,7 @@ Every actor using the plugin must have these 3 components:
 You can see on the [Geppetto Sound Wave Component](./API.md#41-geppetto-sound-wave-player-component) detail panel the Data Tables used for phonemes, emotions, micro expressions and headshift.
 
 ![Component setup](./images/Components_image_2.png)
+
 
 ### 2.3.2 Begin Play
 
@@ -128,6 +139,7 @@ The plugin uses a [Geppetto Phoneme Data Table](./API.md#42-geppetto-phoneme-dat
 **Please note that Data Tables for Metahuman are included in this plugin!**   
 The Data Table used by the plugin is passed through the [Geppetto Sound Wave Player Component](./API.md#41-geppetto-sound-wave-player-component) variables.
 
+
 ### 2.3.4 Emotions
 
 The **Emotion combo box in the scene** is related to emotions.
@@ -139,6 +151,7 @@ The **Emotion combo box in the scene** is related to emotions.
 ![](./images/Emotions_image_1.png)
 
 In the same way as phonemes, emotions use a [Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) to determine the Morph Target values for each emotion. Please read section [4.3 - Geppetto Emotion Data Table](./API.md#43-geppetto-emotion-data-table) of the documentation for more information.
+
 
 ### 2.3.5 Micro Expressions
 
