@@ -34,19 +34,6 @@ The text can either be provided directly or generated through Speech-to-Text, wh
 
 ---
 
-#### Silence Detection
-
-![](./images/RessourcesGeneral_image_2.png)
-
-Silences in the audio serve as markers to define the start and end of the text. The automatic detection of silence depends on the type of audio:
-
-- For synthetic voices, -50 dB silence threshold and 200 ms silence time are recommended.  
-- For noisier recordings, -40 dB and 300 ms may be more suitable.
-
-These parameters should be adjusted based on the characteristics of the audio recording.
-
----
-
 #### Text-to-Phoneme Conversion
 
 The text is converted into phonemes using a machine learning model. This model is language-sensitive, and currently, Geppetto supports English, French, German, Italian, and Spanish.  
@@ -72,11 +59,15 @@ Use a more precise model for phonemes generation. Still use the fastest model fo
 
 ##### High
 
-Use the same model as 'Normal' for phonemes generation, but use a better (and much slower) model for alignment.
+Use the same model as 'Normal' for phonemes generation, but use a better model for alignment.
 
 ##### Highest
 
-Use the most precise models for both phonemes generation and alignment. The phoneme generation time can be very long according to the audio length. (>1min.)
+Use the most precise models for alignment. The generation is the same as 'Normal' and 'High'
+
+#### Beta
+
+Use the best model for phonemes generation (still in beta) and phoneme alignment. The phoneme generation time can be very long (>1min.) according to the audio length. *This parameter is still in Beta and might not work as expected*
 
 ---
 
@@ -142,13 +133,6 @@ The final output is a structured list of (phoneme, timestamp, amplitude). This l
 
 ---
 
-## Geppetto Blueprint
-
-Demo blueprint:  
-👉 [https://blueprintue.com/blueprint/oczerzxz/](https://blueprintue.com/blueprint/oczerzxz/)
-
----
-
 ## Known bugs
 
 **The plugin shows control-related errors**
@@ -159,5 +143,3 @@ If some controls used (named like `CTRL_expressions_…`) are missing in the Met
 
 - MetaHumans downloaded with **UE5.0 and 5.1** are compatible with **UE5.0, 5.1 and 5.2**
 - MetaHumans downloaded with **UE5.2 and 5.3** are compatible with **UE5.2 and 5.3**
-
-📺 If the error remains, please watch this tutorial video and ensure that you have done all the steps correctly.
