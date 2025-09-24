@@ -330,13 +330,13 @@ The [Geppetto Sound Wave Player Component](./API.md#42-geppetto-soundwave-player
 
 ![](./images/Change_Emotions_image_3.png)
 
-[More information about GeppettoEmotion struct](./API.md#4112-geppetto-emotion)
+[More information about GeppettoEmotion struct](./API.md#4142-geppetto-emotion)
 
 <br/>
 
 ## 2.9 Play a micro expression on a character
 
-Micro-expressions, such as blinks or subtle twitches, can be triggered using either [Play Micro Expression](API.md#416-play-micro-expression) for single animations or [Start Micro Expression Loop](API.md#417-start-micro-expression-loop) to repeat them at random intervals.    
+Micro-expressions, such as blinks or subtle twitches, can be triggered using either [Play Micro Expression](API.md#417-play-micro-expression) for single animations or [Start Micro Expression Loop](API.md#418-start-micro-expression-loop) to repeat them at random intervals.    
 **Micro expressions must be defined in the Geppetto Component Micro Expression Data Table.**
 
 ![](./images/Play_a_Geppetto_Data_Asset_with_SoundWave_image_3c.png)
