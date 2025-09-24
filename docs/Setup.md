@@ -42,7 +42,7 @@ To use the Geppetto plugin with Metahuman, follow these links to configure your 
 - [Requirements & Configuration](https://dev.epicgames.com/documentation/en-us/metahuman/downloading-and-exporting-metahumans/requirements-and-configuration-settings)
 - [Using with Unreal Engine 5](https://dev.epicgames.com/documentation/en-us/metahuman/downloading-and-exporting-metahumans/unreal-engine-5)
 
-Please read [How to use Geppetto with Metahuman](GettingStarted.md#TODO) to integrate Geppetto on a Metahuman character.
+Please read [How to use Geppetto with Metahuman](Metahuman.md) to integrate Geppetto on a Metahuman character.
 
 > [!TIP]
 > Unreal Engine Metahuman setup has changed since UE5.6 and now uses the [Metahuman Creator](https://dev.epicgames.com/documentation/metahuman/metahuman-creator?application_version=5.6) Plugin. Please read the Unreal Engine documentation [Getting Started in MHC](https://dev.epicgames.com/documentation/metahuman/getting-started-with-metahuman-creator) and [Creating a Character](https://dev.epicgames.com/documentation/metahuman/creating-a-character) to use Metahuman with UE5.6.

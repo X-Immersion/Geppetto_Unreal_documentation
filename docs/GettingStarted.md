@@ -280,8 +280,7 @@ You can see on the `GeppettoDemoPlayerComponent` how this is done for the Demo p
 > ![](./images/Getting_Started_image_12.png) 
 
 > [!NOTE]
-> You can also generate the audio at runtime and pass it into your SoundWave variable to use it in the runtime lip-sync.    
-> For more details, please check [this part](Others.md#TODO).
+> You can also generate the audio at runtime and pass it into your SoundWave variable to use it in the runtime lip-sync. In this case, the SoundWave can be a `USoundWaveProcedural`   
 
 5. Into your Event Graph, call the node [Generate Phonemes (using SoundWave)](API.md#481-generate-phonemes-using-soundwave) and place it after your BeginPlay or any nodes you want in order to call the function.     
 Here, we will call the `Space Bar` which act as an event called the input **Space** is pressed.

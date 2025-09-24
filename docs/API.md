@@ -252,7 +252,7 @@ The Geppetto SoundWave Player Component is a Blueprint Actor Component that inhe
 This Component uses **The first Skeletal Mesh Component and Audio Component** found in the owning actor. If you have multiple SkeletalMesh/Audio components attached to your Actor, or they are not directly attached to the owning Actor, or if you rely on another method to animate your Skeletal Mesh (such as an Animation Blueprint), we recommend you to create a new [Geppetto Component](#41-geppetto-base-component) that inherits from the Geppetto SoundWave Player Component and override the logic to put yours instead. More information in the chapter [Component Inheritance](#43-component-inheritance).
 
 > [!IMPORTANT]
-> Because Metahuman Blueprint Actor has multiple Skeletal Mesh Components and uses custom Controls to animate the face, you **must** create a new child Blueprint Component that inherits from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information in the chapters [Component Inheritance](#43-component-inheritance) and [Use Geppetto with Metahuman](#TODO).
+> Because Metahuman Blueprint Actor has multiple Skeletal Mesh Components and uses custom Controls to animate the face, you **must** create a new child Blueprint Component that inherits from this component, and do not use the Geppetto SoundWave Player Component directly. You can find more information in the chapters [Component Inheritance](#43-component-inheritance) and [Use Geppetto with Metahuman](Metahuman.md).
 
 When playing a lipsync, it generates Morph Target curves from the phonemes and emotions contained in the [DataAsset](#4121-geppetto-data-asset), the [Sequence](#4122-geppetto-sequence) or the [Phonemes](#4141-geppetto-phoneme) and [Emotions](#4142-geppetto-emotion) passed in parameters.
 Then it updates each MorphTarget based on the current play time which can be synced with the component tick or the current audio playback time.
@@ -363,9 +363,9 @@ Sometimes, the provided [Geppetto SoundWave Player Component](#42-geppetto-sound
 In these cases, you must create your own Geppetto Component. If you use the Unreal audio mixer and SoundWaves, you can select the [Geppetto SoundWave Player Component](#42-geppetto-soundwave-player-component) as the parent class. If not, you will need to select the [Geppetto Base Component](#41-geppetto-base-component) as the parent class. There are three Blueprint Implementable Events that **must be overridden by all child classes**:
 
 > [!IMPORTANT]
-> For Metahuman, you can download a pre-existing Geppetto Component from this repository and use them directly in your projects. Drag and drop the `.uasset` files **at the root of your project `Content` folder**:
-> * **UE5.2 - UE5.5:** [Geppetto Metahuman Component](#TODO)
-> * **UE5.6:** [Face_AnimBP](#TODO) and [Geppetto Metahuman Component](#TODO). [More information](#TODO)
+> For Metahuman, you can follow the following tutorial to easily integrate Geppetto into your Metahumans:
+> - **[Unreal 5.0 - Unreal 5.5](Metahuman.md#use-geppetto-with-metahuman-from-ue50-to-ue55)**
+- - **[Unreal 5.6+](Metahuman.md#use-geppetto-with-metahuman-from-ue56)**
 
 ### 4.3.1 Set Morph Target
 
