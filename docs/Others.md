@@ -165,3 +165,27 @@ If some controls used (named like `CTRL_expressions_…`) are missing in the Met
 
 - MetaHumans downloaded with **UE5.0 and 5.1** are compatible with **UE5.0, 5.1 and 5.2**
 - MetaHumans downloaded with **UE5.2 and 5.3** are compatible with **UE5.2 and 5.3**
+
+<br>
+
+----
+
+<br>
+
+**The runtime lipsync feature is not playing ponctually**
+
+This issue may occur when attempting to play a new lipsync animation (particularly a runtime lipsync) while the character is already processing another lipsync or an emotion.  
+**Before triggering a new lipsync, make sure the character is not currently playing one, and that any previous lipsync has fully finished.**   
+
+<br>
+
+----
+
+<br>
+
+**The preview is not aligned with the phoneme changes in Sequencer's Editor**
+
+**In the Sequencer Editor, phoneme changes become visible when you replay the preview** (see screenshot below).     
+If you move the timeline without playing the preview first, your latest changes will not be applied. However, they are not lost and you do not need to redo them. 
+
+![](./images/Known_Bugs_image_1.png)
